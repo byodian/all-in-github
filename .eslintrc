@@ -1,3 +1,6 @@
 {
-  "extends": "@byodian/eslint-config-ts"
+  "extends": "@byodian/eslint-config-ts",
+  "rules": {
+    "no-console": "off"
+  }
 }
