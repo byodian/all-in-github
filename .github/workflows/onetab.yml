@@ -5,6 +5,10 @@ on:
   issues:
     types:
       - opened
+      - labeled
+      - unlabeled
+      - edited
+      
 jobs:
   Update-onetab:
     permissions: write-all
