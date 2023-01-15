@@ -1,4 +1,16 @@
 
+## [TypeScript](https://github.com/byodian/all-in-github/issues/6)
+
+created 2023-01-15T14:29:23Z
+
+- [express-typescript-boilerplate/tsconfig.json at main · byodian/express-typescript-boilerplate](https://github.com/byodian/express-typescript-boilerplate/blob/main/tsconfig.json)
+- [n8n/tsconfig.json at master · n8n-io/n8n · GitHub](https://github.com/n8n-io/n8n/blob/master/packages/workflow/tsconfig.json)
+- [TypeScript: TSConfig Reference - Docs on every TSConfig option](https://www.typescriptlang.org/tsconfig#module)
+- [Node.js with TypeScript](https://nodejs.dev/en/learn/nodejs-with-typescript/)
+- [TypeScript: TSConfig Reference - Docs on every TSConfig option](https://www.typescriptlang.org/tsconfig#moduleResolution)
+- [node.js - using process.env in TypeScript - Stack Overflow](https://stackoverflow.com/questions/45194598/using-process-env-in-typescript)
+
+
 ## [Github Automation with octokit](https://github.com/byodian/all-in-github/issues/5)
 
 created 2023-01-15T14:08:47Z
