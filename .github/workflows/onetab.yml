@@ -1,0 +1,29 @@
+name: OneTab
+
+on:
+  workflow_dispatch:
+  issues:
+    types:
+      - opened
+jobs:
+  Update onetab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.x
+          cache: npm
+          
+      - name: Install
+        run: npm ci
+        
+      - name: Run Script
+        run: |
+          npm run build
+          node dist/index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
