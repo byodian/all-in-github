@@ -1,4 +1,19 @@
 
+## [GIthub Actions](https://github.com/byodian/all-in-github/issues/7)
+
+created 2023-01-15T14:43:43Z
+
+- [Events that trigger workflows - GitHub Docs](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+- [Automatic token authentication - GitHub Docs](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)
+- [boop-gregors-nose/boop.yml at main · gr2m/boop-gregors-nose](https://github.com/gr2m/boop-gregors-nose/blob/main/.github/workflows/boop.yml)
+- [2022/bookmark.yml at main · yihong0618/2022](https://github.com/yihong0618/2022/blob/main/.github/workflows/bookmark.yml)
+- [helpdesk/update-show-sections-in-readmes.js at main · gr2m/helpdesk](https://github.com/gr2m/helpdesk/blob/main/update-show-sections-in-readmes.js)
+- [octokit/plugin-paginate-rest.js: Octokit plugin to paginate REST API endpoint responses](https://github.com/octokit/plugin-paginate-rest.js#readme)
+- [关于应用程序 - GitHub Docs](https://docs.github.com/zh/developers/apps/getting-started-with-apps/about-apps)
+- [readme-box/.github/workflows at main · JasonEtco/readme-box](https://github.com/JasonEtco/readme-box/tree/main/.github/workflows)
+- [使用脚本在运行器上测试代码 - GitHub Docs](https://docs.github.com/zh/actions/examples/using-scripts-to-test-your-code-on-a-runner)
+
+
 ## [TypeScript](https://github.com/byodian/all-in-github/issues/6)
 
 created 2023-01-15T14:29:23Z
