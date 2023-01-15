@@ -7,6 +7,7 @@ on:
       - opened
 jobs:
   Update-onetab:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
