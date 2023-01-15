@@ -24,7 +24,9 @@
     "@octokit/auth-oauth-device": "^4.0.3",
     "@octokit/core": "^4.1.0",
     "@octokit/plugin-create-or-update-text-file": "^2.0.3",
-    "octokit": "^2.0.11"
+    "@octokit/plugin-paginate-rest": "^5.0.1",
+    "octokit": "^2.0.11",
+    "readme-box": "^1.0.0"
   },
   "devDependencies": {
     "@byodian/eslint-config-ts": "^0.1.5",

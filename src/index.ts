@@ -1,99 +1,88 @@
-import { Octokit } from 'octokit'
+import { Octokit } from '@octokit/core'
 import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-file'
-import { createOAuthDeviceAuth } from '@octokit/auth-oauth-device'
-import type { Verification } from '@octokit/auth-oauth-device/dist-types/types'
-import { bumpBoopCounter } from './utils'
+import { paginateRest } from '@octokit/plugin-paginate-rest'
+// import { ReadmeBox } from "readme-box";
 
-// https://github.com/octokit/auth-oauth-device.js#readme
-const MyOctokit = Octokit.plugin(createOrUpdateTextFile).defaults({
-  userAgent: 'All In Github',
+type Issue = {
+  [k: string]: unknown;
+  title: string;
+  htmlUrl: string;
+  state: string;
+  body?: string | null;
+}
+
+const owner = 'byodian'
+const repo = 'all-in-github'
+const labels = 'onetab'
+
+const MyOctokit = Octokit.plugin(paginateRest, createOrUpdateTextFile).defaults({
+  userAgent: 'byodian all-in-github',
 })
 
 const octokit = new MyOctokit({
-  authStrategy: createOAuthDeviceAuth,
-  auth: {
-    clientType: 'oauth-app',
-    clientId: '3063e6354c17317ab9ae',
-    scopes: ['public_repo'],
-    onVerification(verification: Verification) {
-      // verification example
-      // {
-      //   device_code: "3584d83530557fdd1f46af8289938c8ef79f9dc5",
-      //   user_code: "WDJB-MJHT",
-      //   verification_uri: "https://github.com/login/device",
-      //   expires_in: 900,
-      //   interval: 5,
-      // };
-
-      console.log('Open %s', verification.verification_uri)
-      console.log('Enter code: %s', verification.user_code)
-    },
-  },
-  // auth: process.env.GITHUB_TOKEN,
+  auth: process.env.GITHUB_TOKEN,
 })
 
-async function run() {
-  const { data: user } = await octokit.request('GET /user')
+run(octokit)
 
-  console.log(`authenticated as ${user.login}`)
+async function run(octokitInstance: typeof octokit) {
+  const issues = await octokitInstance.paginate(
+    'GET /repos/{owner}/{repo}/issues',
+    {
+      owner,
+      repo,
+      labels,
+      state: 'all',
+      per_page: 100,
+    },
+  )
 
-  // https://github.com/octokit/plugin-create-or-update-text-file.js/#readme
-  // get the README
-  try {
-    await octokit.createOrUpdateTextFile({
-      owner: 'byodian',
-      repo: 'all-in-github',
-      path: 'README.md',
-      message: 'BOOP',
-      content: ({ content }) => {
-        return bumpBoopCounter(content)
-      },
+  const content = issues
+    .map((issue) => {
+      return parserOneTabIssue({
+        title: issue.title,
+        state: issue.state,
+        htmlUrl: issue.html_url,
+        body: issue.body,
+        createdAt: issue.created_at,
+      })
     })
+    .join('\r\n')
 
-    console.log('README file have been updated!')
-  }
-  catch (error) {
-    const { data: issue }: any = await octokit
-      .request('POST /repos/{owner}/{repo}/issues', {
-        owner: 'byodian',
-        repo: 'all-in-github',
-        title: 'new issue',
-        body: 'A new issue is created by a bot',
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-
-    console.dir(`issue created at ${issue.html_url}`)
-  }
-
-  // this is the long way
-  // const { data: readme } = await octokit.request(
-  //   'GET /repos/{owner}/{repo}/contents/{path}',
-  //   {
-  //     owner: 'byodian',
-  //     repo: 'byodian',
-  //     path: 'README.md',
-  //   },
-  // );
-
-  // const updated = bumpBoopCounter(nodeBase64ToUtf8(readme.content));
-
-  // console.log(updated);
-
-  // const response = await octokit.request(
-  //   'PUT /repos/{owner}/{repo}/contents/{path}',
-  //   {
-  //     owner: 'byodian',
-  //     repo: 'byodian',
-  //     path: 'README.md',
-  //     message: 'BOOP',
-  //     content: nodeUtf8ToBase64(updated),
-  //     sha: readme.sha,
-  //   },
-  // );
-
-  // console.dir(response.data);
+  await octokitInstance.createOrUpdateTextFile({
+    owner,
+    repo,
+    path: 'onetab.md',
+    message: 'docs(onetab): Update onetab',
+    content,
+  })
 }
 
-run()
+function parserOneTabIssue(issue: Issue) {
+  let markdownBody = ''
+  const body = issue.body
+
+  if (body) {
+    const linkWithNameArray: string[] = body
+      .split('\r\n')
+      .filter(item => item)
+
+    // convert string to markdown link string
+    // https://www.example.com | example -> [example](https://www.example.com)
+    markdownBody = linkWithNameArray
+      .map((linkWithName) => {
+        const [link, name] = linkWithName.split(' | ')
+        return `- [${name}](${link})`
+      })
+      .join('\r\n')
+  }
+
+  const markdown = `
+## [${issue.title}](${issue.htmlUrl})
+
+created ${issue.createdAt}
+
+${markdownBody}
+`
+  return markdown
+}
