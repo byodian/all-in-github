@@ -1,4 +1,20 @@
 
+## [动态表单](https://github.com/byodian/all-in-github/issues/9)
+
+created 2023-01-17T09:39:09Z
+
+- [前端推荐!阿里高性能表单解决方案——Formily - 腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1922441)
+- [京东DripForm，标准化表单动态配置能力 - 掘金](https://juejin.cn/post/7042223821218119694)
+- [动态表单（2）—— 复杂表单 DSL 设计（上） - 掘金](https://juejin.cn/post/7098274503179894815)
+- [JDFED/drip-form: 基于React和JSONSchema的动态表单解决方案](https://github.com/JDFED/drip-form)
+- [GavinZhuLei/vue-form-making: A visual form designer/generator base on Vue.js, make form development simple and efficient.（基于Vue的可视化表单设计器，让表单开发简单而高效。）](https://github.com/GavinZhuLei/vue-form-making)
+- [xaboy/form-create: 强大的动态表单生成器|form-create is a form generation component that can generate dynamic rendering, data collection, verification and submission functions through JSON.](https://github.com/xaboy/form-create)
+- [JakHuang/form-generator: Element UI表单设计及代码生成器](https://github.com/JakHuang/form-generator)
+- [reeli/d-form: 一个动态表单解决方案（A dynamic form solution）](https://github.com/reeli/d-form)
+- [alibaba/x-render: 🚴‍♀️ 阿里 - 很易用的中后台「表单 / 表格 / 图表」解决方案](https://github.com/alibaba/x-render)
+- [alibaba/formily: 📱🚀 🧩 Cross Device & High Performance Normal Form/Dynamic(JSON Schema) Form/Form Builder -- Support React/React Native/Vue 2/Vue 3](https://github.com/alibaba/formily)
+
+
 ## [Vu3 按需导入](https://github.com/byodian/all-in-github/issues/8)
 
 created 2023-01-17T09:16:27Z
