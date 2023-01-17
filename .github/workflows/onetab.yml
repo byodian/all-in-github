@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   issues:
     types:
-      - opened
       - labeled
       - unlabeled
       - edited
