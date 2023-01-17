@@ -1,4 +1,18 @@
 
+## [Vu3 按需导入](https://github.com/byodian/all-in-github/issues/8)
+
+created 2023-01-17T09:16:27Z
+
+- [快速开始](https://element-plus.org/zh-CN/guide/quickstart.html#%E6%8C%89%E9%9C%80%E5%AF%BC%E5%85%A5)
+- [antfu/unplugin-auto-import: Auto import APIs on-demand for Vite, Webpack and Rollup](https://github.com/antfu/unplugin-auto-import#install)
+- [element-plus/element-plus: 🎉 A Vue.js 3 UI Library made by Element team](https://github.com/element-plus/element-plus)
+- [antfu/unplugin-vue-components: 📲 On-demand components auto importing for Vue](https://github.com/antfu/unplugin-vue-components)
+- [解决 element-plus 自动导入时的 message 等组件的使用问题 - 掘金](https://juejin.cn/post/7061853693121036319)
+- [feat: custom resolvers by jfgodoy · Pull Request #23 · antfu/unplugin-auto-import](https://github.com/antfu/unplugin-auto-import/pull/23)
+- [element-plus-best-practices/vite.config.ts at db2dfc983ccda5570033a0ac608a1bd9d9a7f658 · sxzz/element-plus-best-practices](https://github.com/sxzz/element-plus-best-practices/blob/db2dfc983ccda5570033a0ac608a1bd9d9a7f658/vite.config.ts#L56)
+- [Himmelbleu - 博客园](https://www.cnblogs.com/Enziandom/#/e/17054183)
+
+
 ## [GIthub Actions](https://github.com/byodian/all-in-github/issues/7)
 
 created 2023-01-15T14:43:43Z
