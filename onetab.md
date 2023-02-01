@@ -1,4 +1,14 @@
 
+## [Rush Stack](https://github.com/byodian/all-in-github/issues/10)
+
+created 2023-02-01T09:07:07Z
+
+- [Rush Stack 是什么](https://rushstack.io/zh-cn/)
+- [@rushstack/eslint-config - npm](https://www.npmjs.com/package/@rushstack/eslint-config)
+- [rushstack/eslint/eslint-patch at main · microsoft/rushstack · GitHub](https://github.com/microsoft/rushstack/tree/main/eslint/eslint-patch)
+- [Support having plugins as dependencies in shareable config · Issue #3458 · eslint/eslint](https://github.com/eslint/eslint/issues/3458)
+
+
 ## [动态表单](https://github.com/byodian/all-in-github/issues/9)
 
 created 2023-01-17T09:39:09Z
