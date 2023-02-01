@@ -1,4 +1,16 @@
 
+## [Vue3 Template](https://github.com/byodian/all-in-github/issues/11)
+
+created 2023-02-01T09:08:30Z
+
+- [element-plus/element-plus-webpack4-starter: 🌰 A starter kit for Element Plus with Webpack 4.](https://github.com/element-plus/element-plus-webpack4-starter)
+- [element-plus/element-plus-webpack5-starter: 🌰 A starter kit for Element Plus with Webpack 5.](https://github.com/element-plus/element-plus-webpack5-starter)
+- [unplugin-element-plus/examples/vite at main · element-plus/unplugin-element-plus · GitHub](https://github.com/element-plus/unplugin-element-plus/tree/main/examples/vite)
+- [element-plus/element-plus-vite-starter: 🌰 A starter kit for Element Plus with Vite](https://github.com/element-plus/element-plus-vite-starter)
+- [Pure Admin](https://yiming_chang.gitee.io/pure-admin-doc/)
+- [antfu/vitesse: 🏕 Opinionated Vite + Vue Starter Template](https://github.com/antfu/vitesse)
+
+
 ## [Rush Stack](https://github.com/byodian/all-in-github/issues/10)
 
 created 2023-02-01T09:07:07Z
