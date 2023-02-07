@@ -1,4 +1,23 @@
 
+## [后台管理系统](https://github.com/byodian/all-in-github/issues/12)
+
+created 2023-02-07T03:39:22Z
+
+- [后台管理系统--前端解决思路 - 掘金](https://juejin.cn/post/6844904186534952967)
+- [vue后台管理系统权限分配的解决方案-RBAC模型 - 掘金](https://juejin.cn/post/7024516871634288654)
+- [如何做好一款管理后台框架 - 掘金](https://juejin.cn/post/7181256996443095099)
+- [VUE后台管理系统模板](http://vue.easydo.work/)
+- [Fantastic-admin](https://hooray.gitee.io/fantastic-admin/)
+- [fantastic-admin/src/layouts/components/Header at master · hooray/fantastic-admin · GitHub](https://github.com/hooray/fantastic-admin)
+- [pure-admin-thin/vertical.vue at i18n · pure-admin/pure-admin-thin · GitHub](https://github.com/pure-admin/pure-admin-thin)
+- [vitesse/home.vue at main · antfu/vitesse · GitHub](https://github.com/antfu/vitesse/blob/main/src/layouts/home.vue)
+- [element-plus/element-plus-webpack4-starter: 🌰 A starter kit for Element Plus with Webpack 4.](https://github.com/element-plus/element-plus-webpack4-starter)
+- [element-plus/element-plus-webpack5-starter: 🌰 A starter kit for Element Plus with Webpack 5.](https://github.com/element-plus/element-plus-webpack5-starter)
+- [unplugin-element-plus/examples/vite at main · element-plus/unplugin-element-plus · GitHub](https://github.com/element-plus/unplugin-element-plus/tree/main/examples/vite)
+- [element-plus/element-plus-vite-starter: 🌰 A starter kit for Element Plus with Vite](https://github.com/element-plus/element-plus-vite-starter)
+- [Pure Admin 保姆级文档](https://yiming_chang.gitee.io/pure-admin-doc/)
+
+
 ## [Vue3 Template](https://github.com/byodian/all-in-github/issues/11)
 
 created 2023-02-01T09:08:30Z
