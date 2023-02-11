@@ -70,7 +70,7 @@ async function run(weatherMessage: string) {
 
   const { message, isEarly } = makeGetupMessage()
 
-  if (!isEarly) {
+  if (isEarly) {
     await octokit.request(
       'POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
         owner: OWNER,

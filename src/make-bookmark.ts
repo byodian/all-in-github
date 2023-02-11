@@ -24,10 +24,10 @@ function getCommentTitleAndBody(content: string) {
   // 1) http 开头
   // 2) markdown 链接形式
 
-  // https://www.example.com | example -> [example](https://www.example.com)
   const body = getSection(bodyReg, content)!
     .split('\n')
     .map((link) => {
+      // https://www.example.com | example -> [example](https://www.example.com)
       if (/^http/.test(link)) {
         const [url, name] = link.split(' | ')
         return `- [${name}](${url})`

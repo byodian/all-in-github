@@ -46,3 +46,13 @@ created 2023-02-11 22:37:37
 - [Rock Hammer](http://malarkey.github.io/Rock-Hammer/)
 - [“Reading Is Fundamental Element Collages,” an article by Dan Mall](http://v3.danielmall.com/articles/rif-element-collages/)
 - [Atomic design](https://www.slideshare.net/bradfrostweb/atomic-design)
+
+
+## [Design Guide](https://github.com/byodian/all-in-github/issues/16#issuecomment-1426787456)
+
+created 2023-02-11 22:39:11
+
+- [Material Design](https://m3.material.io/)
+- [Cloudscape - Cloudscape Design System](https://cloudscape.design/)
+- [Design Principles FTW](https://www.designprinciplesftw.com/)
+- [Website Style Guide Resources](http://styleguides.io/)
