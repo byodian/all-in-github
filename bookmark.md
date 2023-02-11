@@ -27,8 +27,22 @@ created 2023-02-11 21:06:02
 
 created 2023-02-11 22:29:00
 
-[unocss/unocss: The instant on-demand atomic CSS engine.](https://github.com/unocss/unocss) - unocss/unocss: The instant on-demand atomic CSS engine.
-[Home | Windi CSS](https://cn.windicss.org/) - Home | Windi CSS
-[TACHYONS - Css Toolkit](https://tachyons.io/#principles) - TACHYONS - Css Toolkit
-[重新构想原子化 CSS](https://antfu.me/posts/reimagine-atomic-css-zh) - 重新构想原子化 CSS
-[Upgrade Guide - Tailwind CSS](https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine) - Upgrade Guide - Tailwind CSS
+- [unocss/unocss: The instant on-demand atomic CSS engine.](https://github.com/unocss/unocss)
+- [Home | Windi CSS](https://cn.windicss.org/)
+- [TACHYONS - Css Toolkit](https://tachyons.io/#principles)
+- [重新构想原子化 CSS](https://antfu.me/posts/reimagine-atomic-css-zh)
+- [Upgrade Guide - Tailwind CSS](https://tailwindcss.com/docs/upgrade-guide#migrating-to-the-jit-engine)
+
+
+## [Atomic Design](https://github.com/byodian/all-in-github/issues/16#issuecomment-1426787199)
+
+created 2023-02-11 22:37:37
+
+- [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/)
+- [Design Systems ◆ 24 ways](https://24ways.org/2012/design-systems)
+- [Resources - Pattern Lab](https://patternlab.io/resources/)
+- [pattern-lab/patternlab-node: The Node version of Pattern Lab](https://github.com/pattern-lab/patternlab-node)
+- [Smashing Book #3 + #3⅓ (2 eBooks) – Smashing Shop](https://shop.smashingmagazine.com/products/smashing-book-3-digital-edition)
+- [Rock Hammer](http://malarkey.github.io/Rock-Hammer/)
+- [“Reading Is Fundamental Element Collages,” an article by Dan Mall](http://v3.danielmall.com/articles/rif-element-collages/)
+- [Atomic design](https://www.slideshare.net/bradfrostweb/atomic-design)
