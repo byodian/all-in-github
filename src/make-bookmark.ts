@@ -33,7 +33,7 @@ function getCommentTitleAndBody(content: string) {
         return `- [${name}](${url})`
       }
 
-      return link
+      return `- ${link}`
     })
     .join('\n')
 
