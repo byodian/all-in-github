@@ -1,4 +1,14 @@
 
+## [Shortcuts - 快捷指令](https://github.com/byodian/all-in-github/issues/14)
+
+created 2023-02-11T06:05:52Z
+
+- [Shortcuts User Guide - Apple Support (HK)](https://support.apple.com/en-hk/guide/shortcuts/welcome/6.0/ios)
+- [iPhone 和 iPad 上的快捷指令介绍 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/shortcuts/apdf22b0444c/6.0/ios/16.0)
+- [iPhone 或 iPad 上“快捷指令”中的变量介绍 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/shortcuts/apdb5506f698/6.0/ios/16.0)
+- [《快捷指令，助你事半功倍》：App Store 故事](https://apps.apple.com/cn/story/id1583073719)
+
+
 ## [后台管理系统](https://github.com/byodian/all-in-github/issues/12)
 
 created 2023-02-07T03:39:22Z
