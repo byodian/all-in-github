@@ -2,6 +2,10 @@ name: GetUp
 
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: weather message
+        required: false
 
 jobs:
   Update-state-of-get-up:
@@ -43,6 +47,6 @@ jobs:
       - name: Run script
         run: |
           npm run build
-          node dist/get-up.js
+          node dist/get-up.js --weatherMessage ${{ github.event.inputs.message }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

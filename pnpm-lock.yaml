@@ -6,11 +6,13 @@ specifiers:
   '@octokit/core': ^4.1.0
   '@octokit/plugin-create-or-update-text-file': ^2.0.3
   '@octokit/plugin-paginate-rest': ^5.0.1
+  '@types/minimist': ^1.2.2
   '@types/node': ^18.11.18
   '@vercel/ncc': ^0.36.0
   date-fns: ^2.29.3
   date-fns-tz: ^2.0.0
   eslint: ^8.31.0
+  minimist: ^1.2.8
   octokit: ^2.0.11
   readme-box: ^1.0.0
   typescript: ^4.9.4
@@ -27,9 +29,11 @@ dependencies:
 
 devDependencies:
   '@byodian/eslint-config-ts': 0.1.5_iukboom6ndih5an6iafl45j2fe
+  '@types/minimist': 1.2.2
   '@types/node': 18.11.18
   '@vercel/ncc': 0.36.0
   eslint: 8.31.0
+  minimist: 1.2.8
   typescript: 4.9.4
 
 packages:
@@ -489,6 +493,10 @@ packages:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
       '@types/unist': 2.0.6
+    dev: true
+
+  /@types/minimist/1.2.2:
+    resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
   /@types/node/18.11.18:
@@ -1863,7 +1871,7 @@ packages:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
     dependencies:
-      minimist: 1.2.7
+      minimist: 1.2.8
     dev: true
 
   /jsonc-eslint-parser/2.1.0:
@@ -1989,8 +1997,8 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
-  /minimist/1.2.7:
-    resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
+  /minimist/1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
   /ms/2.0.0:
@@ -2437,7 +2445,7 @@ packages:
     dependencies:
       '@types/json5': 0.0.29
       json5: 1.0.2
-      minimist: 1.2.7
+      minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
 
