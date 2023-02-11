@@ -1,4 +1,15 @@
 
+## [Node CLI 参数解析](https://github.com/byodian/all-in-github/issues/15)
+
+created 2023-02-11T06:06:21Z
+
+- [tj/commander.js: node.js command-line interfaces made easy](https://github.com/tj/commander.js)
+- [minimistjs/minimist: parse argument options](https://github.com/minimistjs/minimist)
+- [yargs/yargs: yargs the modern, pirate-themed successor to optimist.](https://github.com/yargs/yargs)
+- [How To Handle Command-line Arguments in Node.js Scripts](https://www.digitalocean.com/community/tutorials/nodejs-command-line-arguments-node-scripts)
+- [javascript - How do I pass command line arguments to a Node.js program? - Stack Overflow](https://stackoverflow.com/questions/4351521/how-do-i-pass-command-line-arguments-to-a-node-js-program)
+
+
 ## [Shortcuts - 快捷指令](https://github.com/byodian/all-in-github/issues/14)
 
 created 2023-02-11T06:05:52Z
