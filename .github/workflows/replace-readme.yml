@@ -1,16 +1,20 @@
-name: OneTab
+name: ReplaceReadme
 
 on:
   workflow_dispatch:
-  issues:
-    types:
-      - labeled
-      - unlabeled
-      - edited
+    inputs:
+      message:
+        description: test
+        required: false
+
+  issue_comment:
+    types: [created]
+
+env:
+  BOOKMARK_ISSUE_ID: 16
 
 jobs:
-  Update-onetab:
-    permissions: write-all
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,9 +49,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run script
+      - name: Make BookMark
         run: |
           npm run build
-          node dist/make-onetab.js
+          node dist/make-bookmark.js
+        if: github.event.issue.number == ${{ env.BOOKMARK_ISSUE_ID }}
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

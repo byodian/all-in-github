@@ -1,15 +1,8 @@
 import { Octokit } from '@octokit/core'
 import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-file'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
+import { Issue } from './types'
 // import { ReadmeBox } from "readme-box";
-
-type Issue = {
-  [k: string]: unknown;
-  title: string;
-  htmlUrl: string;
-  state: string;
-  body?: string | null;
-}
 
 const owner = 'byodian'
 const repo = 'all-in-github'

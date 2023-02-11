@@ -15,3 +15,18 @@ export function nodeBase64ToUtf8(content: string) {
 export function nodeUtf8ToBase64(content: string) {
   return Buffer.from(content, 'utf8').toString('base64')
 }
+
+export function createRegExp(section: string) {
+  const start = `<!--START_SECTION:${section}-->`
+  const end = `<!--END_SECTION:${section}-->`
+  const regex = new RegExp(`${start}\n(?:(?<content>[\\s\\S]+)\n)?${end}`)
+  return { regex, start, end }
+}
+
+export function getSection(
+  regex: RegExp,
+  content: string,
+) {
+  const match = content.match(regex)
+  return match?.groups?.content
+}
