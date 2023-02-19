@@ -56,3 +56,15 @@ created 2023-02-11 22:39:11
 - [Cloudscape - Cloudscape Design System](https://cloudscape.design/)
 - [Design Principles FTW](https://www.designprinciplesftw.com/)
 - [Website Style Guide Resources](http://styleguides.io/)
+
+
+## [Java](https://github.com/byodian/all-in-github/issues/16#issuecomment-1436010455)
+
+created 2023-02-19 22:57:54
+
+- [Learn java in Y Minutes](https://learnxinyminutes.com/docs/java/)
+- [Enum Types (The Java™ Tutorials > Learning the Java Language > Classes and Objects)](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html)
+- [Java String Reference](https://www.w3schools.com/java/java_ref_string.asp)
+- [Composition over inheritance - Wikipedia](https://en.wikipedia.org/wiki/Composition_over_inheritance)
+- [Java Programming Language - GeeksforGeeks](https://www.geeksforgeeks.org/java/?ref=shm)
+- [Inheritance (The Java™ Tutorials > Learning the Java Language > Interfaces and Inheritance)](https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html)
