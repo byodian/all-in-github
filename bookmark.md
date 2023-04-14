@@ -68,3 +68,18 @@ created 2023-02-19 22:57:54
 - [Composition over inheritance - Wikipedia](https://en.wikipedia.org/wiki/Composition_over_inheritance)
 - [Java Programming Language - GeeksforGeeks](https://www.geeksforgeeks.org/java/?ref=shm)
 - [Inheritance (The Java™ Tutorials > Learning the Java Language > Interfaces and Inheritance)](https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html)
+
+
+## [Spring](https://github.com/byodian/all-in-github/issues/16#issuecomment-1508091671)
+
+created 2023-04-14 15:56:43
+
+- [产品背景 · IoT OS](https://hy.hekr.me/iot-docs-test/web/content/%E5%B9%B3%E5%8F%B0%E7%AE%80%E4%BB%8B/%E4%BA%A7%E5%93%81%E8%83%8C%E6%99%AF.html)
+- [What are Message Brokers?](https://www.ibm.com/topics/message-brokers#:~:text=the%20next%20step-,What%20is%20a%20message%20broker%3F,messages%20between%20formal%20messaging%20protocols.)
+- [What is JPA? Introduction to Java persistence](https://www.infoworld.com/article/3379043/what-is-jpa-introduction-to-the-java-persistence-api.html)
+- [Getting Started](https://spring.io/guides/gs/accessing-data-mongodb/)
+- [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.nosql.mongodb)
+- [Getting Started](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
+- [Spring Data MongoDB - Reference Documentation](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/)
+- [Spring HATEOAS](https://spring.io/projects/spring-hateoas)
+- [Install MongoDB Community Edition on Ubuntu — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
