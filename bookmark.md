@@ -83,3 +83,23 @@ created 2023-04-14 15:56:43
 - [Spring Data MongoDB - Reference Documentation](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/)
 - [Spring HATEOAS](https://spring.io/projects/spring-hateoas)
 - [Install MongoDB Community Edition on Ubuntu — MongoDB Manual](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
+
+
+## [Clash | 透明代理 | 旁路网关](https://github.com/byodian/all-in-github/issues/16#issuecomment-1619538409)
+
+created 2023-07-04 13:51:00
+
+- [新版的内核文件是不是少了armv8.的？ · vernesong/OpenClash · Discussion #2827](https://github.com/vernesong/OpenClash/discussions/2827)
+- [MetaCubeX/Clash.Meta: A rule-based tunnel in Go.](https://github.com/metacubex/clash.meta)
+- [CHIZI-0618/box4magisk: Use sing-box, clash, v2ray, xray tunnel proxy on Android devices.](https://github.com/CHIZI-0618/box4magisk)
+- [Clash For Magisk使用教程 – Telegraph](https://telegra.ph/Clash-For-Magisk%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B-04-10)
+- [Configuration Reference](https://dreamacro.github.io/clash/configuration/configuration-reference.html)
+- [Dreamacro/clash-dashboard: web port of clash](https://github.com/Dreamacro/clash-dashboard/tree/master)
+- [haishanh/yacd at gh-pages](https://github.com/haishanh/yacd/tree/gh-pages)
+- [Termux 高级终端安装使用配置教程](https://www.sqlsec.com/2018/05/termux.html)
+- [Termux Wiki](https://wiki.termux.com/wiki/Main_Page)
+- [新版闲置安卓手机当旁路网关，无需购买软路由即可让家里所有设备实现科学上网 - 科学上网 技术分享](https://bulianglin.com/archives/androidgateway2.html)
+- [闲置安卓手机当旁路网关，无需购买软路由即可让家里所有设备实现科学上网 - 科学上网 技术分享](https://bulianglin.com/archives/android-gateway.html)
+- [科学上网](https://haoel.github.io/#82-%E9%80%9A%E8%BF%87%E6%A0%91%E8%8E%93%E6%B4%BE%E5%81%9A%E6%97%81%E8%B7%AF%E7%BD%91%E5%85%B3)
+- [Releases · Dreamacro/clash](https://github.com/Dreamacro/clash/releases)
+- [Magisk-Modules-Repo/busybox-ndk: busybox-ndk](https://github.com/Magisk-Modules-Repo/busybox-ndk)
