@@ -1,5 +1,7 @@
 import { format, utcToZonedTime } from 'date-fns-tz'
+import yaml from 'yaml'
 import { DATE_TIME_FORMAT, TIME_ZONE_NAME } from './config'
+import { Post } from './types'
 
 export function bumpBoopCounter(content: string | null) {
   if (!content) return ''
@@ -36,4 +38,9 @@ export function formatDate(datetime: string) {
     utcToZonedTime(datetime, TIME_ZONE_NAME),
     DATE_TIME_FORMAT,
   )
+}
+
+export function getBacisTemplate(post: Post) {
+  const frontMatter = yaml.stringify(post)
+  return `---\n${frontMatter}---\n`
 }

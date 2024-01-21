@@ -25,10 +25,12 @@
     "@octokit/core": "^4.1.0",
     "@octokit/plugin-create-or-update-text-file": "^2.0.3",
     "@octokit/plugin-paginate-rest": "^5.0.1",
+    "@types/yaml": "^1.9.7",
     "date-fns": "^2.29.3",
     "date-fns-tz": "^2.0.0",
     "octokit": "^2.0.11",
-    "readme-box": "^1.0.0"
+    "readme-box": "^1.0.0",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@byodian/eslint-config-ts": "^0.1.5",

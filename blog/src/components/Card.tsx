@@ -9,7 +9,7 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, modDatetime, description } = frontmatter
+  const { title, pubDatetime, modDatetime } = frontmatter
 
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
@@ -17,7 +17,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
   }
 
   return (
-    <li className="my-6">
+    <li className="my-6 flex justify-between">
       <a
         href={href}
         className="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
@@ -31,7 +31,6 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
             )}
       </a>
       <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
-      <p>{description}</p>
     </li>
   )
 }

@@ -13,14 +13,15 @@ export type IssueComment = {
 }
 
 export interface Post {
-  id: number,
+  slug: string,
   tags: string[];
   title: string;
   author: string;
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
-  pubDatetime?: Date;
-  modDatetime?: Date | null;
+  pubDatetime?: string | Date;
+  modDatetime?: string | Date | null;
   scrollSmooth?: boolean;
+  featured: boolean;
 }

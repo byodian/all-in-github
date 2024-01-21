@@ -2,7 +2,7 @@ import path from 'path'
 import { Octokit } from '@octokit/core'
 import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-file'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
-import { getBacisTemplate } from './template'
+import { getBacisTemplate } from './utils'
 import { Post } from './types'
 import { FILE_PATH_PREFIX, OWNER, REPO } from './config'
 
@@ -13,6 +13,8 @@ const MyOctokit = Octokit.plugin(paginateRest, createOrUpdateTextFile).defaults(
 const octokit = new MyOctokit({
   auth: process.env.GITHUB_TOKEN,
 })
+
+const FILTER_TAGS = ['Blog', 'Published', 'Publishing']
 
 main()
 
@@ -28,19 +30,20 @@ async function main() {
   )
 
   const { id, title, body, labels, comments: commentCount, created_at, updated_at } = issue.data
-  const tags = labels.map(label => typeof label === 'string' ? label : label.name!)
+  const tags = labels
+    .map(label => typeof label === 'string' ? label : label.name!)
+    .filter(label => !FILTER_TAGS.includes(label))
   const postMeta: Post = {
-    id,
-    title,
-    author:
-    OWNER,
     tags,
-    description: undefined,
-    pubDatetime: new Date(created_at),
-    modDatetime: updated_at ? new Date(updated_at) : null,
+    title,
+    slug: String(id),
+    author: OWNER,
+    pubDatetime: created_at,
+    modDatetime: updated_at || null,
+    featured: tags.includes('featured'),
   }
   const postContent = body!
-  const post = `${getBacisTemplate(postMeta)}\r\n${postContent}`
+  const post = `${getBacisTemplate(postMeta)}\n${postContent}`
 
   // 追加评论内容
   let commentContent
@@ -54,11 +57,9 @@ async function main() {
       },
     )
 
-    const commentBody = comments
+    commentContent = comments
       .map(comment => comment.body)
-      .join('\r\n')
-
-    commentContent = `\r\n${commentBody}`
+      .join('\n')
   }
 
   // 创建 Markdown 文档
@@ -68,7 +69,7 @@ async function main() {
     repo: REPO,
     path: path.join(FILE_PATH_PREFIX, fileName),
     message: `docs(blog): update ${fileName}`,
-    content: commentContent ? post + commentContent : post,
+    content: commentContent ? `${post}\n\n${commentContent}` : post,
   })
 
   console.log(commentContent ? post + commentContent : post)
