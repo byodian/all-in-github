@@ -1,3 +1,6 @@
+import { format, utcToZonedTime } from 'date-fns-tz'
+import { DATE_TIME_FORMAT, TIME_ZONE_NAME } from './config'
+
 export function bumpBoopCounter(content: string | null) {
   if (!content) return ''
 
@@ -23,10 +26,14 @@ export function createRegExp(section: string) {
   return { regex, start, end }
 }
 
-export function getSection(
-  regex: RegExp,
-  content: string,
-) {
+export function getSection(regex: RegExp, content: string) {
   const match = content.match(regex)
   return match?.groups?.content
+}
+
+export function formatDate(datetime: string) {
+  return format(
+    utcToZonedTime(datetime, TIME_ZONE_NAME),
+    DATE_TIME_FORMAT,
+  )
 }

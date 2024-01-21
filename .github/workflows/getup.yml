@@ -47,6 +47,6 @@ jobs:
       - name: Run script
         run: |
           npm run build
-          node dist/get-up.js --weatherMessage ${{ github.event.inputs.message }}
+          node dist/getup.js --weatherMessage ${{ github.event.inputs.message }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
