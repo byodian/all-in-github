@@ -11,3 +11,16 @@ export type IssueComment = {
   createdAt: string;
   body: string;
 }
+
+export interface Post {
+  id: number,
+  tags: string[];
+  title: string;
+  author: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  pubDatetime?: Date;
+  modDatetime?: Date | null;
+  scrollSmooth?: boolean;
+}

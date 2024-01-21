@@ -5,7 +5,7 @@ import { format, utcToZonedTime } from 'date-fns-tz'
 import minimist from 'minimist'
 
 import {
-  MORNING_ISSUE_NUMBER,
+  ISSUE_NUMBER,
   OWNER,
   REPO,
   TIME_ZONE_NAME,
@@ -58,7 +58,7 @@ async function run(weatherMessage: string) {
     {
       owner: OWNER,
       repo: REPO,
-      issue_number: MORNING_ISSUE_NUMBER,
+      issue_number: ISSUE_NUMBER.morning,
     })
 
   const { isCheckIn } = getStatusForGetUp(comments)
@@ -75,7 +75,7 @@ async function run(weatherMessage: string) {
       'POST /repos/{owner}/{repo}/issues/{issue_number}/comments', {
         owner: OWNER,
         repo: REPO,
-        issue_number: MORNING_ISSUE_NUMBER,
+        issue_number: ISSUE_NUMBER.morning,
         body: weatherMessage ? `${message}\n\n${weatherMessage}` : message,
       },
     )

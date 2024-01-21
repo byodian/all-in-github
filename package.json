@@ -1,0 +1,28 @@
+{
+  "name": "all-in-github",
+  "version": "0.0.1",
+  "description": "Manage All Personal Data With Github",
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/byodian/all-in-github#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byodian/all-in-github.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byodian/all-in-github/issues"
+  },
+  "keywords": ["Astro", "Github Issue", "Github Actions"],
+  "scripts": {
+    "install:blog": "pnpm install --prefix=blog",
+    "install:actions": "pnpm install --prefix=actions",
+    "install:all": "npm run install:blog && npm run install:actions",
+    "build:actions": "npm run build --prefix=actions",
+    "build:blog": "npm run build --prefix=blog",
+    "build:all": "npm run build:actions && npm run build:blog",
+    "lint:actions": "eslint . --ext .ts --fix --prefix=actions",
+    "lint:blog": "eslint . --fix --prefix=blog",
+    "lint:all": "npm run lint:actions && npm run lint:blog",
+    "dev:blog": "npm run dev --prefix=blog"
+  }
+}
