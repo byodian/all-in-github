@@ -1,11 +1,10 @@
 ---
 author: byodian
 pubDatetime: Fri Mar 18 2022 11:36:42 GMT+0800 (Central Standard Time)
-modDatetime: Sun Jan 21 2024 15:04:16 GMT+0800 (Central Standard Time)
+modDatetime: Sun Jan 21 2024 15:10:50 GMT+0800 (Central Standard Time)
 title: Powershell101
 slug: 1581067225
 featured: false
-description: 
 tags: powershell,Published,Blog
 ---
   
