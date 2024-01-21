@@ -1,13 +1,16 @@
 ---
-author: byodian
-pubDatetime: Fri Mar 18 2022 11:36:42 GMT+0800 (Central Standard Time)
-modDatetime: Sun Jan 21 2024 15:10:50 GMT+0800 (Central Standard Time)
+tags:
+  - powershell
+  - Published
+  - Blog
 title: Powershell101
-slug: 1581067225
+slug: "1581067225"
+author: byodian
+pubDatetime: 2022-03-18T03:36:42Z
+modDatetime: 2024-01-21T09:51:58Z
 featured: false
-tags: powershell,Published,Blog
 ---
-  
+
 ## 探索 Powershell
 
 - `Get-Verb` Returns a list of verbs that most commands adhere to.
