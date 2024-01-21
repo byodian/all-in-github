@@ -47,11 +47,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Navigate to Actions Folder and Install Dependencies
+        run: |
+          cd ./actions
+          pnpm install --no-frozen-lockfile
 
       - name: Generate Blog Markdown File
         run: |
+          cd ./actions
           npm run build
           node dist/makeBlog.js
         # if: github.event.issue.number == ${{ env.BOOKMARK_ISSUE_ID }}
