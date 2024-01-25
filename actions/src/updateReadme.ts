@@ -3,10 +3,11 @@ import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-fi
 import { createOAuthDeviceAuth } from '@octokit/auth-oauth-device'
 import type { Verification } from '@octokit/auth-oauth-device/dist-types/types'
 import { bumpBoopCounter } from './utils'
+import { OWNER } from './config'
 
 // https://github.com/octokit/auth-oauth-device.js#readme
 const MyOctokit = Octokit.plugin(createOrUpdateTextFile).defaults({
-  userAgent: 'All In Github',
+  userAgent: `${OWNER} all-in-github`,
 })
 
 const octokit = new MyOctokit({

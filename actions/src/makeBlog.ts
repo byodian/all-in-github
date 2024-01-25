@@ -2,23 +2,27 @@ import path from 'path'
 import { Octokit } from '@octokit/core'
 import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-file'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
-import { getBacisTemplate } from './utils'
+import yaml from 'yaml'
 import { Post } from './types'
-import { FILE_PATH_PREFIX, OWNER, REPO } from './config'
+import {
+  BLOG_EXCLUDED_TAGS,
+  BLOG_UPDATED_ISSUE_TAGS,
+  FILE_PATH_PREFIX,
+  OWNER,
+  REPO,
+} from './config'
 
 const MyOctokit = Octokit.plugin(paginateRest, createOrUpdateTextFile).defaults({
-  userAgent: 'byodian all-in-github',
+  userAgent: `${OWNER} all-in-github`,
 })
 
 const octokit = new MyOctokit({
   auth: process.env.GITHUB_TOKEN,
 })
 
-const FILTER_TAGS = ['Blog', 'Published', 'Publishing']
+run()
 
-main()
-
-async function main() {
+async function run() {
   const issueNumber = process.env.ISSUE_NUMBER
   const issue = await octokit.request(
     'GET /repos/{owner}/{repo}/issues/{issue_number}',
@@ -32,7 +36,7 @@ async function main() {
   const { id, title, body, labels, comments: commentCount, created_at, updated_at } = issue.data
   const tags = labels
     .map(label => typeof label === 'string' ? label : label.name!)
-    .filter(label => !FILTER_TAGS.includes(label))
+    .filter(label => !BLOG_EXCLUDED_TAGS.includes(label))
   const postMeta: Post = {
     tags,
     title,
@@ -42,8 +46,10 @@ async function main() {
     modDatetime: updated_at || null,
     featured: tags.includes('featured'),
   }
+
+  const frontMatter = `---\n${yaml.stringify(postMeta)}---\n`
   const postContent = body!
-  const post = `${getBacisTemplate(postMeta)}\n${postContent}`
+  const post = `${frontMatter}\n${postContent}`
 
   // 追加评论内容
   let commentContent
@@ -67,7 +73,8 @@ async function main() {
   await octokit.createOrUpdateTextFile({
     owner: OWNER,
     repo: REPO,
-    path: path.join(FILE_PATH_PREFIX, fileName),
+    // file path: ./blog/src/content/blog/{fileName}
+    path: path.join(FILE_PATH_PREFIX, 'blog', fileName),
     message: `docs(blog): update ${fileName}`,
     content: commentContent ? `${post}\n\n${commentContent}` : post,
   })
@@ -75,10 +82,10 @@ async function main() {
   console.log(commentContent ? post + commentContent : post)
 
   // 更新 Issue 标签
-  await octokit.request('POST /repos/{owner}/{repo}/issues/{issue_number}/labels', {
+  await octokit.request('PUT /repos/{owner}/{repo}/issues/{issue_number}/labels', {
     owner: OWNER,
     repo: REPO,
     issue_number: issueNumber,
-    labels: ['Blog', 'Published'],
+    labels: BLOG_UPDATED_ISSUE_TAGS.concat(tags),
   })
 }

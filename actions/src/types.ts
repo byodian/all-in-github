@@ -25,3 +25,15 @@ export interface Post {
   scrollSmooth?: boolean;
   featured: boolean;
 }
+
+export interface Note {
+  slug: string;
+  tags: string[];
+  title: string;
+  author: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  pubDatetime?: string | Date;
+  modDatetime?: string | Date | null;
+}

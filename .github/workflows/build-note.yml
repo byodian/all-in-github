@@ -1,4 +1,4 @@
-name: blog
+name: build-note
 
 on:
   workflow_dispatch:
@@ -7,15 +7,15 @@ on:
         description: test
         required: false
 
-  issues:
-    types: [labeled]
+  issue_comment:
+    types: [created, edited]
 
 jobs:
   Build:
     permissions: write-all
     runs-on: ubuntu-latest
 
-    if: contains(github.event.issue.labels.*.name, 'Blog') && contains(github.event.issue.labels.*.name, 'Publishing')
+    if: github.event.comment.user.login == ${{ env.OWNER }}
 
     steps:
       - name: Checkout
@@ -56,10 +56,11 @@ jobs:
         run: |
           cd ./actions
           npm run build
-          node dist/makeBlog.js
-        # if: github.event.issue.number == ${{ env.BOOKMARK_ISSUE_ID }}
+          node dist/makeNote.js
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_ID: ${{ github.event.comment.id }}
 

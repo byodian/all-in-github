@@ -1,4 +1,4 @@
-name: ReplaceReadme
+name: build-blog
 
 on:
   workflow_dispatch:
@@ -7,16 +7,16 @@ on:
         description: test
         required: false
 
-  issue_comment:
-    types: [created]
-
-env:
-  BOOKMARK_ISSUE_ID: 16
+  issues:
+    types: [labeled]
 
 jobs:
   Build:
     permissions: write-all
     runs-on: ubuntu-latest
+
+    if: contains(github.event.issue.labels.*.name, 'Blog') && contains(github.event.issue.labels.*.name, 'Publishing')
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -47,14 +47,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Make BookMark
+      - name: Navigate to Actions Folder and Install Dependencies
         run: |
+          cd ./actions
+          pnpm install --no-frozen-lockfile
+
+      - name: Generate Blog Markdown File
+        run: |
+          cd ./actions
           npm run build
-          node dist/makeBookmark.js
-        if: github.event.issue.number == ${{ env.BOOKMARK_ISSUE_ID }}
+          node dist/makeBlog.js
+        # if: github.event.issue.number == ${{ env.BOOKMARK_ISSUE_ID }}
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+

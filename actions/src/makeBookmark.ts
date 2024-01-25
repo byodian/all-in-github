@@ -6,7 +6,7 @@ import { IssueComment } from './types'
 import { createRegExp, formatDate, getSection } from './utils'
 
 const MyOctokit = Octokit.plugin(paginateRest, createOrUpdateTextFile).defaults({
-  userAgent: 'byodian all-in-github',
+  userAgent: `${OWNER} all-in-github`,
 })
 
 const octokit = new MyOctokit({
@@ -52,7 +52,7 @@ function parserComments(comment: IssueComment) {
     .join('\n')
 
   const { title, body } = getCommentTitleAndBody(content)
-  const createdAt = formatDate(comment.createdAt)
+  const createdAt = formatDate(comment.createdAt,)
 
   return makeMakrdown({
     title,
