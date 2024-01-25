@@ -15,7 +15,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
 
-    if: github.event.comment.user.login == ${{ env.OWNER }}
+    if: github.event.comment.user.login == ${{ github.repository_owner }}
 
     steps:
       - name: Checkout
@@ -60,7 +60,6 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER: ${{ github.repository_owner }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           COMMENT_ID: ${{ github.event.comment.id }}
 

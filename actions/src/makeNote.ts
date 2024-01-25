@@ -49,14 +49,14 @@ async function run() {
 
   const noteMeta: Note = {
     tags,
-    title: body!,
+    title: `${body!.substring(0, 20)}...`,
     slug: String(id),
     author: OWNER,
     pubDatetime: created_at,
     modDatetime: updated_at || null,
   }
 
-  const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n`
+  const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n${body}`
 
   // 创建 Markdown 文档
   const filteredTags = tags.filter(tag => tag !== NOTE_EXCLUDED_TAG)
