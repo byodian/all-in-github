@@ -15,7 +15,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
 
-    if: github.event.comment.user.login == ${{ github.repository_owner }}
+    if: github.event.comment.user.login == ${{ github.repository_owner }} && contains(github.event.issue.labels.*.name, 'Note')
 
     steps:
       - name: Checkout
