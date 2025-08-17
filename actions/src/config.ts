@@ -12,4 +12,4 @@ export const FILE_PATH_PREFIX = 'blog/src/content'
 
 export const BLOG_EXCLUDED_TAGS = ['Blog', 'Published', 'Publishing']
 export const BLOG_UPDATED_ISSUE_TAGS = ['Blog', 'Published']
-export const NOTE_EXCLUDED_TAG = 'Note'
+export const NOTE_EXCLUDED_TAGS = ['Blog', 'Published', 'Publishing']

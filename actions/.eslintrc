@@ -1,6 +1,7 @@
 {
   "extends": "@byodian/eslint-config-ts",
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "curly": ["error", "all"]
   }
 }
