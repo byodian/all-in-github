@@ -1,0 +1,44 @@
+name: Blog Deploy
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: '22.x'
+
+        - name: Get pnpm store directory
+          shell: bash
+          run: |
+            echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+        - name: Setup pnpm cache
+          uses: actions/cache@v3
+          with:
+            path: ${{ env.STORE_PATH }}
+            key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+            restore-keys: |
+              ${{ runner.os }}-pnpm-store-
+
+        - name: Install dependencies
+          run: pnpm install --frozen-lockfile
+ 
+        # 构建项目
+        - name: Build project
+          run: pnpm build
+
+        - name: Deploy
+          uses: peaceiris/actions-gh-pages@v4
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./dist
