@@ -17,6 +17,11 @@ jobs:
           with:
             node-version: '22.x'
 
+        - name: Install pnpm
+          uses: pnpm/action-setup@v4
+          with:
+            version: 9
+
         - name: Get pnpm store directory
           shell: bash
           run: |
@@ -31,14 +36,18 @@ jobs:
               ${{ runner.os }}-pnpm-store-
 
         - name: Install dependencies
-          run: pnpm install --frozen-lockfile
+          run: | 
+            cd ./blog
+            pnpm install --frozen-lockfile
  
         # 构建项目
         - name: Build project
-          run: pnpm build
+          run: | 
+            cd ./blog
+            pnpm build
 
         - name: Deploy
           uses: peaceiris/actions-gh-pages@v4
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./dist
+            publish_dir: ./blog/dist
