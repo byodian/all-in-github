@@ -34,6 +34,7 @@ async function run() {
     },
   )
 
+  // issue 标签作为分类（category）
   const issueTags = issue.data.labels.map(label => typeof label === 'string' ? label : label.name!)
   if (hasIntersection(issueTags, NOTE_EXCLUDED_TAGS)) {
     console.log('Note contains exclude tags, skipped:', issueTags)
@@ -53,12 +54,12 @@ async function run() {
   const content = stripHtmlComments(body)
   const commentTags = extractTagsFromComment(body)
   const title = extractTitleFromComment(body) || content.substring(0, 20)
-  const tags = [...issueTags, ...commentTags]
 
   const noteMeta: Note = {
-    tags,
+    tags: commentTags,
+    categories: issueTags,
     title,
-    slug: String(id),
+    slug: `${id}`,
     author: OWNER,
     pubDatetime: created_at,
     modDatetime: updated_at || null,
@@ -66,14 +67,15 @@ async function run() {
 
   const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n${content}`
 
-  // 创建 Markdown 文档
-  const groupedTags = tags.join('_').toLocaleLowerCase()
-  const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}_${title}_${groupedTags}.md`
+  // 固定文件名称，编辑issue评论，可保持内容在同一个文件内更新
+  const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}_${id}.md`
+
+  // 新增或更新 Markdown 文档
   await octokit.createOrUpdateTextFile({
     owner: OWNER,
     repo: REPO,
     path: path.join(FILE_PATH_PREFIX, 'blog', fileName),
-    message: `docs(${groupedTags}): update ${fileName}`,
+    message: `docs(categories: ${issueTags.join('_')}, tags: ${commentTags.join('_')}): update ${fileName}`,
     content: frontMatter,
   })
 

@@ -29,6 +29,7 @@ export interface Post {
 export interface Note {
   slug: string;
   tags: string[];
+  categories: string[],
   title: string;
   author: string;
   description?: string;
