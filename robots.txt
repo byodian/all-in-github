@@ -4,4 +4,4 @@ Disallow: /nogooglebot/
 User-agent: *
 Allow: /
 
-Sitemap: https://astro-paper.pages.dev/sitemap-index.xml
+Sitemap: https://byodian.github.io/sitemap-index.xml
