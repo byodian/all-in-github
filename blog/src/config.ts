@@ -1,7 +1,7 @@
 import type { Site, SocialObjects } from './types'
 
 export const SITE: Site = {
-  website: 'https://astro-paper.pages.dev/', // replace this with your deployed domain
+  website: 'https://byodian.github.io', // replace this with your deployed domain
   author: 'byodian',
   desc: 'All in Github',
   title: 'All in Github',
@@ -9,6 +9,7 @@ export const SITE: Site = {
   lightAndDarkMode: true,
   postPerPage: 10,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  base: '/all-in-github', // base path for the site, adjust if necessary
 }
 
 export const LOCALE = {
