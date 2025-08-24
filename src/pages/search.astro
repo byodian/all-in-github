@@ -18,7 +18,7 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
 </Layout>
 
 <script>
-  import { BLOG_LINKS }  from '@/constants'
+  import { BLOG_LINKS } from "@/router.config";
   function initSearch() {
     const pageFindSearch: HTMLElement | null =
       document.querySelector("#pagefind-search");

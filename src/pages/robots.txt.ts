@@ -1,4 +1,4 @@
-import { BLOG_LINKS } from "@/constants";
+import { BLOG_LINKS } from "@/router.config";
 import type { APIRoute } from "astro";
 
 const getRobotsTxt = (sitemapURL: URL) => `
