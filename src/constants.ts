@@ -19,7 +19,7 @@ interface Social {
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "https://github.com/byodian/all-in-github",
     linkTitle: `${SITE.title} on GitHub`,
     icon: IconGitHub,
   },
@@ -107,5 +107,6 @@ export const BLOG_LINKS = {
   RSS: normalizePath(`${BASE_URL}/rss.xml`),
   FAVICON: normalizePath(`${BASE_URL}/favicon.svg`),
   BREADCRUMB: normalizePath(`${BASE_URL}/breadcrumb`),
+  PAGE_FIND: normalizePath(`${BASE_URL}/pagefind/`),
   BLOG_PATH: 'src/content/blog',
 };
