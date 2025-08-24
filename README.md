@@ -1,39 +1,87 @@
-# all-in-github
+# All-in-Github
 
 All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Github Actions 实现自动化的博客生成与部署。
 
 ## 如何使用
-1. 修改 Github actions 配置，文件位置 [actios/src/config.ts](./actions/src/config.ts)
-    ```ts
-    // GitHub 仓库信息
-    export const OWNER = 'byodian' // 替换为你的github名称
-    export const REPO = 'all-in-github' // 替换为你的仓库名称
-    ```
 
-2. [fork](https://github.com/byodian/all-in-github) 此项目:
+> [!IMPORTANT]
+> 请严格按照步骤进行项目设置。
 
-    修改博客配置，文件位置：[blog/src/config.ts](./blog/src/config.ts)
+### [Fork](https://github.com/byodian/all-in-github/fork) 项目，开启 Github workflows 和 Isuues
 
-      ```ts
-      export const SITE = {
-          website: "https://byodian.github.io/", // 替换成你的 github 主页
-          base: '/all-in-github', // 指定 github 主页子路径，默认根目录 /
-          author: "byodian",
-          profile: "https://byodian.github.io/",
-          desc: "A minimal, responsive, Github Actions powered and SEO-friendly Astro blog.",
-          title: "All in GitHub",
-          //...
-          editPost: {
-              enabled: true,
-              text: "Edit page",
-              url: "https://github.com/byodian/all-in-github/edit/main/blog/",
-          }
-          //...
-      } as const;
-      ```
+由于复刻的项目 Github workflows 和 Isuues 默认关闭，你需要显示开启它们。
 
-    修改社交媒体链接，文件位置 [blog/src/constants.ts](./blog/src/constants.ts)
-3. 由于复刻的项目 Github workflows 和 isuues 默认关闭，你需要显示开启它们。
+- 打开 Issues：Settings -> General -> Features -> Issues
+- 打开 Workflows：Actions -> I understand my workflows, go ahead and enable them
+
+### 修改项目配置
+
+修改 Github actions 配置，文件位置 [actios/src/config.ts](./actions/src/config.ts)
+
+> [!TIP]
+> 在线编辑：将链接中 byodian 修改为你的 Github 账号名称。
+>
+> https://github.com/byodian/all-in-github/edit/main/actions/src/config.ts
+
+```ts
+// GitHub 仓库信息
+export const OWNER = 'byodian' // 替换为你的github名称
+export const REPO = 'all-in-github' // 替换为你的仓库名称
+```
+
+修改博客配置，文件位置：[blog/src/config.ts](./blog/src/config.ts)
+
+> [!TIP]
+> 在线编辑：将链接中 byodian 修改为你的 Github 账号名称。
+>
+> https://github.com/byodian/all-in-github/edit/main/blog/src/config.ts
+
+```ts
+export const SITE = {
+  website: "https://byodian.github.io/", // 替换成你的 github 主页
+  base: '/all-in-github', // 指定 github 主页子路径，默认根目录 /
+  author: "byodian",
+  profile: "https://byodian.github.io/",
+  desc: "A minimal, responsive, Github Actions powered and SEO-friendly Astro blog.",
+  title: "All in GitHub",
+  //...
+  editPost: {
+      enabled: true,
+      text: "Edit page",
+      url: "https://github.com/byodian/all-in-github/edit/main/blog/",
+  }
+  //...
+} as const;
+```
+
+修改社交媒体链接，文件位置 [blog/src/constants.ts](./blog/src/constants.ts)
+
+> [!TIP]
+> 在线编辑：将链接中 byodian 修改为你的 Github 账号名称。
+>
+> https://github.com/byodian/all-in-github/edit/main/blog/src/constants.ts
+
+### 开启 Github Pages
+Settings -> Pages -> Build and deployment
+
+1. Source 选择【Deploy from a branch】
+2. Branch 选择【gh-pages】，Folder 选择【/(root)】，并保存。
+
+### 创建 Github Issue 标签
+
+创建 Issues 标签（labels）：**Note**、**Blog**、**Publishing**
+
+### 创建 Github Issue
+首先创建一个 Issue，描述可不填，设置 **Note** 标签。创建一条评论会自动触发 Github workflows，等待执行完成后，请查看你的 Github Page 主页 `yourname.github.io/all-in-github`（指定了子路径）。
+
+评论内容示例：
+
+```
+<!-- tags: blog -->
+<!-- title: 文章测试 -->
+
+First blog test
+```
 
 ## 实现原理
 Github Issues 中需要两个重要的标签 **Note** 和 **Blog**，带有这些标签的 Issues 评论会作为博客的内容，配合指定动作开始触发 Github workflows 生成静态博客内容，内容创建完成后就会自动部署到 Github Pages。这两个标签在系统中作为分类（category）存在，在适用场景和触发动作上有如下区别：
