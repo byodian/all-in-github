@@ -63,6 +63,7 @@ async function run() {
     author: OWNER,
     pubDatetime: created_at,
     modDatetime: updated_at || null,
+    description: ""
   }
 
   const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n${content}`
