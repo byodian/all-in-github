@@ -8,9 +8,7 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
-      
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -58,5 +56,5 @@ jobs:
         - name: Deploy
           uses: peaceiris/actions-gh-pages@v4
           with:
-            github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: ./blog/dist
