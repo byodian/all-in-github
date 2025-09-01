@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+          cache-dependency-path: './blog/pnpm-lock.yaml'
 
       - name: Install dependencies
         run: | 
