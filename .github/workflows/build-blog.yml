@@ -21,36 +21,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.16.x
-
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        id: pnpm-install
+        uses: pnpm/action-setup@v4
         with:
-          version: 7
+          version: 10
           run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          node-version: 22
+          cache: 'pnpm'
 
-      - name: Navigate to Actions Folder and Install Dependencies
-        run: |
+      - name: Install dependencies
+        run: | 
           cd ./actions
-          pnpm install --no-frozen-lockfile
+          pnpm install --frozen-lockfile
 
       - name: Generate Blog Markdown File
         run: |
