@@ -27,17 +27,17 @@ All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Gi
 
         ```ts
         export const SITE = {
-          website: "https://byodian.github.io/", // 替换成你的 Github 主页
-          base: '/all-in-github', // 指定 Github 主页子路径，默认根目录 /
-          author: "byodian",
-          profile: "https://byodian.github.io/",
+          website: "https://byodian.github.io/", // 替换成你的 Github Pages 主页
+          base: '/all-in-github', // 指定 Github Pages 子路径
+          author: "byodian", // 替换成你的名字
+          profile: "https://byodian.github.io/", // 替换成你的网站主页
           desc: "A minimal, responsive, Github Actions powered and SEO-friendly Astro blog.",
           title: "All in GitHub",
           //...
           editPost: {
               enabled: true,
               text: "Edit page",
-              url: "https://github.com/byodian/all-in-github/edit/main/blog/",
+              url: "https://github.com/byodian/all-in-github/edit/main/blog/", // 将 byodian 换成你的 Github 账号名称
           }
           //...
         } as const;
@@ -45,14 +45,7 @@ All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Gi
 
     - 修改社交媒体链接，文件位置 [blog/src/constants.ts](./blog/src/constants.ts)
 
-3. **开启 Github Pages**
-
-    打开**项目** Settings -> Pages -> Build and deployment，开启 Pages，设置如下：
-
-    - Source 选择【Deploy from a branch】
-    - Branch 选择【gh-pages】，Folder 选择【/(root)】，并保存。
-
-4. **创建 PAT**
+3. **创建 PAT**
 
     Personal access tokens（简称 PAT），用于在构建阶段，根据评论生成静态博客内容并提交到主分支时，触发部署 Github Page Workflow。
 
@@ -60,22 +53,25 @@ All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Gi
 
     - Expiration：**No expiration**
     - Repository access：**Only select repositories**
-    - Permissions：**Contents**
+    - Permissions: 
+        - "Contents" repository permissions (Read and write)
+        - "Issues" repository permissions (Read and write) 
+        - "Workflows" repository permissions (Read and write)
 
     创建完成后，复制保存生成的 token。
 
-5. **创建项目环境变量**
+4. **创建项目环境变量**
 
     打开**项目** Settings -> Secrets and variables -> Actions，创建一个 **Repository secrets**，其中：
     
     - Name: `ACTIONS_DEPLOY_KEY`
     - Value: 上一步生成的 token
 
-6. **创建 Github 标签**
+5. **创建 Github 标签**
 
     创建 Issues 标签（labels）：**Note**、**Blog**、**Publishing**
 
-7. **创建 Github Issue**
+6. **创建 Github Issue**
 
     首先创建一个 Issue，描述可不填，设置 **Note** 标签。创建一条评论会自动触发 Github workflows，等待执行完成后，请查看你的 Github Page 主页 `yourname.github.io/all-in-github`（指定了子路径）。
 
@@ -88,6 +84,15 @@ All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Gi
 
     First blog test
     ```
+
+7. **开启 Github Pages**
+
+    打开**项目** Settings -> Pages -> Build and deployment，开启 Pages，设置如下：
+
+    - Source 选择【Deploy from a branch】
+    - Branch 选择【gh-pages】，Folder 选择【/(root)】，并保存。
+
+执行上述操作，等待部署 Workflow 执行完成后，打开 https://yourname.github.io/all-in-github 查看你的博客。
 
 ## 实现原理
 在 Github Issues 中，系统依赖两个关键标签：**Note** 和 **Blog**。
