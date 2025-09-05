@@ -1,16 +1,16 @@
 ---
 tags:
   - powershell
-  - Published
-  - Blog
 title: Powershell101
 slug: "1581067225"
 author: byodian
 pubDatetime: 2022-03-18T03:36:42Z
-modDatetime: 2024-01-21T09:51:58Z
+modDatetime: 2025-09-05T02:24:48Z
 featured: false
 description: ""
 ---
+
+## Table of contents
 
 ## 探索 Powershell
 
@@ -227,4 +227,5 @@ set convert-meta off
 [https://www.powershellgallery.com/packages/PSFzf/2.0.0](https://www.powershellgallery.com/packages/PSFzf/2.0.0)
 
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)
+
 test
