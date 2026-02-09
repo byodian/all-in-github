@@ -70,7 +70,7 @@ async function run() {
 
   // 固定文件名称，编辑issue评论，可保持内容在同一个文件内更新
   // const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}_${id}.md`
-  const fileName = `${title}-${id}.md`
+  const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}-${title}.md`
 
   // 新增或更新 Markdown 文档
   await octokit.createOrUpdateTextFile({
