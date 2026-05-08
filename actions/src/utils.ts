@@ -110,6 +110,27 @@ export function extractTitleFromComment(commentBody?: string) {
 }
 
 /**
+ * 从github issue评论中拉取描述
+ * 描述语法：<!-- description: This is description -->
+ * @param commentBody
+ * @returns
+ */
+export function extractDescriptionFromComment(commentBody?: string) {
+  if (!commentBody) {
+    return ''
+  }
+
+  // 匹配 <!-- description: ... -->
+  const regex = /<!--\s*description:\s*([\s\S]*?)-->/i
+  const match = commentBody.match(regex)
+  if (!match) {
+    return ''
+  }
+
+  return match[1].trim()
+}
+
+/**
  * 剔除HTML注释
  * @param markdown
  * @returns
