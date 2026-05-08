@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Note Blog"
+  short_description: "Publish Note issue comments to the blog"
+  default_prompt: "Use $publish-note-blog to publish this Markdown as a Note blog post."
