@@ -11,7 +11,7 @@ import {
   OWNER,
   REPO,
 } from './config'
-import { extractTagsFromComment, extractTitleFromComment, formatDate, hasIntersection, stripHtmlComments } from './utils'
+import { extractDescriptionFromComment, extractTagsFromComment, extractTitleFromComment, formatDate, hasIntersection, stripHtmlComments } from './utils'
 const { GITHUB_TOKEN, ISSUE_NUMBER, COMMENT_ID } = process.env
 
 const MyOctokit = Octokit.plugin(paginateRest, createOrUpdateTextFile).defaults({
@@ -54,6 +54,7 @@ async function run() {
   const content = stripHtmlComments(body)
   const commentTags = extractTagsFromComment(body)
   const title = extractTitleFromComment(body) || content.substring(0, 20)
+  const description = extractDescriptionFromComment(body)
 
   const noteMeta: Note = {
     tags: commentTags,
@@ -63,7 +64,7 @@ async function run() {
     author: OWNER,
     pubDatetime: created_at,
     modDatetime: updated_at || null,
-    description: ""
+    description,
   }
 
   const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n${content}`
@@ -83,4 +84,3 @@ async function run() {
 
   console.log(frontMatter)
 }
-
