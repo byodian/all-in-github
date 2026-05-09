@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs/promises'
 import { Octokit } from '@octokit/core'
 import { createOrUpdateTextFile } from '@octokit/plugin-create-or-update-text-file'
 import { paginateRest } from '@octokit/plugin-paginate-rest'
@@ -69,9 +70,8 @@ async function run() {
 
   const frontMatter = `---\n${yaml.stringify(noteMeta)}---\n${content}`
 
-  // 固定文件名称，编辑issue评论，可保持内容在同一个文件内更新
-  // const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}_${id}.md`
-  const fileName = `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}-${title}.md`
+  const existingNotePath = await findExistingNotePath(`${id}`)
+  const fileName = existingNotePath || `${formatDate(created_at, FILE_DATE_TIME_FORMAT)}_${id}.md`
 
   // 新增或更新 Markdown 文档
   await octokit.createOrUpdateTextFile({
@@ -83,4 +83,31 @@ async function run() {
   })
 
   console.log(frontMatter)
+}
+
+async function findExistingNotePath(slug: string) {
+  const noteDir = path.resolve(__dirname, '..', '..', FILE_PATH_PREFIX, 'blog')
+  let entries: string[]
+
+  try {
+    entries = await fs.readdir(noteDir)
+  }
+  catch {
+    return ''
+  }
+
+  for (const entry of entries) {
+    if (!entry.endsWith('.md')) { continue }
+
+    const content = await fs.readFile(path.join(noteDir, entry), 'utf8')
+    const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---/)
+    if (!frontMatterMatch) { continue }
+
+    const meta = yaml.parse(frontMatterMatch[1])
+    if (meta?.slug === slug || meta?.slug === Number(slug)) {
+      return entry
+    }
+  }
+
+  return ''
 }

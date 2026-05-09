@@ -45,7 +45,7 @@ async function run() {
     pubDatetime: created_at,
     modDatetime: updated_at || null,
     featured: tags.includes('featured'),
-    description: ""
+    description: '',
   }
 
   const frontMatter = `---\n${yaml.stringify(postMeta)}---\n`

@@ -18,7 +18,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "build:ncc": "ncc build src/index.ts -o dist",
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts --fix",
+    "note:editor": "npm run build && node dist/noteEditor.js"
   },
   "dependencies": {
     "@octokit/auth-oauth-device": "^4.0.3",

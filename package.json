@@ -23,6 +23,7 @@
     "lint:actions": "eslint . --ext .ts --fix --prefix=actions",
     "lint:blog": "eslint . --fix --prefix=blog",
     "lint:all": "npm run lint:actions && npm run lint:blog",
-    "dev:blog": "npm run dev --prefix=blog"
+    "dev:blog": "npm run dev --prefix=blog",
+    "note:editor": "npm run note:editor --prefix=actions"
   }
 }
