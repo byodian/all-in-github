@@ -15,6 +15,7 @@ type GhIssue = {
   html_url: string;
   state: string;
   labels: GhLabel[];
+  body?: string;
   pull_request?: unknown;
 }
 
@@ -38,6 +39,7 @@ type RequestBody = {
   description?: string;
   tags?: string[] | string;
   body?: string;
+  mode?: string;
 }
 
 async function main() {
@@ -75,6 +77,7 @@ async function route(req: http.IncomingMessage, res: http.ServerResponse) {
   }
 
   if (method === 'GET' && url.pathname === '/api/issues') {
+    const label = url.searchParams.get('label') || 'Note'
     const issues = await ghJson<GhIssue[]>([
       'api',
       `repos/${OWNER}/${REPO}/issues`,
@@ -84,18 +87,18 @@ async function route(req: http.IncomingMessage, res: http.ServerResponse) {
       '-f',
       'state=open',
       '-f',
-      'labels=Note',
+      `labels=${label}`,
     ])
 
     sendJson(res, 200, issues
       .filter(issue => !issue.pull_request)
-      .filter(issue => issue.labels.some(label => (typeof label === 'string' ? label : label.name) === 'Note'))
+      .filter(issue => issue.labels.some(l => (typeof l === 'string' ? l : l.name) === label))
       .map(issue => ({
         number: issue.number,
         title: issue.title,
         htmlUrl: issue.html_url,
         state: issue.state,
-        labels: issue.labels.map(label => typeof label === 'string' ? label : label.name).filter(Boolean),
+        labels: issue.labels.map(l => typeof l === 'string' ? l : l.name).filter(Boolean),
       })))
     return
   }
@@ -121,8 +124,57 @@ async function route(req: http.IncomingMessage, res: http.ServerResponse) {
     return
   }
 
+  const issueDetailMatch = url.pathname.match(/^\/api\/issues\/(\d+)$/)
+  if (method === 'GET' && issueDetailMatch) {
+    const issue = await ghJson<GhIssue>(['api', `repos/${OWNER}/${REPO}/issues/${issueDetailMatch[1]}`])
+    sendJson(res, 200, {
+      number: issue.number,
+      title: issue.title,
+      htmlUrl: issue.html_url,
+      state: issue.state,
+      body: issue.body || '',
+      labels: issue.labels.map(l => typeof l === 'string' ? l : l.name).filter(Boolean),
+    })
+    return
+  }
+
+  if (method === 'PATCH' && issueDetailMatch) {
+    const raw = await readRequestBody(req)
+    const parsed = JSON.parse(raw || '{}') as { title?: string; body?: string; labels?: string[] }
+    const updatePayload: { title?: string; body?: string; labels?: string[] } = {
+      title: parsed.title,
+      body: parsed.body,
+    }
+    if (parsed.labels !== undefined) {
+      updatePayload.labels = parsed.labels
+    }
+    const issue = await ghJson<GhIssue>([
+      'api',
+      `repos/${OWNER}/${REPO}/issues/${issueDetailMatch[1]}`,
+      '--method',
+      'PATCH',
+      '--input',
+      '-',
+    ], JSON.stringify(updatePayload))
+    sendJson(res, 200, { number: issue.number, htmlUrl: issue.html_url })
+    return
+  }
+
   if (method === 'POST' && url.pathname === '/api/preview') {
-    const fields = await readNoteFields(req)
+    const raw = await readRequestBody(req)
+    const parsed = JSON.parse(raw || '{}') as RequestBody
+    if (parsed.mode === 'blog') {
+      sendJson(res, 200, { body: parsed.body || '' })
+      return
+    }
+    const fields = {
+      title: parsed.title || '',
+      description: parsed.description || '',
+      tags: Array.isArray(parsed.tags)
+        ? parsed.tags as string[]
+        : ((parsed.tags as string) || '').split(',').map(tag => tag.trim()).filter(Boolean),
+      body: parsed.body || '',
+    }
     sendJson(res, 200, { body: composeNoteComment(fields) })
     return
   }
@@ -422,9 +474,8 @@ function getPageHtml() {
     .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .panel-actions { display: grid; grid-template-columns: 1fr; width: 100%; }
     .panel-actions button { width: 100%; }
-    .panel-actions .status { margin-left: 0; width: 100%; }
     .status {
-      margin-left: auto;
+      width: 100%;
       min-height: 28px;
       display: inline-flex;
       align-items: center;
@@ -476,9 +527,13 @@ function getPageHtml() {
     .rendered pre, .raw { margin: 0; padding: 14px; background: #0b1020; color: #eef2f6; white-space: pre-wrap; overflow: auto; font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 13px; line-height: 1.58; }
     .rendered code { background: rgba(15,23,42,.08); border: 1px solid rgba(15,23,42,.08); border-radius: 5px; padding: 2px 5px; }
     .empty { color: var(--muted); padding: 18px; }
+    .loading-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 10; overflow: hidden; opacity: 0; transition: opacity .18s ease; pointer-events: none; }
+    .loading-bar.active { opacity: 1; }
+    .loading-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--cyan) 60%, transparent 100%); animation: loading-slide 1.4s ease-in-out infinite; transform: translateX(-100%); }
     @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(236,72,153,.28); } 100% { box-shadow: 0 0 0 9px rgba(236,72,153,0); } }
+    @keyframes loading-slide { from { transform: translateX(-100%); } to { transform: translateX(200%); } }
     @media (max-width: 1180px) { .workspace { grid-template-columns: 1fr; } .editor-panel { min-height: auto; } .meta-panel { position: static; } .output { min-height: 360px; } }
     @media (max-width: 820px) { .topbar { align-items: flex-start; margin: 8px 8px 0; top: 8px; } main { grid-template-columns: 1fr; padding: 12px 8px 8px; } aside { position: static; max-height: none; } .grid { grid-template-columns: 1fr; } .field-head { align-items: flex-start; flex-direction: column; } .tabs { width: 100%; justify-content: stretch; } .tab { flex: 1; } .status { margin-left: 0; width: 100%; } }
     @media (prefers-reduced-motion: reduce) {
@@ -488,6 +543,7 @@ function getPageHtml() {
   </style>
 </head>
 <body>
+  <div id="loadingBar" class="loading-bar"></div>
   <header class="topbar">
     <div class="brand">
       <div class="mark">N</div>
@@ -504,6 +560,13 @@ function getPageHtml() {
   <main>
     <aside>
       <div class="field">
+        <label for="labelFilter">Label</label>
+        <select id="labelFilter">
+          <option value="Note">Note</option>
+          <option value="Blog">Blog</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="issue">Issue</label>
         <select id="issue"></select>
       </div>
@@ -511,6 +574,7 @@ function getPageHtml() {
         <button id="refresh">Refresh</button>
         <button id="new">New</button>
       </div>
+      <span id="status" class="muted status"></span>
       <div id="comments" class="comments"></div>
     </aside>
     <div class="workspace">
@@ -561,13 +625,12 @@ function getPageHtml() {
           <button id="create" class="primary">Create</button>
           <button id="update" disabled>Update</button>
           <button id="open" disabled>Open GitHub Comment</button>
-          <span id="status" class="muted status"></span>
         </div>
       </section>
     </div>
   </main>
   <script>
-    const state = { issue: null, comment: null, comments: [], output: '', pendingRequest: '', owner: '', repo: '' }
+    const state = { issue: null, comment: null, comments: [], output: '', pendingRequest: '', owner: '', repo: '', editingIssueBody: false, issueMeta: null }
     const el = id => document.getElementById(id)
 
     async function api(path, options, pendingText) {
@@ -630,19 +693,21 @@ function getPageHtml() {
 
     function renderControls() {
       const busy = Boolean(state.pendingRequest)
+      el('labelFilter').disabled = busy
       el('issue').disabled = busy
       el('refresh').disabled = busy
       el('new').disabled = busy
       el('preview').disabled = busy
-      el('create').disabled = busy
-      el('update').disabled = busy || !state.comment
-      el('open').disabled = busy || !state.comment
+      el('create').disabled = busy || Boolean(state.comment) || state.editingIssueBody
+      el('update').disabled = busy || (!state.comment && !state.editingIssueBody)
+      el('open').disabled = busy || (!state.comment && !state.editingIssueBody)
       el('restoreDraft').disabled = busy
       el('discardDraft').disabled = busy
       document.querySelectorAll('.comment').forEach(button => {
         button.disabled = busy
       })
       el('status').classList.toggle('busy', busy)
+      el('loadingBar').classList.toggle('active', busy)
     }
 
     function draftPrefix() {
@@ -660,7 +725,13 @@ function getPageHtml() {
       return prefix && commentId ? prefix + 'comment:' + commentId : ''
     }
 
+    function issueBodyDraftKey(issueNumber) {
+      const prefix = draftPrefix()
+      return prefix && issueNumber ? prefix + 'issue:' + issueNumber + ':body' : ''
+    }
+
     function activeDraftKey() {
+      if (state.editingIssueBody) return issueBodyDraftKey(el('issue').value)
       if (state.comment) return commentDraftKey(state.comment.id)
       return newDraftKey(el('issue').value)
     }
@@ -697,6 +768,27 @@ function getPageHtml() {
 
     function saveActiveDraft() {
       const current = fields()
+      if (state.editingIssueBody) {
+        const key = issueBodyDraftKey(el('issue').value)
+        const base = state.issueMeta
+        const baseTags = (base && base.labels ? base.labels : []).join(',')
+        if (base && current.title === (base.title || '') && current.body === (base.body || '') && current.tags === baseTags) {
+          removeDraft(key)
+        }
+        else {
+          writeDraft(key, {
+            version: 1,
+            issueNumber: Number(el('issue').value),
+            commentId: null,
+            fields: current,
+            baseUpdatedAt: null,
+            savedAt: new Date().toISOString()
+          })
+        }
+        renderDraftNotice()
+        renderCommentDraftMarks()
+        return
+      }
       if (state.comment) {
         const key = commentDraftKey(state.comment.id)
         if (sameFields(current, baseFields(state.comment))) {
@@ -763,7 +855,14 @@ function getPageHtml() {
 
     function discardDraft() {
       removeDraft(activeDraftKey())
-      if (state.comment) {
+      if (state.editingIssueBody && state.issueMeta) {
+        el('title').value = state.issueMeta.title || ''
+        el('description').value = ''
+        el('tags').value = (state.issueMeta.labels || []).join(',')
+        el('body').value = state.issueMeta.body || ''
+        preview().catch(error => setStatus(error.message))
+      }
+      else if (state.comment) {
         const current = baseFields(state.comment)
         el('title').value = current.title
         el('description').value = current.description
@@ -818,6 +917,8 @@ function getPageHtml() {
 
     function clearForm() {
       state.comment = null
+      state.editingIssueBody = false
+      state.issueMeta = null
       document.querySelectorAll('.comment').forEach(button => button.classList.remove('active'))
       el('title').value = ''
       el('description').value = ''
@@ -833,6 +934,8 @@ function getPageHtml() {
 
     function fillForm(comment) {
       state.comment = comment
+      state.editingIssueBody = false
+      state.issueMeta = null
       document.querySelectorAll('.comment').forEach(button => button.classList.toggle('active', button.dataset.commentId === String(comment.id)))
       const current = baseFields(comment)
       el('title').value = current.title
@@ -846,16 +949,36 @@ function getPageHtml() {
     }
 
     async function loadIssues() {
+      const label = el('labelFilter').value
       const auth = await api('/api/auth', 'Loading auth...')
       state.owner = auth.owner
       state.repo = auth.repo
       el('auth').textContent = auth.login + ' -> ' + auth.owner + '/' + auth.repo
-      const issues = await api('/api/issues', 'Loading issues...')
+      const issues = await api('/api/issues?label=' + encodeURIComponent(label), 'Loading issues...')
       el('issue').innerHTML = issues.map(issue => '<option value="' + issue.number + '">' + issue.title + ' #' + issue.number + '</option>').join('')
-      const snippets = issues.find(issue => issue.title === 'Snippets')
-      state.issue = snippets || issues[0]
+      const defaultIssue = label === 'Note' ? issues.find(issue => issue.title === 'Snippets') : null
+      state.issue = defaultIssue || issues[0]
       if (state.issue) el('issue').value = state.issue.number
       await loadComments()
+    }
+
+    async function loadIssueBody() {
+      const number = el('issue').value
+      if (!number) return
+      const issue = await api('/api/issues/' + number, 'Loading issue body...')
+      state.issueMeta = issue
+      state.editingIssueBody = true
+      state.comment = null
+      document.querySelectorAll('.comment[data-comment-id]').forEach(b => b.classList.remove('active'))
+      document.querySelectorAll('.comment[data-issue-body]').forEach(b => b.classList.add('active'))
+      el('title').value = issue.title || ''
+      el('description').value = ''
+      el('tags').value = (issue.labels || []).join(',')
+      el('body').value = issue.body || ''
+      renderControls()
+      renderDraftNotice()
+      setStatus('Issue body loaded')
+      preview().catch(error => setStatus(error.message))
     }
 
     async function loadComments() {
@@ -871,6 +994,9 @@ function getPageHtml() {
         clearForm()
         renderComments()
         setStatus(state.comments.length + ' comments')
+        if (el('labelFilter').value === 'Blog') {
+          await loadIssueBody()
+        }
       }
       catch (error) {
         state.issue = previousIssue
@@ -884,6 +1010,14 @@ function getPageHtml() {
 
     function renderComments() {
       el('comments').innerHTML = ''
+      if (el('labelFilter').value === 'Blog') {
+        const btn = document.createElement('button')
+        btn.className = 'comment' + (state.editingIssueBody ? ' active' : '')
+        btn.dataset.issueBody = 'true'
+        btn.innerHTML = '<strong>Issue Body</strong><span>main content</span>'
+        btn.addEventListener('click', () => loadIssueBody().catch(error => setStatus(error.message)))
+        el('comments').appendChild(btn)
+      }
       for (const comment of state.comments) {
         const button = document.createElement('button')
         button.className = 'comment'
@@ -911,10 +1045,11 @@ function getPageHtml() {
     }
 
     async function preview() {
+      const mode = (el('labelFilter').value === 'Blog' && state.editingIssueBody) ? 'blog' : 'note'
       const data = await api('/api/preview', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fields())
+        body: JSON.stringify({ ...fields(), mode })
       })
       state.output = data.body
       el('rawBox').textContent = data.body
@@ -929,6 +1064,7 @@ function getPageHtml() {
       return data.body
     }
 
+    el('labelFilter').addEventListener('change', loadIssues)
     el('issue').addEventListener('change', loadComments)
     el('refresh').addEventListener('click', loadComments)
     el('new').addEventListener('click', () => { clearForm(); setStatus(readDraft(activeDraftKey()) ? 'New comment has a local draft' : 'New comment') })
@@ -958,23 +1094,40 @@ function getPageHtml() {
       }
     })
     el('update').addEventListener('click', async () => {
-      if (!state.comment) return
+      if (!state.comment && !state.editingIssueBody) return
       try {
-        const key = commentDraftKey(state.comment.id)
-        const comment = await api('/api/comments/' + state.comment.id, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(fields())
-        }, 'Updating...')
-        removeDraft(key)
-        setStatus('Updated #' + comment.id)
-        await loadComments()
+        if (state.editingIssueBody) {
+          const key = issueBodyDraftKey(el('issue').value)
+          const current = fields()
+          const userTags = current.tags.split(',').map(t => t.trim()).filter(Boolean)
+          await api('/api/issues/' + el('issue').value, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: current.title, body: current.body, labels: userTags })
+          }, 'Updating...')
+          removeDraft(key)
+          state.issueMeta = { ...state.issueMeta, title: current.title, body: current.body, labels: userTags }
+          renderDraftNotice()
+          setStatus('Issue updated')
+        }
+        else {
+          const key = commentDraftKey(state.comment.id)
+          const comment = await api('/api/comments/' + state.comment.id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(fields())
+          }, 'Updating...')
+          removeDraft(key)
+          setStatus('Updated #' + comment.id)
+          await loadComments()
+        }
       } catch (error) {
         setStatus(error.message)
       }
     })
     el('open').addEventListener('click', () => {
-      if (state.comment) window.open(state.comment.htmlUrl, '_blank', 'noopener')
+      if (state.editingIssueBody && state.issueMeta) window.open(state.issueMeta.htmlUrl, '_blank', 'noopener')
+      else if (state.comment) window.open(state.comment.htmlUrl, '_blank', 'noopener')
     })
 
     loadIssues().catch(error => setStatus(error.message))
