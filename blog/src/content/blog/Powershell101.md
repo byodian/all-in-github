@@ -5,7 +5,7 @@ title: Powershell101
 slug: "1581067225"
 author: byodian
 pubDatetime: 2022-03-18T03:36:42Z
-modDatetime: 2026-05-22T08:50:40Z
+modDatetime: 2026-05-22T09:05:19Z
 featured: false
 description: ""
 ---
@@ -21,6 +21,7 @@ description: ""
 
 ## 配置 [powershell](https://docs.microsoft.com/en-us/powershell/scripting/learn/tutorials/01-discover-powershell?view=powershell-7.2)
 
+0. 安装 [Draula](https://draculatheme.com/windows-terminal) 主题
 1. 安装 [powershell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.2)
 2. 配置 [windows terminal](https://docs.microsoft.com/en-us/windows/terminal/)
 3. 安装 [scoop](https://scoop.sh/) - A command-line installer for Windows
@@ -228,7 +229,6 @@ set convert-meta off
     # cmd
     set http_proxy=http://127.0.0.1:1080
     ```
-    
 
 ## 技巧
 
