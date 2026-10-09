@@ -7,8 +7,17 @@
 !/.github
 !tsconfig.json
 !astro.config.ts
-!.prettierrc.mjs
+!astro-paper.config.ts
 !package.json
 !.prettierrc
 !eslint.config.js
 !README.md
+!.vscode
+!/docs
+
+# Existing imported articles retain their original formatting
+/src/content/blog
+/src/data/blog
+
+# Ignore MDX files
+*.mdx

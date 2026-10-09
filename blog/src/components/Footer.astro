@@ -1,26 +1,30 @@
 ---
-import Hr from "./Hr.astro";
+import type { HTMLAttributes } from "astro/types";
 import Socials from "./Socials.astro";
+import { useTranslations } from "@/i18n";
 
-const currentYear = new Date().getFullYear();
-
-export interface Props {
+type Props = {
   noMarginTop?: boolean;
-}
+} & HTMLAttributes<"footer">;
 
-const { noMarginTop = false } = Astro.props;
+const { noMarginTop = false, class: className, ...attrs } = Astro.props;
+
+const t = useTranslations(Astro.currentLocale);
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class:list={["w-full", { "mt-auto": !noMarginTop }]}>
-  <Hr noPadding />
+<footer
+  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
+  {...attrs}
+>
   <div
-    class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"
+    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
   >
-    <Socials centered />
+    <Socials />
     <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>Copyright &#169; {currentYear}</span>
+      <span>{t.footer.copyright} &#169; {currentYear}</span>
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+      <span>{t.footer.allRightsReserved}</span>
     </div>
   </div>
 </footer>

@@ -1,45 +1,21 @@
 ---
-export interface Props {
-  id?: string;
-  href: string;
-  class?: string;
-  ariaLabel?: string;
-  title?: string;
-  disabled?: boolean;
-  target?: string;
-}
+import type { HTMLAttributes } from "astro/types";
 
-const {
-  id,
-  href,
-  class: className = "",
-  ariaLabel,
-  title,
-  disabled = false,
-  target = "_self"
-} = Astro.props;
+type Props = { disabled?: boolean } & HTMLAttributes<"a">;
+
+const { disabled, class: className, ...attrs } = Astro.props;
+
+const Button = disabled ? "span" : "a";
 ---
 
-{
-  disabled ? (
-    <span
-      id={id}
-      class:list={["group inline-block", className]}
-      title={title}
-      aria-disabled={disabled}
-    >
-      <slot />
-    </span>
-  ) : (
-    <a
-      id={id}
-      {href}
-      class:list={["group inline-block hover:text-accent", className]}
-      aria-label={ariaLabel}
-      title={title}
-      target={target}
-    >
-      <slot />
-    </a>
-  )
-}
+<Button
+  aria-disabled={disabled}
+  class:list={[
+    "group inline-flex items-center gap-1",
+    { "hover:text-accent": !disabled },
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Button>
