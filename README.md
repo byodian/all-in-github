@@ -1,173 +1,180 @@
-# All-in-Github
+# AstroPaper 📄
 
-All in Github 使用 Github Issues 作为博客的内容管理系统，配合 Github Actions 实现自动化的博客生成与部署。
+![AstroPaper](public/astropaper-og.jpg)
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/community/file/1356898632249991861)
+![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 
-## 如何使用
+AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro blog theme. This theme is designed and crafted based on [my personal blog](https://satnaing.dev/blog).
 
-> [!IMPORTANT]
-> 请严格按照步骤进行项目设置。
+Read [the blog posts](https://astro-paper.pages.dev/posts/) or check [the README Documentation Section](#-documentation) for more info.
 
-1. **[Fork](https://github.com/byodian/all-in-github/fork) 项目**
+## 🔥 Features
 
-    在复刻的项目中，Github workflows 和 Isuues 默认关闭，您需要显示开启它们。
+- [x] type-safe markdown
+- [x] super fast performance
+- [x] accessible (Keyboard/VoiceOver)
+- [x] responsive (mobile ~ desktops)
+- [x] SEO-friendly
+- [x] light & dark mode
+- [x] fuzzy search
+- [x] draft posts & pagination
+- [x] sitemap & rss feed
+- [x] followed best practices
+- [x] highly customizable
+- [x] dynamic OG image generation for blog posts [#15](https://github.com/satnaing/astro-paper/pull/15) ([Blog Post](https://astro-paper.pages.dev/posts/dynamic-og-image-generation-in-astropaper-blog-posts/))
 
-    - 打开 Issues：Settings -> General -> Features -> Issues
-    - 打开 Workflows：Actions -> I understand my workflows, go ahead and enable them
+_Note: I've tested screen-reader accessibility of AstroPaper using **VoiceOver** on Mac and **TalkBack** on Android. I couldn't test all other screen-readers out there. However, accessibility enhancements in AstroPaper should be working fine on others as well._
 
-2. **项目配置**
+## ✅ Lighthouse Score
 
-    - 修改 Github actions 配置，文件位置 [actios/src/config.ts](./actions/src/config.ts)
+<p align="center">
+  <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fastro-paper.pages.dev%2F&form_factor=desktop">
+    <img width="710" alt="AstroPaper Lighthouse Score" src="AstroPaper-lighthouse-score.svg">
+  <a>
+</p>
 
-        ```ts
-        // GitHub 仓库信息
-        export const OWNER = 'byodian' // 替换为你的 Github 账号名称
-        export const REPO = 'all-in-github' // 替换为你的仓库名称
-        ```
-    - 修改博客配置，文件位置：[blog/src/config.ts](./blog/src/config.ts)
+## 🚀 Project Structure
 
-        ```ts
-        export const SITE = {
-          website: "https://byodian.github.io/", // 替换成你的 Github Pages 主页
-          base: '/all-in-github', // 指定 Github Pages 子路径
-          author: "byodian", // 替换成你的名字
-          profile: "https://byodian.github.io/", // 替换成你的网站主页
-          desc: "A minimal, responsive, Github Actions powered and SEO-friendly Astro blog.",
-          title: "All in GitHub",
-          //...
-          editPost: {
-              enabled: true,
-              text: "Edit page",
-              url: "https://github.com/byodian/all-in-github/edit/main/blog/", // 将 byodian 换成你的 Github 账号名称
-          }
-          //...
-        } as const;
-        ```
-
-    - 修改社交媒体链接，文件位置 [blog/src/constants.ts](./blog/src/constants.ts)
-
-3. **创建 PAT**
-
-    Personal access tokens（简称 PAT），用于在构建阶段，根据评论生成静态博客内容并提交到主分支时，触发部署 Github Page Workflow。
-
-    打开 [Fine-grained tokens](https://github.com/settings/personal-access-tokens) 页面，创建一个具有最小权限的 token，设置如下：
-
-    - Expiration：**No expiration**
-    - Repository access：**Only select repositories**
-    - Permissions: 
-        - "Contents" repository permissions (Read and write)
-        - "Issues" repository permissions (Read and write) 
-        - "Workflows" repository permissions (Read and write)
-
-    创建完成后，复制保存生成的 token。
-
-4. **创建项目环境变量**
-
-    打开**项目** Settings -> Secrets and variables -> Actions，创建一个 **Repository secrets**，其中：
-    
-    - Name: `ACTIONS_DEPLOY_KEY`
-    - Value: 上一步生成的 token
-
-5. **创建 Github 标签**
-
-    创建 Issues 标签（labels）：**Note**、**Blog**、**Publishing**
-
-6. **创建 Github Issue**
-
-    首先创建一个 Issue，描述可不填，设置 **Note** 标签。创建一条评论会自动触发 Github workflows，等待执行完成后，请查看你的 Github Page 主页 `yourname.github.io/all-in-github`（指定了子路径）。
-
-    评论内容示例：
-
-    ```
-    <!-- tags: blog -->
-    <!-- title: 文章测试 -->
-    <!-- description: 文章测试 -->
-
-    First blog test
-    ```
-
-7. **开启 Github Pages**
-
-    打开**项目** Settings -> Pages -> Build and deployment，开启 Pages，设置如下：
-
-    - Source 选择【Deploy from a branch】
-    - Branch 选择【gh-pages】，Folder 选择【/(root)】，并保存。
-
-执行上述操作，等待部署 Workflow 执行完成后，打开 https://yourname.github.io/all-in-github 查看你的博客。
-
-## 实现原理
-在 Github Issues 中，系统依赖两个关键标签：**Note** 和 **Blog**。
-凡是带有这两个标签的 Issue 评论都会被收集并生成对应的博客内容。
-
-当指定动作（比如创建/编辑评论）发生时，将触发 Github Workflows：
-
-1. 构建阶段：根据评论生成静态博客内容。
-2. 部署阶段：触发 Github Pages Workflow，将内容发布上线。
-
-其中，Note 与 Blog 标签在系统中被视为分类（category），但在应用场景和触发时机上有所区别。
-
-具有 Note 标签的 Issues：
-- Issue 的每个评论是一篇博客文章，这适合记录代码片段、debug 日志和灵感想法等一些比较琐碎的内容。
-- 当**创建或编辑** Issue 评论时会触发 [build-note](https://github.com/byodian/all-in-github/blob/main/.github/workflows/build-note.yml) 的 Github workflow。
-
-具有 Blog 标签的 Issues：
-- 每个 Issue 是一篇博客文章，这适合发布一些篇幅较长的博客文章。
-- 当为 Issue 打上 **Publishing** 标签时会触发 [build-blog](https://github.com/byodian/all-in-github/blob/main/.github/workflows/build-blog.yml) 的 Github workflow。发布完成后，标签 **Publishing** 会被自动修改为 **Published**。
-
-静态站点使用开源 Astro 博客模版 [AstroPaper](https://github.com/satnaing/astro-paper) 作为基础，我们进行了一些修改使其适合部署到 Github Pages。
-
-> AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
-
-### 注意事项
-具有 Note 标签的 Issues 本质上是一个分类，由于每条评论都是一条博客文章，所以无法使用 issue 标题作为博客标题。
-
-此系统使用 HTML 注释作为标识，[makeNote](https://github.com/byodian/all-in-github/blob/bf45661fa34c5682458bd0706c386711f737fe52/actions/src/makeNote.ts#L55-L56) 负责解析。您可以在评论中分别插入博客标题、标签和描述注释，作为 HTML 注释，它们不会在博客中展示：
-
-- 标题：`<!-- title: 博客的文章 -->`
-- 标签：`<!-- tags: tag1,tag2 -->` 多个标签使用英文逗号分隔
-- 描述：`<!-- description: 博客描述 -->`
-
-## 项目结构
-
-```
-.
-├── .github
-├── actions
-├── blog (Astro blog)
-├── LICENSE
-├── package.json
-└── README.md
-```
-
-主仓库存放 GitHub Actions 配置和 Astro blog，此项目使用 [git-subtree](https://manpages.debian.org/testing/git-man/git-subtree.1.en.html) 单独维护 [Astro blog](https://github.com/byodian/astro-paper) Git 项目。
-
-> Astro blog 是一个开源项目，使用 git-subtree 即可以保留来自上游的更新（pull upstream），又可以让 Github Actions 操作这个子目录（在 blog 文件夹创建博客文件）。
-
-### Git subtree
-
-语法：
+Inside of AstroPaper, you'll see the following folders and files:
 
 ```bash
-git subtree add --prefix=子文件夹名称 <子仓库地址> <分支> --squash
+/
+├── public/
+│   ├── assets/
+|   ├── pagefind/ # auto-generated when build
+│   └── favicon.svg
+│   └── astropaper-og.jpg
+│   └── favicon.svg
+│   └── toggle-theme.js
+├── src/
+│   ├── assets/
+│   │   └── icons/
+│   │   └── images/
+│   ├── components/
+│   ├── data/
+│   │   └── blog/
+│   │       └── some-blog-posts.md
+│   ├── layouts/
+│   └── pages/
+│   └── styles/
+│   └── utils/
+│   └── config.ts
+│   └── constants.ts
+│   └── content.config.ts
+└── astro.config.ts
 ```
-`--squash`: 把子仓库的 commit 压缩成一个 commit
 
-常用命令解释：
-- git subtree add - 在父仓库中建立一个子目录，把远程仓库的内容拉到里面，并作为父仓库的 commit 管理
-- git subtree pull - 拉取子仓库更新
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
+Any static assets, like images, can be placed in the `public/` directory.
 
-#### 添加子仓库为 subtree
+All blog posts are stored in `src/data/blog` directory.
 
-创建子文件夹 blog，并拉取远程仓库作为 blog 的内容，同时在父仓库生成一次新的 commit。
+## 📖 Documentation
+
+Documentation can be read in two formats\_ _markdown_ & _blog post_.
+
+- Configuration - [markdown](src/data/blog/how-to-configure-astropaper-theme.md) | [blog post](https://astro-paper.pages.dev/posts/how-to-configure-astropaper-theme/)
+- Add Posts - [markdown](src/data/blog/adding-new-post.md) | [blog post](https://astro-paper.pages.dev/posts/adding-new-posts-in-astropaper-theme/)
+- Customize Color Schemes - [markdown](src/data/blog/customizing-astropaper-theme-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/customizing-astropaper-theme-color-schemes/)
+- Predefined Color Schemes - [markdown](src/data/blog/predefined-color-schemes.md) | [blog post](https://astro-paper.pages.dev/posts/predefined-color-schemes/)
+
+## 💻 Tech Stack
+
+**Main Framework** - [Astro](https://astro.build/)  
+**Type Checking** - [TypeScript](https://www.typescriptlang.org/)  
+**Styling** - [TailwindCSS](https://tailwindcss.com/)  
+**UI/UX** - [Figma Design File](https://www.figma.com/community/file/1356898632249991861)  
+**Static Search** - [FuseJS](https://pagefind.app/)  
+**Icons** - [Tablers](https://tabler-icons.io/)  
+**Code Formatting** - [Prettier](https://prettier.io/)  
+**Deployment** - [Cloudflare Pages](https://pages.cloudflare.com/)  
+**Illustration in About Page** - [https://freesvgillustration.com](https://freesvgillustration.com/)  
+**Linting** - [ESLint](https://eslint.org)
+
+## 👨🏻‍💻 Running Locally
+
+You can start using this project locally by running the following command in your desired directory:
 
 ```bash
-git subtree add --prefix=blog git@github.com:byodian/astro-paper.git dev --squash
+# pnpm
+pnpm create astro@latest --template satnaing/astro-paper
+
+# npm
+npm create astro@latest -- --template satnaing/astro-paper
+
+# yarn
+yarn create astro --template satnaing/astro-paper
+
+# bun
+bun create astro@latest -- --template satnaing/astro-paper
 ```
 
-#### 更新 subtree
-
-当子仓库有新版本时，拉取最新内容：
+Then start the project by running the following commands:
 
 ```bash
-git subtree pull --prefix=blog git@github.com:byodian/astro-paper.git dev --squash
+# install dependencies if you haven't done so in the previous step.
+pnpm install
+
+# start running the project
+pnpm run dev
 ```
+
+As an alternative approach, if you have Docker installed, you can use Docker to run this project locally. Here's how:
+
+```bash
+# Build the Docker image
+docker build -t astropaper .
+
+# Run the Docker container
+docker run -p 4321:80 astropaper
+```
+
+## Google Site Verification (optional)
+
+You can easily add your [Google Site Verification HTML tag](https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag) in AstroPaper using an environment variable. This step is optional. If you don't add the following environment variable, the google-site-verification tag won't appear in the HTML `<head>` section.
+
+```bash
+# in your environment variable file (.env)
+PUBLIC_GOOGLE_SITE_VERIFICATION=your-google-site-verification-value
+```
+
+> See [this discussion](https://github.com/satnaing/astro-paper/discussions/334#discussioncomment-10139247) for adding AstroPaper to the Google Search Console.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+> **_Note!_** For `Docker` commands we must have it [installed](https://docs.docker.com/engine/install/) in your machine.
+
+| Command                              | Action                                                                                                                           |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm install`                       | Installs dependencies                                                                                                            |
+| `pnpm run dev`                       | Starts local dev server at `localhost:4321`                                                                                      |
+| `pnpm run build`                     | Build your production site to `./dist/`                                                                                          |
+| `pnpm run preview`                   | Preview your build locally, before deploying                                                                                     |
+| `pnpm run format:check`              | Check code format with Prettier                                                                                                  |
+| `pnpm run format`                    | Format codes with Prettier                                                                                                       |
+| `pnpm run sync`                      | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
+| `pnpm run lint`                      | Lint with ESLint                                                                                                                 |
+| `docker compose up -d`               | Run AstroPaper on docker, You can access with the same hostname and port informed on `dev` command.                              |
+| `docker compose run app npm install` | You can run any command above into the docker container.                                                                         |
+| `docker build -t astropaper .`       | Build Docker image for AstroPaper.                                                                                               |
+| `docker run -p 4321:80 astropaper`   | Run AstroPaper on Docker. The website will be accessible at `http://localhost:4321`.                                             |
+
+> **_Warning!_** Windows PowerShell users may need to install the [concurrently package](https://www.npmjs.com/package/concurrently) if they want to [run diagnostics](https://docs.astro.build/en/reference/cli-reference/#astro-check) during development (`astro check --watch & astro dev`). For more info, see [this issue](https://github.com/satnaing/astro-paper/issues/113).
+
+## ✨ Feedback & Suggestions
+
+If you have any suggestions/feedback, you can contact me via [my email](mailto:contact@satnaing.dev). Alternatively, feel free to open an issue if you find bugs or want to request new features.
+
+## 📜 License
+
+Licensed under the MIT License, Copyright © 2025
+
+---
+
+Made with 🤍 by [Sat Naing](https://satnaing.dev) 👨🏻‍💻 and [contributors](https://github.com/satnaing/astro-paper/graphs/contributors).
