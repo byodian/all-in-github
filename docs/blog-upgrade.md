@@ -116,3 +116,15 @@ GitHub 的 `ubuntu-latest` 非 WSL 环境执行完整构建和 Pagefind 索引�
 [AstroPaper 6.1.0 升级记录](../blog/docs/upstream-upgrade-6.1.0.md)。
 Git subtree 的合并规则见
 [Git 官方说明](https://github.com/git/git/blob/master/contrib/subtree/git-subtree.adoc)。
+
+## 2026-10-09 追加同步记录
+
+- 从远端 `byodian/astro-paper` 的 `dev` 同步到提交
+  `d5c88cce0ae5df863ee35377f7e8d4250fbe29e7`，新增 About 页面项目介绍更新。
+- 同步前提交为 `215cfa0`，已创建备份分支
+  `backup/blog-before-sync-20261009`，在 `chore/sync-blog-20261009` 分支完成同步。
+- 子树合并提交为 `bf4d29b`，没有冲突，AstroPaper 版本仍为 6.1.0。
+- 已比较整个 `blog/src/content/blog/` 目录与备份提交，文章路径与内容完全一致。
+- Astro 检查 56 个文件，0 错误、0 警告、0 提示；About 页面及文章排版指南的
+  Prettier 检查、skill 格式校验和 `git diff --check` 全部通过。
+- WSL 下未运行构建；推送主分支后由 GitHub Actions 生成并发布生产站点。
