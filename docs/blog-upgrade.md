@@ -2,6 +2,9 @@
 
 维护者：BAI YONGJIAN
 
+日常维护请使用[统一维护入口和自动同步流程](blog-maintenance.md)，从
+`npm run blog:help` 开始。本文保留仓库关系、底层手工操作和历史升级记录。
+
 ## 仓库关系
 
 `all-in-github` 使用 **git subtree** 将 `byodian/astro-paper` 的 `dev` 分支同步到

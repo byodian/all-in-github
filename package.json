@@ -2,7 +2,7 @@
   "name": "all-in-github",
   "version": "0.0.1",
   "description": "Manage All Personal Data With Github",
-  "author": "",
+  "author": "BAI YONGJIAN",
   "license": "ISC",
   "homepage": "https://github.com/byodian/all-in-github#readme",
   "repository": {
@@ -12,18 +12,31 @@
   "bugs": {
     "url": "https://github.com/byodian/all-in-github/issues"
   },
-  "keywords": ["Astro", "Github Issue", "Github Actions"],
+  "keywords": [
+    "Astro",
+    "Github Issue",
+    "Github Actions"
+  ],
   "scripts": {
+    "blog:help": "node scripts/blog.mjs help",
+    "blog:edit": "node scripts/blog.mjs edit",
+    "blog:status": "node scripts/blog.mjs status",
+    "blog:sync": "node scripts/blog.mjs sync",
+    "blog:verify": "node scripts/blog.mjs verify",
+    "test:blog-sync": "node --test scripts/blog.test.mjs",
     "install:blog": "pnpm install --prefix=blog",
     "install:actions": "pnpm install --prefix=actions",
-    "install:all": "npm run install:blog && npm run install:actions",
+    "install:all": "pnpm install --frozen-lockfile --ignore-scripts && npm run install:blog && npm run install:actions",
     "build:actions": "npm run build --prefix=actions",
     "build:blog": "npm run build --prefix=blog",
     "build:all": "npm run build:actions && npm run build:blog",
-    "lint:actions": "eslint . --ext .ts --fix --prefix=actions",
-    "lint:blog": "eslint . --fix --prefix=blog",
+    "lint:actions": "pnpm --dir actions exec eslint . --ext .ts --fix",
+    "lint:blog": "pnpm --dir blog exec eslint . --fix",
     "lint:all": "npm run lint:actions && npm run lint:blog",
     "dev:blog": "npm run dev --prefix=blog",
     "note:editor": "npm run note:editor --prefix=actions"
+  },
+  "dependencies": {
+    "cross-spawn": "7.0.6"
   }
 }

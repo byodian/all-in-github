@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/byodian/astro-paper.git",
+  "sourceBranch": "dev",
+  "prefix": "blog",
+  "articles": "blog/src/content/blog",
+  "localRepository": "../astro-paper",
+  "baseBranch": "main"
+}

@@ -1,0 +1,117 @@
+name: Sync blog theme
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly on day 1 at 10:17 Asia/Shanghai; scheduled runs may be delayed by GitHub.
+    - cron: '17 2 1 * *'
+  push:
+    branches: [main]
+    paths: ['blog/src/content/blog/**']
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-sync-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'prepare' }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.3.0'
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Configure commit identity
+        run: |
+          git config user.name 'BAI YONGJIAN'
+          git config user.email 'byj6696@gmail.com'
+
+      - name: Install maintenance dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Test synchronization
+        run: npm run test:blog-sync
+
+      - name: Prepare subtree synchronization
+        id: prepare
+        run: npm run blog:sync -- --base-ref origin/main --prepare-only
+
+      - name: Validate synchronized blog
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          SYNC_WORKTREE: ${{ steps.prepare.outputs.worktree }}
+          SYNC_BASE: ${{ steps.prepare.outputs.base }}
+        run: |
+          npm run blog:verify -- --worktree "$SYNC_WORKTREE"
+          git -C "$SYNC_WORKTREE" diff --exit-code "$SYNC_BASE" HEAD -- blog/src/content/blog
+          git -C "$SYNC_WORKTREE" diff --exit-code
+          git -C "$SYNC_WORKTREE" diff --cached --exit-code
+
+      - name: Create or update synchronization PR
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          SYNC_WORKTREE: ${{ steps.prepare.outputs.worktree }}
+          SYNC_SOURCE: ${{ steps.prepare.outputs.source }}
+          SYNC_REPORT: ${{ steps.prepare.outputs.report }}
+        run: |
+          printf '\n远端验证：Astro 检查、ESLint、Prettier、完整构建和 Pagefind 索引均通过。\n' >> "$SYNC_REPORT"
+          cat "$SYNC_REPORT" >> "$GITHUB_STEP_SUMMARY"
+          # Only this dedicated automation branch is replaced, with an explicit lease.
+          expected_sha=$(git ls-remote origin refs/heads/automation/sync-blog | cut -f1)
+          git -C "$SYNC_WORKTREE" push origin HEAD:refs/heads/automation/sync-blog \
+            "--force-with-lease=refs/heads/automation/sync-blog:$expected_sha"
+          number=$(gh pr list --head automation/sync-blog --base main --state open --json number --jq '.[0].number // empty')
+          title="chore(blog): sync theme ${SYNC_SOURCE:0:12}"
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --title "$title" --body-file "$SYNC_REPORT"
+          else
+            gh pr create --base main --head automation/sync-blog --title "$title" --body-file "$SYNC_REPORT"
+          fi
+
+  verify-merge:
+    if: github.event_name == 'pull_request' && (github.event.pull_request.head.ref == 'automation/sync-blog' || startsWith(github.event.pull_request.head.ref, 'chore/sync-blog-')) && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.3.0'
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verify articles in the PR merge result
+        run: git diff --exit-code origin/main HEAD -- blog/src/content/blog
+
+      - name: Install maintenance dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Validate PR merge result
+        run: npm run blog:verify

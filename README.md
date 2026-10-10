@@ -166,8 +166,8 @@ git subtree add --prefix=blog git@github.com:byodian/astro-paper.git dev --squas
 
 #### 更新 subtree
 
-当子仓库有新版本时，拉取最新内容：
+日常维护使用统一入口，完整流程见 [Blog 日常维护](docs/blog-maintenance.md)：
 
 ```bash
-git subtree pull --prefix=blog git@github.com:byodian/astro-paper.git dev --squash
+npm run blog:help
 ```
