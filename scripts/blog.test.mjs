@@ -6,6 +6,7 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  realpathSync,
   rmSync,
   symlinkSync,
   writeFileSync,
@@ -373,7 +374,10 @@ test('the default worktree under the Git common directory supports subtree merge
   const result = f.run([], { GITHUB_OUTPUT: output }, { defaultWorktree: true })
   assert.equal(result.status, 0, result.stderr + result.stdout)
   const path = readFileSync(output, 'utf8').match(/^worktree=(.+)$/m)[1]
-  assert.ok(path.startsWith(join(f.root, '.git', 'blog-sync')))
+  assert.equal(
+    realpathSync(dirname(path)),
+    realpathSync(join(f.root, '.git', 'blog-sync')),
+  )
   assert.equal(
     git(
       path,
