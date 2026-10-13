@@ -285,7 +285,7 @@ pnpm dev
 node scripts/update-blog-template.mjs --latest --propose
 \`\`\`
 
-手动固定 release 时同时提供 \`--ref <tag>\`、\`--commit <完整提交 SHA>\` 和 \`--propose\`。更新器会把主题变更与精确来源 pin 写入工作区，供检查后提交。workflow 使用相同方式准备候选版本，验证失败时会保存补丁 artifact，便于检查和恢复。若主题白名单文件没有实际变化，更新器不会改写来源元数据或产生空 PR。
+手动固定 release 时同时提供 \`--ref <tag>\`、\`--commit <完整提交 SHA>\` 和 \`--propose\`。更新器会把主题变更与精确来源 pin 写入工作区；通过 Astro 检查后，再运行 \`node scripts/update-blog-template.mjs --record-current\` 将提交登记为已验证版本。workflow 会在检查后自动登记候选，验证失败时只保存源码补丁 artifact，不会登记未验证版本。若主题白名单文件没有实际变化，更新器不会改写来源元数据或产生空 PR。
 `)
 
   mkdirSync(path.join(destination, '.template'), { recursive: true })

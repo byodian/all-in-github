@@ -31,7 +31,7 @@ npm run template:export -- --destination ../astro-blog-template
 npm run template:update -- --destination ../astro-blog-template --ref v6.1.0 --commit 4c33a60529f9c443145a89fe526ff231c009272d
 ```
 
-上例是当前模板基线，重复运行会提示无需更新。手动尝试新版本时，附加 `--propose` 将候选主题源码和精确来源 pin 写入工作区，再检查并决定是否提交。
+上例是当前模板基线，重复运行会提示无需更新。手动尝试新版本时，附加 `--propose` 将候选主题源码和精确来源 pin 写入工作区；通过 Astro 检查后，再运行 `node scripts/update-blog-template.mjs --record-current` 将其登记为已验证版本。
 
 更新前必须保证目标模板工作区干净。主题文件若偏离上次导出的哈希，更新会中止并报告冲突；处理后重新运行。更新器保留现有配置、文章、模板设置及 Git 历史，只在工作区产生可审查的差异，不会推送或提交。
 

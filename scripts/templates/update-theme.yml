@@ -41,6 +41,20 @@ jobs:
       - name: Validate updated theme
         run: pnpm --dir blog exec astro check
 
+      - name: Record verified source version
+        run: node scripts/update-blog-template.mjs --record-current
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/update-astro-paper
+          delete-branch: true
+          commit-message: chore(theme): update AstroPaper source
+          title: chore(theme): update AstroPaper source
+          body: |
+            Monthly proposal for the latest stable AstroPaper release. The exact source ref and commit are pinned in the compatibility registry after validation.
+
+            Review the source version, theme changes, and validation result before merging. This PR does not update site settings or blog content.
+
       - name: Save candidate changes if validation fails
         id: capture-patch
         if: failure()
@@ -59,14 +73,3 @@ jobs:
           name: astro-paper-update-patch
           path: ${{ runner.temp }}/astro-paper-update.patch
           if-no-files-found: error
-
-      - uses: peter-evans/create-pull-request@v7
-        with:
-          branch: automation/update-astro-paper
-          delete-branch: true
-          commit-message: chore(theme): update AstroPaper source
-          title: chore(theme): update AstroPaper source
-          body: |
-            Monthly proposal for the latest stable AstroPaper release. The exact source ref and commit are pinned in the compatibility registry for review.
-
-            Review the source version, theme changes, and validation result before merging. This PR does not update site settings or blog content.

@@ -52,7 +52,7 @@ export function createThemeCompatibilityRegistry({ repository, ref, commit }) {
     formatVersion: 1,
     theme: 'astro-paper',
     repository,
-    approvedReleases: [{ ref, commit }],
+    verifiedReleases: [{ ref, commit }],
   }
 }
 
@@ -92,7 +92,7 @@ function readThemeMetadata(destination) {
     metadata.formatVersion !== 1 ||
     metadata.theme !== 'astro-paper' ||
     typeof metadata.repository !== 'string' ||
-    typeof metadata.ref !== 'string' ||
+    !/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(metadata.ref) ||
     !/^[0-9a-f]{40}$/.test(metadata.commit) ||
     !metadata.files ||
     Array.isArray(metadata.files) ||
@@ -114,14 +114,14 @@ function readCompatibilityRegistry(destination, repository) {
     registry.formatVersion !== 1 ||
     registry.theme !== 'astro-paper' ||
     registry.repository !== repository ||
-    !Array.isArray(registry.approvedReleases) ||
-    registry.approvedReleases.length === 0 ||
-    registry.approvedReleases.some(release =>
+    !Array.isArray(registry.verifiedReleases) ||
+    registry.verifiedReleases.length === 0 ||
+    registry.verifiedReleases.some(release =>
       !release ||
       !/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(release.ref) ||
       !/^[0-9a-f]{40}$/.test(release.commit),
     ) ||
-    new Set(registry.approvedReleases.map(release => release.ref)).size !== registry.approvedReleases.length
+    new Set(registry.verifiedReleases.map(release => release.ref)).size !== registry.verifiedReleases.length
   ) {
     throw new Error(`Theme compatibility registry is invalid: ${compatibilityPath}`)
   }
@@ -138,6 +138,37 @@ function validateTemplateRepository(destination) {
     throw new Error(`Template destination must be the repository root: ${repositoryRoot}`)
   }
   return repositoryRoot
+}
+
+export function recordCurrentThemeRelease(destination) {
+  const templateRoot = validateTemplateRepository(destination)
+  const metadata = readThemeMetadata(templateRoot)
+  const registry = readCompatibilityRegistry(templateRoot, metadata.repository)
+  const changedThemeFiles = Object.entries(metadata.files)
+    .filter(([file, expectedHash]) => {
+      const target = path.join(templateRoot, 'blog', file)
+      return !isRegularFileWithoutSymlinkParents(templateRoot, `blog/${file}`) || sha256(target) !== expectedHash
+    })
+    .map(([file]) => file)
+  if (changedThemeFiles.length) {
+    throw new Error(`Theme files do not match the source pin and cannot be verified:\n${changedThemeFiles.join('\n')}`)
+  }
+  const releaseForRef = registry.verifiedReleases.find(release => release.ref === metadata.ref)
+  if (releaseForRef) {
+    if (releaseForRef.commit !== metadata.commit) {
+      throw new Error(`Release tag ${metadata.ref} is already pinned to another commit in ${compatibilityPath}.`)
+    }
+    process.stdout.write(`Theme release ${metadata.ref} (${metadata.commit}) is already verified.\n`)
+    return false
+  }
+
+  const updatedRegistry = {
+    ...registry,
+    verifiedReleases: [...registry.verifiedReleases, { ref: metadata.ref, commit: metadata.commit }],
+  }
+  writeFileSync(path.join(templateRoot, compatibilityPath), `${JSON.stringify(updatedRegistry, null, 2)}\n`)
+  process.stdout.write(`Recorded verified AstroPaper release ${metadata.ref} (${metadata.commit}).\n`)
+  return true
 }
 
 function normalizedThemeContents(contents, file) {
@@ -163,12 +194,12 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef, 
 
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
   const registry = readCompatibilityRegistry(templateRoot, metadata.repository)
-  const releaseForRef = registry.approvedReleases.find(release => release.ref === sourceRef)
+  const releaseForRef = registry.verifiedReleases.find(release => release.ref === sourceRef)
   if (releaseForRef && releaseForRef.commit !== sourceCommit) {
     throw new Error(`Release tag ${sourceRef} is already pinned to another commit in ${compatibilityPath}.`)
   }
-  const releaseIsApproved = Boolean(releaseForRef)
-  if (!releaseIsApproved && !proposeRelease) {
+  const releaseIsVerified = Boolean(releaseForRef)
+  if (!releaseIsVerified && !proposeRelease) {
     process.stdout.write(`Skipped ${sourceRef} (${sourceCommit}): this release is not in ${compatibilityPath}.\n`)
     return false
   }
@@ -241,13 +272,6 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef, 
     files: selectedFiles,
   })
   writeFileSync(path.join(templateRoot, metadataPath), `${JSON.stringify(updatedMetadata, null, 2)}\n`)
-  if (!releaseIsApproved) {
-    const candidateRegistry = {
-      ...registry,
-      approvedReleases: [...registry.approvedReleases, { ref: sourceRef, commit: sourceCommit }],
-    }
-    writeFileSync(path.join(templateRoot, compatibilityPath), `${JSON.stringify(candidateRegistry, null, 2)}\n`)
-  }
   process.stdout.write(`Updated AstroPaper files from ${sourceRef} (${sourceCommit}). Review the working tree and commit the changes.\n`)
   return true
 }
@@ -256,7 +280,7 @@ function parseArguments(args) {
   const options = {}
   for (let index = 0; index < args.length; index += 1) {
     const option = args[index]
-    if (!['--destination', '--ref', '--commit', '--latest', '--propose'].includes(option)) {
+    if (!['--destination', '--ref', '--commit', '--latest', '--propose', '--record-current'].includes(option)) {
       throw new Error(`Unknown option: ${option}`)
     }
     if (option === '--latest') {
@@ -267,6 +291,11 @@ function parseArguments(args) {
     if (option === '--propose') {
       if (options.propose) throw new Error('Option provided more than once: --propose')
       options.propose = true
+      continue
+    }
+    if (option === '--record-current') {
+      if (options.recordCurrent) throw new Error('Option provided more than once: --record-current')
+      options.recordCurrent = true
       continue
     }
     const value = args[index + 1]
@@ -281,6 +310,9 @@ function parseArguments(args) {
     throw new Error('Provide both --ref and --commit, or use --latest.')
   }
   if (options.latest && options.ref) throw new Error('--latest cannot be combined with --ref or --commit.')
+  if (options.recordCurrent && (options.latest || options.ref || options.commit || options.propose)) {
+    throw new Error('--record-current cannot be combined with a source version option.')
+  }
   if (options.propose && !options.latest && !options.ref) {
     throw new Error('--propose requires --latest or a version supplied with --ref and --commit.')
   }
@@ -330,6 +362,7 @@ async function updateFromRelease({ destination, ref, expectedCommit, proposeRele
 async function run(args) {
   const options = parseArguments(args)
   const destination = path.resolve(options.destination ?? process.cwd())
+  if (options.recordCurrent) return recordCurrentThemeRelease(destination)
   if (options.ref) return updateFromRelease({
     destination,
     ref: options.ref,

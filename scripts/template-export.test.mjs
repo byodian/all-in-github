@@ -6,7 +6,7 @@ import path from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 import { exportTemplateFromThemeSource } from './export-blog-template.mjs'
-import { updateTemplateFromThemeSource } from './update-blog-template.mjs'
+import { recordCurrentThemeRelease, updateTemplateFromThemeSource } from './update-blog-template.mjs'
 
 const scriptPath = fileURLToPath(new URL('./export-blog-template.mjs', import.meta.url))
 const repositoryRoot = path.resolve(path.dirname(scriptPath), '..')
@@ -22,10 +22,10 @@ function writeSourceFile(source, relativePath, contents) {
   writeFileSync(target, contents)
 }
 
-function approveThemeRelease(destination, ref, commit) {
+function registerVerifiedThemeRelease(destination, ref, commit) {
   const registryPath = path.join(destination, '.template/compatibility.json')
   const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
-  registry.approvedReleases.push({ ref, commit })
+  registry.verifiedReleases.push({ ref, commit })
   writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`)
   git(destination, ['add', '.template/compatibility.json'])
   git(destination, ['commit', '--quiet', '-m', `approve theme release ${ref}`])
@@ -105,7 +105,7 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.match(about, /Write your introduction here/)
   assert.equal(packageJson.name, 'public-blog')
   assert.equal(sourceMetadata.commit, sourceCommit)
-  assert.deepEqual(compatibilityRegistry.approvedReleases, [{ ref: 'v1.0.0', commit: sourceCommit }])
+  assert.deepEqual(compatibilityRegistry.verifiedReleases, [{ ref: 'v1.0.0', commit: sourceCommit }])
   assert.equal(Object.keys(sourceMetadata.files).length, themeFiles.length)
   assert.match(workflow, /schedule:/)
   assert.match(workflow, /workflow_dispatch:/)
@@ -113,6 +113,8 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.match(workflow, /actions\/upload-artifact@v4/)
   assert.match(workflow, /capture-patch/)
   assert.match(workflow, /--latest --propose/)
+  assert.match(workflow, /--record-current/)
+  assert.ok(workflow.indexOf('astro check') < workflow.indexOf('--record-current'))
   assert.doesNotMatch(exportedText, /Private Example Person|do-not-export|all-in-github|byodian\.github\.io/)
   assert.equal(
     readFileSync(path.join(destination, 'LICENSE'), 'utf8'),
@@ -153,7 +155,7 @@ test('updates a generated template from a newer source while preserving user fil
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
-  approveThemeRelease(destination, 'v1.1.0', sourceCommit)
+  registerVerifiedThemeRelease(destination, 'v1.1.0', sourceCommit)
 
   assert.equal(
     updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
@@ -187,7 +189,7 @@ test('skips source versions outside the compatibility registry', t => {
   assert.equal(readFileSync(path.join(destination, 'blog', themeFile), 'utf8'), `Theme source file: ${themeFile}\n`)
 })
 
-test('proposes an unapproved release with its exact commit pinned in the registry', t => {
+test('records a proposed release only after its validation step', t => {
   const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-release-proposal-'))
   t.after(() => rmSync(temp, { recursive: true, force: true }))
 
@@ -204,9 +206,34 @@ test('proposes an unapproved release with its exact commit pinned in the registr
     updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0', proposeRelease: true }),
     true,
   )
-  const registry = JSON.parse(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'))
-  assert.deepEqual(registry.approvedReleases.at(-1), { ref: 'v1.1.0', commit: sourceCommit })
+  const registryPath = path.join(destination, '.template/compatibility.json')
+  const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
+  assert.deepEqual(registry.verifiedReleases, [{ ref: 'v1.0.0', commit: git(source, ['rev-parse', 'HEAD~1']) }])
+  assert.equal(JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')).commit, sourceCommit)
   assert.equal(readFileSync(path.join(destination, 'blog', themeFile), 'utf8'), 'Compatible candidate theme component\n')
+
+  assert.equal(recordCurrentThemeRelease(destination), true)
+  const verifiedRegistry = JSON.parse(readFileSync(registryPath, 'utf8'))
+  assert.deepEqual(verifiedRegistry.verifiedReleases.at(-1), { ref: 'v1.1.0', commit: sourceCommit })
+})
+
+test('does not verify a candidate if a managed theme file changed after preparation', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-unverified-candidate-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  const themeFile = themeFiles.find(file => file.endsWith('.astro'))
+  writeSourceFile(source, themeFile, 'Candidate theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'candidate release'])
+  updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0', proposeRelease: true })
+  writeFileSync(path.join(destination, 'blog', themeFile), 'Edited after validation\n')
+  const registryBefore = readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8')
+
+  assert.throws(() => recordCurrentThemeRelease(destination), /cannot be verified/)
+  assert.equal(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'), registryBefore)
 })
 
 test('does not create a registry entry when a candidate release has no allowlisted file changes', t => {
@@ -243,7 +270,7 @@ test('stops before changing the template when a managed theme file has local edi
   writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
-  approveThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
+  registerVerifiedThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
   const previousMetadata = readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')
 
   assert.throws(
@@ -279,7 +306,7 @@ test('does not follow a user-added symlink outside the template during an update
   writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
-  approveThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
+  registerVerifiedThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
 
   assert.throws(
     () => updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
