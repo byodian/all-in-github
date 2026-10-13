@@ -112,6 +112,7 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.match(workflow, /create-pull-request/)
   assert.match(workflow, /actions\/upload-artifact@v4/)
   assert.match(workflow, /capture-patch/)
+  assert.match(workflow, /git diff --binary -- blog/)
   assert.match(workflow, /--latest --propose/)
   assert.match(workflow, /--record-current/)
   assert.ok(workflow.indexOf('astro check') < workflow.indexOf('--record-current'))

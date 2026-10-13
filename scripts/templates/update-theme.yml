@@ -60,10 +60,10 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          if git diff --quiet; then
+          if git diff --quiet -- blog; then
             echo "available=false" >> "$GITHUB_OUTPUT"
           else
-            git diff --binary > "$RUNNER_TEMP/astro-paper-update.patch"
+            git diff --binary -- blog > "$RUNNER_TEMP/astro-paper-update.patch"
             echo "available=true" >> "$GITHUB_OUTPUT"
           fi
 
