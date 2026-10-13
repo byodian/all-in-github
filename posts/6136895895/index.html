@@ -1,0 +1,906 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="overflow-y-scroll scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/all-in-github/favicon.svg"><link rel="canonical" href="https://byodian.github.io/all-in-github/posts/6136895895/"><meta name="generator" content="Astro v6.4.2"><!-- Font --><style>@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/2213c1e7fbe06cc7.woff") format("woff"), url("/all-in-github/_astro/fonts/b87f789471b4c602.ttf") format("truetype");font-display:swap;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/c487dbd9c215141e.woff") format("woff"), url("/all-in-github/_astro/fonts/bb0c016d60298234.ttf") format("truetype");font-display:swap;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/0976c79a1e97c08d.woff") format("woff"), url("/all-in-github/_astro/fonts/b3e69a4f03324880.ttf") format("truetype");font-display:swap;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/3c46d5a1dde2929d.woff") format("woff"), url("/all-in-github/_astro/fonts/0ff1dfaf1dff21d0.ttf") format("truetype");font-display:swap;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/e9aa617e80052f4b.woff") format("woff"), url("/all-in-github/_astro/fonts/d9a5ad8b8018e5de.ttf") format("truetype");font-display:swap;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/5056f1a50e5e7744.woff") format("woff"), url("/all-in-github/_astro/fonts/3e4dac0d0220e48a.ttf") format("truetype");font-display:swap;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/e734307f8c328338.woff") format("woff"), url("/all-in-github/_astro/fonts/ba3036786bf88603.ttf") format("truetype");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/dfa89044152f7da4.woff") format("woff"), url("/all-in-github/_astro/fonts/39aec4e7fc7cc077.ttf") format("truetype");font-display:swap;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/8bbd58b325585200.woff") format("woff"), url("/all-in-github/_astro/fonts/b33609507afd910d.ttf") format("truetype");font-display:swap;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/035035a9ddbd14aa.woff") format("woff"), url("/all-in-github/_astro/fonts/50fcf54bf575f53f.ttf") format("truetype");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-1a30c214885cb404","Google Sans Code-1a30c214885cb404 fallback: Courier New",monospace;}</style><!-- Primary meta --><title>从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 | All in GitHub</title><meta name="title" content="从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 | All in GitHub"><meta name="description" content="结合 AstroPaper fork 与 all-in-github 的实际实现，解释两级源码同步、runner 执行 shell 的过程，以及 CI/CD 如何通过验证控制合并和发布。"><meta name="author" content="BAI YONGJIAN"><link rel="sitemap" href="/all-in-github/sitemap-index.xml"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="All in GitHub"><meta property="og:title" content="从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 | All in GitHub"><meta property="og:description" content="结合 AstroPaper fork 与 all-in-github 的实际实现，解释两级源码同步、runner 执行 shell 的过程，以及 CI/CD 如何通过验证控制合并和发布。"><meta property="og:url" content="https://byodian.github.io/all-in-github/posts/6136895895/"><meta property="og:image" content="https://byodian.github.io/all-in-github/posts/6136895895/index.png"><!-- Twitter / X --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://byodian.github.io/all-in-github/posts/6136895895/"><meta property="twitter:title" content="从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 | All in GitHub"><meta property="twitter:description" content="结合 AstroPaper fork 与 all-in-github 的实际实现，解释两级源码同步、runner 执行 shell 的过程，以及 CI/CD 如何通过验证控制合并和发布。"><meta property="twitter:image" content="https://byodian.github.io/all-in-github/posts/6136895895/index.png"><!-- RSS autodiscovery --><link rel="alternate" type="application/rss+xml" title="All in GitHub" href="https://byodian.github.io/all-in-github/rss.xml"><!-- Filled at runtime by theme.ts to match the current background colour --><meta name="theme-color" content=""><!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->  <meta property="og:type" content="article"> <meta property="article:published_time" content="2026-10-13T02:30:06.000Z"><meta property="article:modified_time" content="2026-10-13T02:30:06.000Z"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 | All in GitHub","image":"https://byodian.github.io/all-in-github/posts/6136895895/index.png","datePublished":"2026-10-13T02:30:06.000Z","dateModified":"2026-10-13T02:30:06.000Z","author":[{"@type":"Person","name":"BAI YONGJIAN","url":"https://byodian.github.io/"}]}</script> <!--
+      Inline FOUC-prevention script: sets data-theme on <html> before
+      the browser paints. Runs synchronously, no defer/async.
+    --><script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const root = document.firstElementChild;
+        root?.setAttribute("data-theme", theme);
+        root?.classList.toggle("dark", theme === "dark");
+        // Expose value so theme.ts can skip re-detection.
+        window.__theme = { value: theme };
+      })();
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/all-in-github/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CAqDO0tx.js"></script><link rel="stylesheet" href="/all-in-github/_astro/Footer.BdIq6dAG.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: cicd; }@layer astro { ::view-transition-old(cicd) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cicd) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cicd) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cicd) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: github-actions; }@layer astro { ::view-transition-old(github-actions) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(github-actions) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(github-actions) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(github-actions) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: git-subtree; }@layer astro { ::view-transition-old(git-subtree) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(git-subtree) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(git-subtree) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(git-subtree) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: \6E90\7801\5206\6790; }@layer astro { ::view-transition-old(\6E90\7801\5206\6790) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\6E90\7801\5206\6790) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\6E90\7801\5206\6790) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\6E90\7801\5206\6790) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: \67B6\6784\8BBE\8BA1; }@layer astro { ::view-transition-old(\67B6\6784\8BBE\8BA1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\67B6\6784\8BBE\8BA1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\67B6\6784\8BBE\8BA1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\67B6\6784\8BBE\8BA1) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-6"] { view-transition-name: ai-generated; }@layer astro { ::view-transition-old(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col">    <a id="skip-to-content" href="#main-content" class="bg-background text-accent absolute inset-s-16 -top-full z-50 px-3 py-2 backdrop-blur-lg transition-all focus:top-4"> Skip to content </a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div class="border-border bg-background relative flex w-full items-baseline justify-between border-b py-4 sm:items-center sm:py-6"> <a href="/all-in-github/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> All in GitHub </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="menu-items" data-label-open="Open menu" data-label-close="Close menu"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden" viewBox="0 0 24 24" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M18 6 6 18M6 6l12 12" /></svg> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" viewBox="0 0 24 24" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 6h16M7 12h13M10 18h10" /></svg> </button> <ul id="menu-items" class="[&>li>a]:hover:text-accent mt-4 hidden w-44 grid-cols-2 place-content-center gap-2 sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:[&>li]:h-8 [&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:font-medium sm:[&>li>a]:px-2 sm:[&>li>a]:py-1"> <li class="col-span-2"> <a href="/all-in-github/posts/" class="active-nav"> Posts </a> </li> <li class="col-span-2"> <a href="/all-in-github/tags/"> Tags </a> </li> <li class="col-span-2"> <a href="/all-in-github/about/"> About </a> </li> <li class="col-span-2"> <a href="/all-in-github/archives/" title="Archives" aria-label="Archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex size-full justify-center p-3 sm:relative sm:size-8 sm:p-0">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden sm:absolute sm:top-1/2 sm:left-1/2 sm:block sm:size-6 sm:-translate-x-1/2 sm:-translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/all-in-github/search/" title="Search" aria-label="Search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline relative size-8">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline hover:[&>svg]:stroke-accent relative size-12 p-4 sm:size-8" title="Toggle theme" aria-label="auto" aria-live="polite"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z" /></svg> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656M6.343 17.657l-1.414 1.414M6.343 6.343 4.929 4.929M17.657 6.343l1.414-1.414M17.657 17.657l1.414 1.414M4 12H2M12 4V2M20 12h2M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function c(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");if(!e||!t||!n||!o)return;const r=e.dataset.labelOpen??"Open menu",i=e.dataset.labelClose??"Close menu";e.addEventListener("click",()=>{const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",s?"false":"true"),e.setAttribute("aria-label",s?r:i),t.classList.toggle("hidden"),t.classList.toggle("grid"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}function a(){const e=document.getElementById("skip-to-content");e&&e.addEventListener("click",t=>{if(t.defaultPrevented||t.metaKey||t.ctrlKey||t.shiftKey||t.button!==0)return;t.preventDefault();const n=document.getElementById("main-content");n&&(n.setAttribute("tabindex","-1"),n.addEventListener("blur",()=>n.removeAttribute("tabindex"),{once:!0}),n.focus(),n.scrollIntoView({behavior:"smooth"}))})}c();document.addEventListener("astro:after-swap",c);a();document.addEventListener("astro:after-swap",a);</script> <div class="app-layout flex items-center justify-start"><a id="back-button" href="/all-in-github/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 6-6 6 6 6" /></svg><span>Go back</span> </a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="app-layout" data-pagefind-body> <h1 style="view-transition-name:p-6136895895" class="text-accent inline-block text-2xl font-bold sm:text-3xl"> 从两级 Git 同步理解 CI/CD：AstroPaper 主题更新与博客发布 </h1> <div class="my-2 flex items-center gap-2"> <div class="text-muted-foreground flex items-center gap-x-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 min-w-5.5" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2026-10-13T02:30:06.000Z"> 13 Oct, 2026 </time> </div> <span aria-hidden="true" class="text-muted-foreground max-sm:hidden">
+|
+</span> <a href="https://github.com/byodian/all-in-github/edit/main/blog/src/content/blog/2026-10-13_10:30:06_6136895895.md" target="_blank" rel="noopener noreferrer" class="hover:text-accent text-muted-foreground flex justify-baseline gap-1.5 max-sm:hidden"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" /></svg><span>Edit page</span></a> </div> <article id="article" class="mt-8 w-full app-prose max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <blockquote><p><strong>AI 生成内容（AI-generated content）</strong>：本文由 AI 生成。</p></blockquote>
+<p>一个基于开源主题的博客，往往需要同时维护三类内容：上游主题代码、本站定制和持续新增的文章。更新主题时，既要接收上游修复，也要保留站点配置和文章，最后还要确认网站可以正常生成。</p>
+<p>本文以 <code>satnaing/astro-paper</code>、它的 fork <code>byodian/astro-paper</code> 和博客主仓库 <code>byodian/all-in-github</code> 为例，解释这套自动化如何工作。分析对应 2026-10-13 的实现：主题仓库提交 <code>0c642f2</code>，主仓库提交 <code>625992e</code>。</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#%E4%B8%80%E6%9D%A1%E5%88%86%E6%88%90%E4%B8%A4%E7%BA%A7%E7%9A%84%E6%9B%B4%E6%96%B0%E9%93%BE%E8%B7%AF">一条分成两级的更新链路</a></li>
+<li><a href="#%E4%B8%BB%E9%A2%98-fork-%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E5%90%88%E5%B9%B6%E4%B8%8A%E6%B8%B8">主题 fork 如何自动合并上游</a>
+<ul>
+<li><a href="#%E5%9B%BA%E5%AE%9A%E8%BE%93%E5%85%A5%E7%89%88%E6%9C%AC%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E5%90%8C%E6%AD%A5">固定输入版本，判断是否已经同步</a></li>
+<li><a href="#%E5%9C%A8%E7%8B%AC%E7%AB%8B-worktree-%E4%B8%AD%E5%90%88%E5%B9%B6">在独立 worktree 中合并</a></li>
+<li><a href="#%E6%8C%89%E8%B7%AF%E5%BE%84%E4%BF%9D%E7%95%99%E6%9C%AC%E7%AB%99%E5%86%85%E5%AE%B9">按路径保留本站内容</a></li>
+<li><a href="#%E9%AA%8C%E8%AF%81%E6%88%90%E5%8A%9F%E5%90%8E%E6%89%8D%E6%9B%B4%E6%96%B0%E8%BF%9C%E7%AB%AF">验证成功后才更新远端</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%BB%E4%BB%93%E5%BA%93%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6-subtree-%E6%9B%B4%E6%96%B0">主仓库如何接收 subtree 更新</a>
+<ul>
+<li><a href="#%E4%BB%8E-subtree-%E8%AE%B0%E5%BD%95%E5%88%A4%E6%96%AD%E7%89%88%E6%9C%AC">从 subtree 记录判断版本</a></li>
+<li><a href="#%E5%B0%86%E4%B8%BB%E9%A2%98%E6%A0%B9%E7%9B%AE%E5%BD%95%E6%98%A0%E5%B0%84%E5%88%B0-blog">将主题根目录映射到 blog/</a></li>
+<li><a href="#%E4%B8%BB%E4%BB%93%E5%BA%93%E6%96%87%E7%AB%A0%E5%A7%8B%E7%BB%88%E6%8C%89%E4%B8%BB%E4%BB%93%E5%BA%93%E5%9F%BA%E7%BA%BF%E6%81%A2%E5%A4%8D">主仓库文章始终按主仓库基线恢复</a></li>
+</ul>
+</li>
+<li><a href="#github-actions-%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C-shell-%E5%91%BD%E4%BB%A4">GitHub Actions 如何执行 shell 命令</a>
+<ul>
+<li><a href="#yaml-%E5%AE%89%E6%8E%92%E6%89%A7%E8%A1%8Crunner-%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B">YAML 安排执行，runner 启动进程</a></li>
+<li><a href="#shell-%E5%86%8D%E8%B0%83%E7%94%A8-npmnodejs-%E5%92%8C-git">Shell 再调用 npm、Node.js 和 Git</a></li>
+</ul>
+</li>
+<li><a href="#%E6%AD%A5%E9%AA%A4%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%B1%E8%B4%A5%E7%8A%B6%E6%80%81">步骤之间如何传递数据和失败状态</a>
+<ul>
+<li><a href="#%E7%94%A8-github_output-%E4%BC%A0%E9%80%92%E7%BB%93%E6%9E%9C">用 GITHUB_OUTPUT 传递结果</a></li>
+<li><a href="#%E7%94%A8%E9%80%80%E5%87%BA%E7%A0%81%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E7%BB%A7%E7%BB%AD">用退出码决定是否继续</a></li>
+<li><a href="#%E6%9D%83%E9%99%90%E8%AE%A9%E5%91%BD%E4%BB%A4%E8%83%BD%E5%A4%9F%E5%86%99%E5%9B%9E%E4%BB%93%E5%BA%93">权限让命令能够写回仓库</a></li>
+</ul>
+</li>
+<li><a href="#cicd-%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E7%BD%91%E7%AB%99%E5%8F%91%E5%B8%83">CI/CD 的本质与网站发布</a></li>
+<li><a href="#%E5%B7%B2%E9%AA%8C%E8%AF%81%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%8E%E9%AA%8C%E8%AF%81%E8%BE%B9%E7%95%8C">已验证的结果与验证边界</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="一条分成两级的更新链路">一条分成两级的更新链路</h2>
+<p>主仓库通过 Git subtree 将 fork 的主题源码放进 <code>blog/</code>，文章也存放在这个目录下。完整链路如下：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>satnaing/astro-paper/main</span></span>
+<span class="line"><span>    │</span></span>
+<span class="line"><span>    │ 每月 25 日：普通 merge → 验证 → 自动推送</span></span>
+<span class="line"><span>    ▼</span></span>
+<span class="line"><span>byodian/astro-paper/dev</span></span>
+<span class="line"><span>    │</span></span>
+<span class="line"><span>    │ 每月 1 日：subtree merge → 验证 → 创建或更新 PR</span></span>
+<span class="line"><span>    ▼</span></span>
+<span class="line"><span>all-in-github 的同步 PR</span></span>
+<span class="line"><span>    │</span></span>
+<span class="line"><span>    │ 人工检查，通过 merge commit 合并</span></span>
+<span class="line"><span>    ▼</span></span>
+<span class="line"><span>all-in-github/main 的 blog/</span></span>
+<span class="line"><span>    │</span></span>
+<span class="line"><span>    │ main 更新：生成静态网站 → 发布产物</span></span>
+<span class="line"><span>    ▼</span></span>
+<span class="line"><span>GitHub Pages</span></span></code></pre>
+<p>两级同步分别解决不同的问题：主题 fork 接收上游源码，主仓库接收已经整合本站定制的主题。文章始终由主仓库维护。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>环节</th><th>来源</th><th>目标</th><th>合并方式</th><th>成功后的操作</th></tr></thead><tbody><tr><td>上游同步</td><td>上游 <code>main</code></td><td>fork 的 <code>dev</code></td><td>普通 Git merge</td><td>自动推送 <code>dev</code></td></tr><tr><td>博客同步</td><td>fork 的 <code>dev</code></td><td>主仓库 <code>blog/</code></td><td>Git subtree merge</td><td>创建或更新 PR</td></tr><tr><td>网站发布</td><td>主仓库 <code>main</code></td><td>GitHub Pages</td><td>生成并发布静态文件</td><td>更新线上网站</td></tr></tbody></table>
+<p>两个同步工作流独立调度。fork 更新不会立即触发主仓库同步；需要等待主仓库的定时任务，或手动运行 <strong>Sync blog theme</strong>。上游同步跟踪的是 <code>main</code> 最新提交，范围包括尚未发布为正式版本的改动。</p>
+<h2 id="主题-fork-如何自动合并上游">主题 fork 如何自动合并上游</h2>
+<p>实现位于主题仓库的 <a href="https://github.com/byodian/astro-paper/blob/0c642f273ffb6a98514d42ca27430c2e82508afa/.github/workflows/sync-upstream.yml">sync-upstream.yml</a>、<a href="https://github.com/byodian/astro-paper/blob/0c642f273ffb6a98514d42ca27430c2e82508afa/scripts/sync-upstream.mjs">sync-upstream.mjs</a> 和 <a href="https://github.com/byodian/astro-paper/blob/0c642f273ffb6a98514d42ca27430c2e82508afa/scripts/upstream.config.json">upstream.config.json</a>。</p>
+<p>工作流先执行同步测试。实际更新任务通过 <code>needs: test</code> 等待测试成功，仅在定时或手动触发时运行；修改工具代码产生的 push、PR 事件只运行测试。</p>
+<p>同步脚本的入口是：</p>
+<pre class="astro-code astro-code-themes min-light night-owl mt-8" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">- </span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> Prepare upstream merge</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  id</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> prepare</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  run</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> node scripts/sync-upstream.mjs --base-ref origin/dev</span></span></code><span class="absolute py-1 text-foreground text-xs font-medium leading-4 pl-4 pr-2 before:inline-block before:size-1 before:bg-green-500 before:rounded-full before:absolute before:top-[45%] before:left-2 left-2 top-(--file-name-offset) border rounded-md bg-background">.github/workflows/sync-upstream.yml</span></pre>
+<h3 id="固定输入版本判断是否已经同步">固定输入版本，判断是否已经同步</h3>
+<p>脚本先将 <code>origin/dev</code> 解析为 fork 基线 SHA，再执行 <code>git fetch</code> 获取上游 <code>main</code>，读取 <code>FETCH_HEAD</code> 对应的提交。</p>
+<p>这样，本次运行处理的是两个确定版本。即使远端分支在验证期间继续前进，也不会改变这次合并的输入。</p>
+<p>接着执行：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">git</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> merge-base</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --is-ancestor</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">上游SH</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">A</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">fork基线SH</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">A</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span></span></code></pre>
+<p>如果上游提交已经是 fork 的祖先，就说明这个版本已经合并，直接退出。判断依据是 Git 历史关系，而非比较两个分支当前的文件是否相同。</p>
+<h3 id="在独立-worktree-中合并">在独立 worktree 中合并</h3>
+<p>有更新时，脚本创建新分支和 worktree。worktree 是同一 Git 仓库的另一个检出目录，共享对象数据库，但有自己的分支、工作区和暂存区。</p>
+<p>合并在新目录中进行，原工作目录中的分支和未提交内容不会被切换或覆盖：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">git</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> merge</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --no-ff</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --no-commit</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">上游SH</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">A</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span></span></code></pre>
+<p><code>--no-ff</code> 保留合并节点，<code>--no-commit</code> 留出提交前的处理机会。此时可以恢复本站内容，再判断是否还存在需要人工解决的源码冲突。</p>
+<h3 id="按路径保留本站内容">按路径保留本站内容</h3>
+<p>配置中的受保护路径包括文章、站点配置、About、favicon、默认 OG 图片以及本地字体。脚本从 fork 基线恢复这些内容，并通过 Git 差异检查确认一致。</p>
+<p>这一步无论是否发生冲突都会执行。原因是 Git 自动合并成功只能说明文本合并没有冲突，不能说明上游修改符合本站需求。例如，上游新增的示例文章可以被正常合并，但本站并不需要发布它。</p>
+<p>对于基线不存在的受保护路径，脚本移除本次上游引入的文件。其余源码走普通合并；如果仍有冲突，停止处理并保留现场，不自动选择任意一侧。</p>
+<h3 id="验证成功后才更新远端">验证成功后才更新远端</h3>
+<p>准备脚本完成合并提交并生成同步记录，但不自行执行验证或推送。验证由后续工作流步骤负责，包括冻结锁文件安装、Astro 检查、ESLint、Prettier、生产构建和 Pagefind 索引生成。</p>
+<p>工作流还会再次检查受保护路径，并确认验证没有意外修改已跟踪文件，或新增非忽略文件。</p>
+<p>全部通过后，才执行：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">git</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -C</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">$SYNC_WORKTREE</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> push</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> origin</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> HEAD:refs/heads/dev</span></span></code></pre>
+<p>这里使用普通 push。如果验证期间远端 <code>dev</code> 出现其他新提交，导致本次更新不再是快进推送，Git 会拒绝更新。工作流不会覆盖这些新提交，需要重新运行同步。</p>
+<p>冲突、检查失败或推送失败时，CI 上传包含 Git 历史、源码、patch 和状态信息的恢复包，保留 14 天。远端 <code>dev</code> 不会收到失败的合并结果。</p>
+<h2 id="主仓库如何接收-subtree-更新">主仓库如何接收 subtree 更新</h2>
+<p>实现位于主仓库的 <a href="https://github.com/byodian/all-in-github/blob/625992e61f2c90b2b51ff47dea18d09f69975c18/.github/workflows/sync-blog.yml">sync-blog.yml</a>、<a href="https://github.com/byodian/all-in-github/blob/625992e61f2c90b2b51ff47dea18d09f69975c18/scripts/blog.mjs">blog.mjs</a> 和 <a href="https://github.com/byodian/all-in-github/blob/625992e61f2c90b2b51ff47dea18d09f69975c18/scripts/blog.config.json">blog.config.json</a>。</p>
+<p>工作流每月 1 日运行，也支持手动触发。主仓库文章更新时，它会再次检查主题来源并刷新尚未合并的同步 PR。</p>
+<p>关键命令是：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">npm</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> run</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> blog:sync</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --base-ref</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> origin/main</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --prepare-only</span></span></code></pre>
+<p><code>package.json</code> 将 <code>blog:sync</code> 映射到 <code>node scripts/blog.mjs sync</code>。<code>--</code> 后的参数传给脚本；<code>--prepare-only</code> 将合并准备和后续验证分开，避免重复执行检查。</p>
+<h3 id="从-subtree-记录判断版本">从 subtree 记录判断版本</h3>
+<p>脚本通过 <code>sourceCommit()</code> 查找提交信息中的 <code>git-subtree-dir: blog</code> 和 <code>git-subtree-split:</code>，读取上一次接收的主题 SHA。</p>
+<p>再拉取 fork 的 <code>dev</code>，固定本次主题 SHA。如果与记录一致，就不创建分支或 PR。</p>
+<p>这与主题 fork 的祖先判断不同：fork 使用完整 merge 历史识别已经合并的上游；主仓库通过 subtree 元数据识别已经接收的主题版本。</p>
+<h3 id="将主题根目录映射到-blog">将主题根目录映射到 blog/</h3>
+<p>有更新时，脚本基于主仓库基线建立独立 worktree，然后执行：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">git</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> subtree</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> merge</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --prefix=blog</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">主题SH</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">A</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --squash</span></span></code></pre>
+<p>普通 merge 对应仓库根目录之间的合并；这里的 subtree merge 将主题仓库根目录对应到主仓库的 <code>blog/</code>。</p>
+<p><code>--squash</code> 将来源侧的更新汇总为一次 subtree 更新，仍记录对应主题 SHA。它与 PR 的 Squash 合并是两个不同操作：同步 PR 需要通过 <strong>Create a merge commit</strong> 合并，以保留同步所依赖的历史关系。</p>
+<h3 id="主仓库文章始终按主仓库基线恢复">主仓库文章始终按主仓库基线恢复</h3>
+<p>subtree 合并后，脚本始终恢复整个 <code>blog/src/content/blog/</code>，并验证文章的路径和内容一致。</p>
+<p>因此，上游主题的示例文章、删除、改名，以及自动合并的正文修改都不会进入最终结果。源码冲突则仍需人工处理。</p>
+<p>验证通过后，工作流推送专用分支 <code>automation/sync-blog</code>，使用 <code>gh pr create</code> 或 <code>gh pr edit</code> 创建、更新同一个 PR。</p>
+<p>该分支每次会基于最新 <code>main</code> 重新生成，所以推送使用带预期 SHA 的 <code>--force-with-lease</code>。它只替换专用自动化分支；主分支仍通过人工合并 PR 更新。</p>
+<h2 id="github-actions-如何执行-shell-命令">GitHub Actions 如何执行 shell 命令</h2>
+<p>GitHub Actions 将执行过程分成三个层次：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>层次</th><th>作用</th></tr></thead><tbody><tr><td>Workflow</td><td>YAML 定义触发条件、权限、任务和执行关系</td></tr><tr><td>Job</td><td>分配给 runner 执行的一组工作</td></tr><tr><td>Step</td><td>执行一段命令，或调用一个现成 action</td></tr></tbody></table>
+<p><code>runs-on: ubuntu-latest</code> 选择 GitHub 托管的 Ubuntu 执行环境。当前同步任务没有配置容器，命令在 runner 的操作系统环境中运行。<code>uses:</code> 调用现成 action，<code>run:</code> 执行命令。参见 <a href="https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows">GitHub 工作流说明</a>。</p>
+<h3 id="yaml-安排执行runner-启动进程">YAML 安排执行，runner 启动进程</h3>
+<p>对于多行 <code>run</code>，runner 将内容写入临时脚本文件，再启动 shell 执行。当前 Ubuntu 工作流没有显式指定 shell，默认执行形式是：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="sh"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">bash</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -e</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">临时脚本文</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">件</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span></span></code></pre>
+<p>显式指定 <code>shell: bash</code> 时，GitHub 使用包含 <code>-eo pipefail</code> 的另一组参数。因此默认执行形式和显式指定 Bash 并不完全相同。参见 <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsshell">GitHub shell 执行规则</a>。</p>
+<p>一次 <code>run</code> 中的多行命令共用同一个 shell；不同 <code>run</code> 步骤会启动新的 shell。同一个 job 中的文件会保留，但前一步的 <code>cd</code> 或普通 shell 变量不会自动延续到下一步。</p>
+<p>不同 job 也不会自动共享工作目录。主题仓库的测试 job 和同步 job 都需要各自 checkout；<code>needs: test</code> 表达等待测试成功，不表示同步 job 可以直接使用测试 job 的文件。</p>
+<h3 id="shell-再调用-npmnodejs-和-git">Shell 再调用 npm、Node.js 和 Git</h3>
+<p>主题仓库的进程调用关系是：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>GitHub runner</span></span>
+<span class="line"><span>    → Bash</span></span>
+<span class="line"><span>        → node scripts/sync-upstream.mjs</span></span>
+<span class="line"><span>            → Git 子进程</span></span></code></pre>
+<p>主仓库多经过 npm 的命令入口：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>Bash</span></span>
+<span class="line"><span>    → npm run blog:sync</span></span>
+<span class="line"><span>        → Node.js 同步脚本</span></span>
+<span class="line"><span>            → Git 子进程</span></span></code></pre>
+<p>npm 读取 <code>package.json</code> 中的脚本定义，通过 shell 执行对应命令。参见 <a href="https://docs.npmjs.com/cli/v11/using-npm/scripts/">npm 脚本机制</a>。</p>
+<p>主题脚本内部使用 <code>spawnSync</code> 启动 Git，主仓库使用 <code>cross-spawn.sync</code> 适配跨平台进程启动。例如：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="js"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">spawnSync</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">git</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">fetch</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">--no-tags</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D7DBE0"> repository</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D7DBE0"> sourceRef</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">]</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D7DBE0">  cwd</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  encoding</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">utf8</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">"</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">});</span></span></code></pre>
+<p>这类调用分别传入程序名称和参数，没有启用 shell 字符串解释。Node 等待 Git 结束，再读取退出状态和输出，决定继续执行还是终止。参见 <a href="https://nodejs.org/api/child_process.html#child_processspawnsynccommand-args-options">Node.js 子进程说明</a>。</p>
+<h2 id="步骤之间如何传递数据和失败状态">步骤之间如何传递数据和失败状态</h2>
+<h3 id="用-github_output-传递结果">用 GITHUB_OUTPUT 传递结果</h3>
+<p>同步脚本向 <code>$GITHUB_OUTPUT</code> 指向的文件写入键值：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>changed=true</span></span>
+<span class="line"><span>source=&#x3C;来源SHA></span></span>
+<span class="line"><span>base=&#x3C;基线SHA></span></span>
+<span class="line"><span>worktree=&#x3C;工作目录></span></span></code></pre>
+<p>runner 读取后，后续步骤通过 <code>id: prepare</code> 引用这些结果：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">if</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> steps.prepare.outputs.changed == 'true'</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">env</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  SYNC_WORKTREE</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> ${{ steps.prepare.outputs.worktree }}</span></span></code></pre>
+<p><code>${{ ... }}</code> 属于 Actions 表达式，用来设置执行条件和环境；命令里的 <code>$SYNC_WORKTREE</code> 再由 Bash 展开。参见 <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-output-parameter">步骤输出机制</a>。</p>
+<h3 id="用退出码决定是否继续">用退出码决定是否继续</h3>
+<p>进程退出码 <code>0</code> 表示成功，非零表示失败。只向终端打印“发生错误”，但最后仍以 <code>0</code> 退出，不能可靠地阻止后续发布。</p>
+<p>两个同步脚本都会检查子进程状态；不能继续时抛出错误，最终让 Node 以非零状态退出。工作流据此阻止普通后续步骤，配置了 <code>if: failure()</code> 的步骤则保存失败现场。参见 <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#exit-codes-and-error-action-preference">GitHub 退出码规则</a>。</p>
+<p>脚本也有需要主动解释的非零状态。例如，<code>merge-base --is-ancestor</code> 的返回值 <code>1</code> 表示来源尚未合并，是进入同步流程的正常分支；Git merge 的非零状态则可能表示冲突，需要恢复受保护内容后再次检查。这些判断由脚本处理。</p>
+<h3 id="权限让命令能够写回仓库">权限让命令能够写回仓库</h3>
+<p>生成合并提交只修改 runner 上的临时仓库。只有 push 成功，远端分支才真正更新。</p>
+<p>两个工作流通过 <code>GITHUB_TOKEN</code> 和声明的权限执行写入：主题同步需要 <code>contents: write</code>；主仓库同步还需要 <code>pull-requests: write</code>，才能创建和更新 PR。Git 提交中的作者身份与执行远端写入的认证是两件不同的事。</p>
+<h2 id="cicd-的本质与网站发布">CI/CD 的本质与网站发布</h2>
+<p>手动更新主题，需要选择版本、获取代码、合并、保留本站内容、检查和推送。CI/CD 把这些操作转化为版本化的规则，由事件驱动执行，并保存日志、退出状态和产物。</p>
+<p>在这套实现中，YAML 负责执行安排，脚本负责项目规则，Git 负责版本关系，检查工具提供是否可以继续的证据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>含义</th><th>本项目中的对应行为</th></tr></thead><tbody><tr><td>持续集成，CI</td><td>反复验证代码集成后的结果</td><td>同步测试、类型检查、Lint、格式检查和构建</td></tr><tr><td>持续交付</td><td>自动准备经过验证、可合并或发布的结果，允许人工决定落地</td><td>主仓库生成同步 PR，由人工合并</td></tr><tr><td>持续部署</td><td>满足条件后自动发布</td><td>主仓库 <code>main</code> 更新后自动生成并发布网站</td></tr></tbody></table>
+<p>主仓库的 <a href="https://github.com/byodian/all-in-github/blob/625992e61f2c90b2b51ff47dea18d09f69975c18/.github/workflows/deploy.yml">deploy.yml</a> 监听 <code>main</code> 的 push，安装博客依赖、生成 <code>blog/dist</code>，然后使用 <code>peaceiris/actions-gh-pages</code> 将静态产物发布到 <code>gh-pages</code>，供 GitHub Pages 提供网站。</p>
+<p>源码同步和网站部署有不同职责：同步任务准备经过验证的主题版本，部署任务生成并发布网站。当前主仓库仍保留人工合并同步 PR 的环节，因此不能把整条链路描述为完全无人介入的更新流程。</p>
+<h2 id="已验证的结果与验证边界">已验证的结果与验证边界</h2>
+<p>本次实现已经通过 <a href="https://github.com/byodian/astro-paper/pull/1">PR #1</a> 合并到主题 fork 的 <code>dev</code>：</p>
+<ul>
+<li>补记此前已完成的 v6.1.0 升级历史，补记前后文件树一致。后续更新使用普通 merge。</li>
+<li>首次合并上游提交 <code>35cfa7fbe0b897306d27670d3819e55d5205f3dd</code>，包含 Astro 7.0.3。</li>
+<li>8 项集成测试覆盖已同步退出、内容保护、连续合并、冲突保留、重复运行拒绝、并发推送拒绝和失败恢复包。</li>
+<li>本地 Astro 检查 58 个文件，0 错误、0 警告、0 提示；ESLint、Prettier 和 actionlint 通过。</li>
+<li>GitHub Ubuntu runner 的 <a href="https://github.com/byodian/astro-paper/actions/runs/38333672159">PR CI</a> 完成生产构建验证。</li>
+<li><a href="https://github.com/byodian/astro-paper/actions/runs/38333799609">手动运行新同步工作流</a> 成功，正确判断上游提交已经合并，无需再次更新。</li>
+</ul>
+<p>本地环境是 WSL，未运行构建。主仓库维护工具在 WSL 使用轻量检查，在 GitHub 非 WSL runner 执行生产构建和搜索索引验证。</p>
+<p>当前记录验证了手动触发和已有上游版本的重复运行；后续新提交及未来定时执行仍需以对应 Actions 日志为准。两级定时任务之间存在时间间隔，主仓库同步 PR 也需要人工合并，这些都是当前流程明确保留的行为。</p> </article> <hr class="my-8 border-dashed"> <a href="https://github.com/byodian/all-in-github/edit/main/blog/src/content/blog/2026-10-13_10:30:06_6136895895.md" target="_blank" rel="noopener noreferrer" class="hover:text-accent text-muted-foreground flex justify-baseline gap-1.5 sm:hidden"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" /></svg><span>Edit page</span></a> <div id="btt-btn-container" class="fixed inset-e-4 bottom-8 z-50 md:sticky md:inset-e-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group bg-background relative px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block rotate-90 md:hidden" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg> <span class="group-hover:text-accent sr-only text-sm md:not-sr-only"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg> Back to top </span> </button> </div> <script data-astro-rerun>
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8"> <li> <a href="/all-in-github/tags/cicd/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> CI/CD </a> </li><li> <a href="/all-in-github/tags/github-actions/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> GitHub Actions </a> </li><li> <a href="/all-in-github/tags/git-subtree/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> Git subtree </a> </li><li> <a href="/all-in-github/tags/源码分析/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> 源码分析 </a> </li><li> <a href="/all-in-github/tags/架构设计/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> 架构设计 </a> </li><li> <a href="/all-in-github/tags/ai-generated/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-6"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> AI-generated </a> </li> </ul> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post:</span><div class="text-center"><a href="https://wa.me/?text=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post on Whatsapp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9z" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0za5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg><span class="sr-only">Share this post on Whatsapp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post on Facebook" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z" /></svg><span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post on X" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg><span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post on Telegram" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 10-4 4 6 6 4-16-18 7 4 2 2 6 3-4" /></svg><span class="sr-only">Share this post on Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post on Pinterest" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m8 20 4-9M10.7 14c.437 1.263 1.43 2 2.55 2 2.071 0 3.75-1.554 3.75-4a5 5 0 1 0-9.7 1.7" /><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0" /></svg><span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&amp;body=https://byodian.github.io/all-in-github/posts/6136895895/" title="Share this post via email" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span class="sr-only">Share this post via email</span> </a></div></div> <hr class="my-8 border-dashed"> <div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/all-in-github/posts/6096626882/" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block flex-none rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg> <div> <span>Previous Post</span> <div class="text-accent/85 text-sm">工具集合站如何兼顾独立项目、SEO 与 Google AdSense</div> </div> </a>  </div> </main> <footer class="app-layout mt-auto"> <div class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/byodian/all-in-github" title="All in GitHub on Github" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" /></svg> <span class="sr-only">All in GitHub on Github</span>  </a><a href="https://x.com/username" title="All in GitHub on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg> <span class="sr-only">All in GitHub on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="All in GitHub on Linkedin" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 1 0-4 0" /><path d="M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" /></svg> <span class="sr-only">All in GitHub on Linkedin</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to All in GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg> <span class="sr-only">Send an email to All in GitHub</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>   <script type="module">const c="theme",r="light",n="dark";function s(){const e=localStorage.getItem(c);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?n:r)}let t=window.__theme?.value??s();function a(){localStorage.setItem(c,t),m()}function m(){const e=document.firstElementChild;e?.setAttribute("data-theme",t),e?.classList.toggle("dark",t===n),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const o=window.getComputedStyle(document.body).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",o)}function d(){m(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?n:r,a()})}d();document.addEventListener("astro:after-swap",d);document.addEventListener("astro:before-swap",e=>{const o=document.querySelector("meta[name='theme-color']")?.getAttribute("content");o&&e.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",o)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?n:r,a()});</script> </body> </html> <script data-astro-rerun>
+  function createProgressBar() {
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Accessible image lightbox for article images. */
+  function initLightbox() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let overlay = null;
+    let lastFocused = null;
+
+    // Defer attribute mutations so they don't push the LCP timestamp.
+    // Event listeners below use delegation and don't need the attributes to exist yet.
+    requestAnimationFrame(() => {
+      const images = Array.from(article.querySelectorAll("img"));
+      for (const image of images) {
+        if (image.closest("a")) continue;
+        image.setAttribute("role", "button");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("aria-haspopup", "dialog");
+        image.setAttribute(
+          "aria-label",
+          image.alt ? `Zoom image: ${image.alt}` : "Zoom image"
+        );
+      }
+    });
+
+    function open(src, alt, trigger) {
+      if (overlay) return;
+      lastFocused = trigger ?? document.activeElement;
+
+      overlay = document.createElement("div");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute(
+        "aria-label",
+        alt ? `Image preview: ${alt}` : "Image preview"
+      );
+      overlay.className =
+        "fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none";
+
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.setAttribute("aria-label", "Close image preview");
+      closeButton.className =
+        "absolute end-4 top-4 rounded p-2 text-3xl leading-none text-white";
+      closeButton.innerHTML = "&#10005;";
+      closeButton.addEventListener("click", close);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "";
+      image.className =
+        "max-h-[90dvh] max-w-[90dvw] cursor-default object-contain";
+
+      overlay.append(closeButton, image);
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay && currentScale <= 1) close();
+      });
+
+      let currentScale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let initialDist = 0;
+      let initialScale = 1;
+      let panStartX = 0;
+      let panStartY = 0;
+      let panStartTranslateX = 0;
+      let panStartTranslateY = 0;
+      let lastTapTime = 0;
+
+      function applyTransform() {
+        image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+      }
+
+      function resetTransform() {
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        image.style.transform = "";
+      }
+
+      overlay.addEventListener(
+        "touchstart",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            initialDist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            initialScale = currentScale;
+          } else if (t.length === 1) {
+            const now = Date.now();
+            if (now - lastTapTime < 300) {
+              e.preventDefault();
+              if (currentScale > 1) {
+                resetTransform();
+              } else {
+                currentScale = 2;
+                translateX = 0;
+                translateY = 0;
+                applyTransform();
+              }
+              lastTapTime = 0;
+              panStartX = t[0].clientX;
+              panStartY = t[0].clientY;
+              panStartTranslateX = translateX;
+              panStartTranslateY = translateY;
+            } else {
+              lastTapTime = now;
+              if (currentScale > 1) {
+                panStartX = t[0].clientX;
+                panStartY = t[0].clientY;
+                panStartTranslateX = translateX;
+                panStartTranslateY = translateY;
+              }
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        "touchmove",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            e.preventDefault();
+            const dist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            currentScale = Math.min(
+              4,
+              Math.max(1, initialScale * (dist / initialDist))
+            );
+            applyTransform();
+          } else if (t.length === 1) {
+            if (currentScale > 1) {
+              e.preventDefault();
+              translateX =
+                panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
+              translateY =
+                panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
+              const maxX = Math.max(
+                0,
+                (image.clientWidth - overlay.clientWidth / currentScale) / 2
+              );
+              const maxY = Math.max(
+                0,
+                (image.clientHeight - overlay.clientHeight / currentScale) / 2
+              );
+              translateX = Math.min(maxX, Math.max(-maxX, translateX));
+              translateY = Math.min(maxY, Math.max(-maxY, translateY));
+              applyTransform();
+            } else {
+              e.preventDefault();
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener("touchend", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      overlay.addEventListener("touchcancel", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      document.body.appendChild(overlay);
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", onKeyDown);
+      window.__closeLightbox = close;
+
+      requestAnimationFrame(() => overlay?.classList.add("opacity-100"));
+      closeButton.focus();
+    }
+
+    function close() {
+      if (!overlay) return;
+      const el = overlay;
+      overlay = null;
+      window.__closeLightbox = null;
+
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+      lastFocused?.focus();
+      lastFocused = null;
+
+      if (prefersReducedMotion()) {
+        el.remove();
+        return;
+      }
+      const remove = () => el.remove();
+      el.addEventListener("transitionend", remove, { once: true });
+      setTimeout(remove, 250); // fallback in case transitionend never fires
+      el.classList.remove("opacity-100");
+    }
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        close();
+      } else if (e.key === "Tab") {
+        trapFocus(e);
+      }
+    }
+
+    // Keep keyboard focus inside the open dialog.
+    function trapFocus(e) {
+      if (!overlay) return;
+      const focusables = overlay.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function triggerFromEvent(e) {
+      const image = e.target.closest("img");
+      if (!image || !article.contains(image) || image.closest("a")) return null;
+      return image;
+    }
+
+    function activate(image) {
+      open(image.currentSrc || image.src, image.alt, image);
+    }
+
+    article.addEventListener("click", e => {
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+
+    article.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+  }
+  initLightbox();
+
+  if (!window.__lightboxSwapBound) {
+    window.__lightboxSwapBound = true;
+    document.addEventListener("astro:before-swap", () =>
+      window.__closeLightbox?.()
+    );
+  }
+
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
