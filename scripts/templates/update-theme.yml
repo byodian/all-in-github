@@ -60,16 +60,26 @@ jobs:
         if: failure()
         shell: bash
         run: |
-          if git diff --quiet -- blog; then
+          if git diff --quiet -- blog .template/theme-source.json; then
             echo "available=false" >> "$GITHUB_OUTPUT"
           else
-            git diff --binary -- blog > "$RUNNER_TEMP/astro-paper-update.patch"
+            git diff --binary -- blog .template/theme-source.json > "$RUNNER_TEMP/astro-paper-unverified-candidate.patch"
             echo "available=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Explain the unverified candidate artifact
+        if: failure() && steps.capture-patch.outputs.available == 'true'
+        run: |
+          {
+            echo "## Unverified AstroPaper candidate"
+            echo
+            echo "The artifact contains the candidate theme files and matching source metadata for local repair and validation. It excludes the compatibility registry and does not mark this source as verified."
+            echo "Do not treat it as an approved update; repair the candidate and rerun validation before recording it as verified."
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v4
         if: failure() && steps.capture-patch.outputs.available == 'true'
         with:
-          name: astro-paper-update-patch
-          path: ${{ runner.temp }}/astro-paper-update.patch
+          name: astro-paper-unverified-candidate
+          path: ${{ runner.temp }}/astro-paper-unverified-candidate.patch
           if-no-files-found: error
