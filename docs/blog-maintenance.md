@@ -9,6 +9,13 @@
 npm run blog:help
 ```
 
+上游完整链路为 `satnaing/astro-paper/main` → `byodian/astro-paper/dev` →
+本仓库 `blog/`。主题 fork 的 **Sync upstream into dev** 每月 25 日北京时间
+10:17 自动合并上游最新提交，验证通过后更新 `dev`；本仓库继续在每月 1 日
+执行既有 subtree 同步并创建 PR。需要立即接收时，在 fork 同步成功后手动运行
+本仓库的 **Sync blog theme**。主题侧的冲突处理和维护入口见
+[上游维护说明](https://github.com/byodian/astro-paper/blob/dev/docs/upstream-maintenance.md)。
+
 首次使用先安装主仓库维护工具的依赖：
 
 ```sh
