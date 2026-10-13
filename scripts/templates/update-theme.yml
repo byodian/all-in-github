@@ -1,0 +1,52 @@
+name: Update theme
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly on day 1 at 10:17 Asia/Shanghai; scheduled runs may be delayed by GitHub.
+    - cron: '17 2 1 * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-astro-paper
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.3.0
+          run_install: false
+
+      - name: Check the latest stable AstroPaper release
+        run: node scripts/update-blog-template.mjs --latest
+
+      - name: Install theme dependencies
+        run: pnpm --dir blog install --frozen-lockfile
+
+      - name: Validate updated theme
+        run: pnpm --dir blog exec astro check
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/update-astro-paper
+          delete-branch: true
+          commit-message: chore(theme): update AstroPaper source
+          title: chore(theme): update AstroPaper source
+          body: |
+            Monthly compatibility check against the latest stable AstroPaper release.
+
+            Review the source version, theme changes, and validation result before merging. This PR does not update site settings or blog content.

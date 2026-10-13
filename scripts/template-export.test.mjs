@@ -6,6 +6,7 @@ import path from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 import { exportTemplateFromThemeSource } from './export-blog-template.mjs'
+import { updateTemplateFromThemeSource } from './update-blog-template.mjs'
 
 const scriptPath = fileURLToPath(new URL('./export-blog-template.mjs', import.meta.url))
 const repositoryRoot = path.resolve(path.dirname(scriptPath), '..')
@@ -63,21 +64,28 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   exportTemplateFromThemeSource({ destination, source })
   const files = git(destination, ['ls-files']).split('\n').sort()
   assert.deepEqual(files, [
+    '.gitattributes',
+    '.github/workflows/update-theme.yml',
     '.gitignore',
+    '.template/theme-source.json',
     'LICENSE',
     'README.md',
     'blog/astro-paper.config.ts',
     'blog/src/content/pages/about.md',
     'blog/src/content/posts/.gitkeep',
     'docs/template-origin.md',
+    'docs/template-updates.md',
+    'scripts/update-blog-template.mjs',
     ...themeFiles.map(file => `blog/${file}`),
   ].sort())
 
   const config = readFileSync(path.join(destination, 'blog/astro-paper.config.ts'), 'utf8')
   const about = readFileSync(path.join(destination, 'blog/src/content/pages/about.md'), 'utf8')
   const packageJson = JSON.parse(readFileSync(path.join(destination, 'blog/package.json'), 'utf8'))
+  const sourceMetadata = JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8'))
+  const workflow = readFileSync(path.join(destination, '.github/workflows/update-theme.yml'), 'utf8')
   const exportedText = files
-    .filter(file => /\.(md|mdx|ts|json|yml|yaml|css|astro)$/.test(file))
+    .filter(file => /\.(md|mdx|ts|mjs|json|yml|yaml|css|astro)$/.test(file))
     .map(file => readFileSync(path.join(destination, file), 'utf8'))
     .join('\n')
 
@@ -85,6 +93,11 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.match(config, /Your Name/)
   assert.match(about, /Write your introduction here/)
   assert.equal(packageJson.name, 'public-blog')
+  assert.equal(sourceMetadata.commit, sourceCommit)
+  assert.equal(Object.keys(sourceMetadata.files).length, themeFiles.length)
+  assert.match(workflow, /schedule:/)
+  assert.match(workflow, /workflow_dispatch:/)
+  assert.match(workflow, /create-pull-request/)
   assert.doesNotMatch(exportedText, /Private Example Person|do-not-export|all-in-github|byodian\.github\.io/)
   assert.equal(
     readFileSync(path.join(destination, 'LICENSE'), 'utf8'),
@@ -97,6 +110,107 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.equal(commits.length, 1)
   assert.match(commits[0], /^[0-9a-f]{40}$/)
   assert.notEqual(commits[0], sourceCommit)
+})
+
+test('updates a generated template from a newer source while preserving user files and history', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-update-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  const rootCommit = git(destination, ['rev-list', '--max-parents=0', 'HEAD'])
+  const siteConfig = path.join(destination, 'blog/astro-paper.config.ts')
+  const article = path.join(destination, 'blog/src/content/posts/my-post.md')
+  writeFileSync(siteConfig, 'export const owner = "Template User"\n')
+  writeSourceFile(destination, 'blog/src/content/posts/my-post.md', 'A public user article\n')
+  git(destination, ['add', '--all'])
+  git(destination, ['commit', '--quiet', '-m', 'personalize template'])
+
+  const updatedThemeFile = themeFiles.find(file => file.endsWith('.astro'))
+  const windowsCheckedOutFile = path.join(destination, 'blog', updatedThemeFile)
+  git(destination, ['config', 'core.safecrlf', 'false'])
+  writeFileSync(windowsCheckedOutFile, readFileSync(windowsCheckedOutFile, 'utf8').replace(/\n/g, '\r\n'))
+  git(destination, ['add', '--all'])
+  assert.equal(git(destination, ['status', '--porcelain']), '')
+
+  writeSourceFile(source, updatedThemeFile, 'Updated upstream theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
+  const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+
+  assert.equal(
+    updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
+    true,
+  )
+  assert.equal(readFileSync(path.join(destination, 'blog', updatedThemeFile), 'utf8'), 'Updated upstream theme component\n')
+  assert.equal(readFileSync(siteConfig, 'utf8'), 'export const owner = "Template User"\n')
+  assert.equal(readFileSync(article, 'utf8'), 'A public user article\n')
+  assert.equal(readFileSync(path.join(source, 'package.json'), 'utf8'), '{"name":"astro-paper"}\n')
+  assert.equal(git(source, ['status', '--porcelain']), '')
+  assert.equal(git(destination, ['rev-list', '--max-parents=0', 'HEAD']), rootCommit)
+  assert.equal(JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')).commit, sourceCommit)
+  assert.notEqual(git(destination, ['status', '--porcelain']), '')
+})
+
+test('stops before changing the template when a managed theme file has local edits', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-conflict-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+
+  const themeFile = themeFiles.find(file => file.endsWith('.astro'))
+  const templateFile = path.join(destination, 'blog', themeFile)
+  writeFileSync(templateFile, 'local theme customization\n')
+  git(destination, ['add', '--all'])
+  git(destination, ['commit', '--quiet', '-m', 'customize theme'])
+
+  writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
+  const previousMetadata = readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')
+
+  assert.throws(
+    () => updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
+    /need manual conflict resolution/,
+  )
+  assert.equal(readFileSync(templateFile, 'utf8'), 'local theme customization\n')
+  assert.equal(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8'), previousMetadata)
+})
+
+test('does not follow a user-added symlink outside the template during an update', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-symlink-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  const outside = path.join(temp, 'outside')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  mkdirSync(outside)
+  const outsideFile = path.join(outside, 'Breadcrumb.astro')
+  writeFileSync(outsideFile, 'outside data\n')
+  rmSync(path.join(destination, 'blog/src/components'), { recursive: true })
+  try {
+    symlinkSync(outside, path.join(destination, 'blog/src/components'), process.platform === 'win32' ? 'junction' : 'dir')
+  } catch {
+    t.skip('directory symlinks are unavailable in this environment')
+    return
+  }
+  git(destination, ['add', '--all'])
+  git(destination, ['commit', '--quiet', '-m', 'add local symlink'])
+
+  const themeFile = themeFiles.find(file => file === 'src/components/Breadcrumb.astro')
+  writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
+
+  assert.throws(
+    () => updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
+    /need manual conflict resolution/,
+  )
+  assert.equal(readFileSync(outsideFile, 'utf8'), 'outside data\n')
 })
 
 test('refuses to overwrite an existing destination', t => {

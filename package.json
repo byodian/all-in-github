@@ -25,6 +25,7 @@
     "blog:verify": "node scripts/blog.mjs verify",
     "test:blog-sync": "node --test scripts/blog.test.mjs",
     "template:export": "node scripts/export-blog-template.mjs",
+    "template:update": "node scripts/update-blog-template.mjs",
     "test:template-export": "node --test scripts/template-export.test.mjs",
     "install:blog": "pnpm install --prefix=blog",
     "install:actions": "pnpm install --prefix=actions",

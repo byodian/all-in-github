@@ -1,0 +1,283 @@
+import { createHash } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
+import {
+  copyFileSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const astroPaperRepository = 'https://github.com/satnaing/astro-paper.git'
+const metadataPath = '.template/theme-source.json'
+
+function git(directory, args, options = {}) {
+  return execFileSync('git', ['-C', directory, ...args], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    ...options,
+  }).trim()
+}
+
+function sha256(filePath) {
+  const contents = readFileSync(filePath)
+  const canonical = contents.includes(0)
+    ? contents
+    : Buffer.from(contents.toString('utf8').replace(/\r\n/g, '\n'))
+  return createHash('sha256').update(canonical).digest('hex')
+}
+
+export function createThemeSourceMetadata({ repository, ref, commit, templateRoot, files }) {
+  return {
+    formatVersion: 1,
+    theme: 'astro-paper',
+    repository,
+    ref,
+    commit,
+    files: Object.fromEntries(files.map(file => [file, sha256(path.join(templateRoot, 'blog', file))])),
+  }
+}
+
+function isSafeRelativePath(value) {
+  return typeof value === 'string' &&
+    !path.isAbsolute(value) &&
+    !value.includes('\\') &&
+    value.split('/').every(part => part && part !== '.' && part !== '..' && !part.includes(':'))
+}
+
+function isRegularFileWithoutSymlinkParents(root, relativePath) {
+  const segments = relativePath.split('/')
+  let current = root
+  for (const [index, segment] of segments.entries()) {
+    current = path.join(current, segment)
+    let info
+    try {
+      info = lstatSync(current)
+    } catch (error) {
+      if (error.code === 'ENOENT') return false
+      throw error
+    }
+    const isFile = index === segments.length - 1
+    if (isFile ? !info.isFile() : !info.isDirectory()) return false
+  }
+  return true
+}
+
+function readThemeMetadata(destination) {
+  const filePath = path.join(destination, metadataPath)
+  if (!isRegularFileWithoutSymlinkParents(destination, metadataPath)) {
+    throw new Error(`Template source metadata is missing: ${metadataPath}`)
+  }
+
+  const metadata = JSON.parse(readFileSync(filePath, 'utf8'))
+  if (
+    metadata.formatVersion !== 1 ||
+    metadata.theme !== 'astro-paper' ||
+    typeof metadata.repository !== 'string' ||
+    typeof metadata.ref !== 'string' ||
+    !/^[0-9a-f]{40}$/.test(metadata.commit) ||
+    !metadata.files ||
+    Array.isArray(metadata.files) ||
+    typeof metadata.files !== 'object' ||
+    Object.keys(metadata.files).length === 0 ||
+    Object.keys(metadata.files).some(file => !isSafeRelativePath(file) || !/^[0-9a-f]{64}$/.test(metadata.files[file]))
+  ) {
+    throw new Error(`Template source metadata is invalid: ${metadataPath}`)
+  }
+  return metadata
+}
+
+function validateTemplateRepository(destination) {
+  if (!existsSync(path.join(destination, '.git'))) {
+    throw new Error(`Template destination is not a Git repository: ${destination}`)
+  }
+  const repositoryRoot = realpathSync(destination)
+  const gitRoot = realpathSync(git(repositoryRoot, ['rev-parse', '--show-toplevel']))
+  if (repositoryRoot !== gitRoot) {
+    throw new Error(`Template destination must be the repository root: ${repositoryRoot}`)
+  }
+  return repositoryRoot
+}
+
+function normalizedThemeFiles(templateRoot, selectedFiles) {
+  const packagePath = path.join(templateRoot, 'blog', 'package.json')
+  if (selectedFiles.includes('package.json')) {
+    const packageJson = JSON.parse(readFileSync(packagePath, 'utf8'))
+    packageJson.name = 'public-blog'
+    packageJson.private = true
+    writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`)
+  }
+}
+
+export function updateTemplateFromThemeSource({ destination, source, sourceRef }) {
+  const templateRoot = validateTemplateRepository(destination)
+  const metadata = readThemeMetadata(templateRoot)
+  if (git(source, ['status', '--porcelain'])) {
+    throw new Error('Theme source must have a clean working tree.')
+  }
+  const sourceRepository = git(source, ['remote', 'get-url', 'origin'])
+  if (sourceRepository !== metadata.repository) {
+    throw new Error(`Unexpected theme source repository: ${sourceRepository}`)
+  }
+
+  const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+  if (sourceCommit === metadata.commit && sourceRef === metadata.ref) {
+    process.stdout.write(`Theme is already current at ${sourceRef} (${sourceCommit}).\n`)
+    return false
+  }
+
+  if (git(templateRoot, ['status', '--porcelain'])) {
+    throw new Error('Template working tree must be clean before a theme update.')
+  }
+
+  const locallyChangedFiles = Object.entries(metadata.files)
+    .filter(([file, expectedHash]) => {
+      const target = path.join(templateRoot, 'blog', file)
+      return !isRegularFileWithoutSymlinkParents(templateRoot, `blog/${file}`) || sha256(target) !== expectedHash
+    })
+    .map(([file]) => file)
+  if (locallyChangedFiles.length) {
+    throw new Error(`Theme files differ from the recorded source and need manual conflict resolution:\n${locallyChangedFiles.join('\n')}`)
+  }
+
+  const knownFiles = Object.keys(metadata.files)
+  const trackedFiles = git(source, [
+    'ls-files',
+    '-z',
+    '--',
+    ...knownFiles.map(file => `:(literal)${file}`),
+  ])
+    .split('\0')
+    .filter(Boolean)
+    .sort()
+  const selectedFiles = trackedFiles.filter(file => knownFiles.includes(file))
+  const removedFiles = knownFiles.filter(file => !selectedFiles.includes(file))
+
+  for (const file of selectedFiles) {
+    if (!lstatSync(path.join(source, file)).isFile()) {
+      throw new Error(`Allowlisted theme path is not a regular file: ${file}`)
+    }
+  }
+  if (selectedFiles.includes('package.json')) {
+    JSON.parse(readFileSync(path.join(source, 'package.json'), 'utf8'))
+  }
+
+  for (const file of removedFiles) {
+    rmSync(path.join(templateRoot, 'blog', file))
+  }
+  for (const file of selectedFiles) {
+    const sourcePath = path.join(source, file)
+    const targetPath = path.join(templateRoot, 'blog', file)
+    const targetDirectory = path.dirname(targetPath)
+    mkdirSync(targetDirectory, { recursive: true })
+    copyFileSync(sourcePath, targetPath)
+  }
+  normalizedThemeFiles(templateRoot, selectedFiles)
+
+  const updatedMetadata = createThemeSourceMetadata({
+    repository: metadata.repository,
+    ref: sourceRef,
+    commit: sourceCommit,
+    templateRoot,
+    files: selectedFiles,
+  })
+  writeFileSync(path.join(templateRoot, metadataPath), `${JSON.stringify(updatedMetadata, null, 2)}\n`)
+  process.stdout.write(`Updated AstroPaper files from ${sourceRef} (${sourceCommit}). Review the working tree and commit the changes.\n`)
+  return true
+}
+
+function parseArguments(args) {
+  const options = {}
+  for (let index = 0; index < args.length; index += 1) {
+    const option = args[index]
+    if (!['--destination', '--ref', '--commit', '--latest'].includes(option)) {
+      throw new Error(`Unknown option: ${option}`)
+    }
+    if (option === '--latest') {
+      if (options.latest) throw new Error('Option provided more than once: --latest')
+      options.latest = true
+      continue
+    }
+    const value = args[index + 1]
+    if (!value || value.startsWith('--')) throw new Error(`Expected a value after ${option}`)
+    const key = option.slice(2)
+    if (options[key]) throw new Error(`Option provided more than once: ${option}`)
+    options[key] = value
+    index += 1
+  }
+
+  if (Boolean(options.ref) !== Boolean(options.commit)) {
+    throw new Error('Provide both --ref and --commit, or use --latest.')
+  }
+  if (options.latest && options.ref) throw new Error('--latest cannot be combined with --ref or --commit.')
+  if (options.ref && !/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(options.ref)) {
+    throw new Error(`Expected a version tag such as v6.1.0: ${options.ref}`)
+  }
+  if (options.commit && !/^[0-9a-f]{40}$/.test(options.commit)) {
+    throw new Error(`Expected a full 40-character commit SHA: ${options.commit}`)
+  }
+  return options
+}
+
+async function latestRelease() {
+  const response = await fetch('https://api.github.com/repos/satnaing/astro-paper/releases/latest', {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'User-Agent': 'public-blog-template-updater',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  })
+  if (!response.ok) throw new Error(`Could not read the latest AstroPaper release: HTTP ${response.status}`)
+  const release = await response.json()
+  if (typeof release.tag_name !== 'string') throw new Error('The latest AstroPaper release has no version tag.')
+  if (!/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(release.tag_name)) {
+    throw new Error(`Unexpected AstroPaper release tag: ${release.tag_name}`)
+  }
+  return { ref: release.tag_name }
+}
+
+async function updateFromRelease({ destination, ref, expectedCommit }) {
+  const temporaryDirectory = mkdtempSync(path.join(os.tmpdir(), 'astro-paper-update-'))
+  const source = path.join(temporaryDirectory, 'astro-paper')
+  try {
+    execFileSync('git', ['clone', '--quiet', '--depth', '1', '--branch', ref, astroPaperRepository, source], {
+      stdio: 'inherit',
+    })
+    const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+    if (expectedCommit && sourceCommit !== expectedCommit) {
+      throw new Error(`Unexpected ${ref} commit: ${sourceCommit}`)
+    }
+    return updateTemplateFromThemeSource({ destination, source, sourceRef: ref })
+  } finally {
+    rmSync(temporaryDirectory, { recursive: true, force: true })
+  }
+}
+
+async function run(args) {
+  const options = parseArguments(args)
+  const destination = path.resolve(options.destination ?? process.cwd())
+  if (options.ref) return updateFromRelease({
+    destination,
+    ref: options.ref,
+    expectedCommit: options.commit,
+  })
+
+  const release = await latestRelease()
+  return updateFromRelease({ destination, ...release })
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    await run(process.argv.slice(2))
+  } catch (error) {
+    process.stderr.write(`${error.message}\n`)
+    process.exitCode = 1
+  }
+}

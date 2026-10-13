@@ -13,6 +13,7 @@ import {
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createThemeSourceMetadata } from './update-blog-template.mjs'
 
 const repositoryRoot = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'))
 const upstreamUrl = 'https://github.com/satnaing/astro-paper.git'
@@ -137,7 +138,7 @@ function getTrackedThemeFiles(source) {
   return { selectedFiles, sourceCommit }
 }
 
-function writeTemplateFiles(destination, source, sourceCommit, selectedFiles, isOfficialSource) {
+function writeTemplateFiles(destination, source, sourceRef, sourceCommit, selectedFiles, isOfficialSource) {
   const blogRoot = path.join(destination, 'blog')
   mkdirSync(blogRoot, { recursive: true })
 
@@ -210,6 +211,7 @@ Write your introduction here.
 
   copyFileSync(path.join(repositoryRoot, 'LICENSE'), path.join(destination, 'LICENSE'))
   mkdirSync(path.join(destination, 'docs'), { recursive: true })
+  writeFileSync(path.join(destination, '.gitattributes'), '* text=auto eol=lf\n')
   writeFileSync(path.join(destination, '.gitignore'), `node_modules/
 dist/
 .astro/
@@ -243,6 +245,12 @@ pnpm dev
 
 当前站点设置位于 \`blog/astro-paper.config.ts\`。将设置改为自己的信息后，可在 \`blog/src/content/posts/\` 添加 Markdown 文章。
 
+## 主题更新
+
+模板每月检查一次 AstroPaper 稳定版，并在检查通过后提交可审核的更新 PR；也可以在仓库的 Actions 页面手动运行 **Update theme**。更新只覆盖主题来源清单中的文件，站点配置、About、文章和个人资源会保留。若改过主题源码，更新会停止并列出冲突文件，需先人工处理。
+
+首次使用 Actions 自动创建 PR 前，请在仓库 Settings → Actions → General 中允许 Actions 创建和批准 pull request。也可以在本地检查更新：\`node scripts/update-blog-template.mjs --latest\`。详情见 [docs/template-updates.md](docs/template-updates.md)。
+
 ## 来源与许可证
 
 主题源码来源、锁定版本和文件筛选说明见 [docs/template-origin.md](docs/template-origin.md)。
@@ -253,19 +261,65 @@ pnpm dev
 
 ## 主题来源
 
-- 官方仓库：${isOfficialSource ? upstreamUrl : '本地验证源（仅用于导出测试）'}
-- 标签：${isOfficialSource ? upstreamRef : 'local override'}
+- 官方仓库：${isOfficialSource ? upstreamUrl : git(source, ['remote', 'get-url', 'origin'])}
+- 标签：${sourceRef}
 - 提交：\`${sourceCommit}\`
+- 机器可读版本锁：\`.template/theme-source.json\`
 - 主题许可证：\`blog/LICENSE\`，保留于 AstroPaper 源码目录。
 - 模板许可证：根目录 \`LICENSE\`。
 
-默认导出器会先检出 AstroPaper ${upstreamRef}，并验证提交为 \`${upstreamCommit}\`。只复制运行主题需要的配置、依赖、页面、布局、组件、样式、工具、图标和主题图片。上游仓库的文章、About 页面及其他内容资源不会进入模板；About 会替换为通用占位文字，文章目录保持为空。
+只复制运行主题需要的配置、依赖、页面、布局、组件、样式、工具、图标和主题图片。上游仓库的文章、About 页面及其他内容资源不会进入模板；About 会替换为通用占位文字，文章目录保持为空。
 
-如需更新主题基线，应先审查上游版本、白名单和兼容性，再调整导出器中的固定版本与提交。
+白名单同时记录各文件的上游版本摘要，用于在更新时检测主题源码的本地改动。
 `)
+
+  writeFileSync(path.join(destination, 'docs', 'template-updates.md'), `# 主题更新
+
+模板通过 \`.github/workflows/update-theme.yml\` 每月检查 AstroPaper 最新稳定发行版，也支持从仓库的 Actions 页面手动触发。更新器固定官方仓库地址和 release 标签，只应用来源清单中已经允许的文件；不会同步上游文章、About、工作流或其他未列出的文件。
+
+更新运行会先确认仓库工作区干净，并比对当前主题文件与上次记录的 SHA-256。若用户修改过任何受管理的主题文件，更新会在写入前中止并列出路径；先保存或撤销这些修改，再重新运行。站点配置、About 内容、文章和个人资源不属于主题清单，会保留。
+
+更新通过 Astro 检查后，workflow 使用 GitHub Actions 创建或更新 \`automation/update-astro-paper\` 分支上的 PR，不会自动合并。首次运行前，在 **Settings → Actions → General → Workflow permissions** 开启 **Allow GitHub Actions to create and approve pull requests**。
+
+本地检查最新稳定版：
+
+\`\`\`sh
+node scripts/update-blog-template.mjs --latest
+\`\`\`
+
+指定版本时同时提供 release 标签与完整提交 SHA：
+
+\`\`\`sh
+node scripts/update-blog-template.mjs --ref v6.1.0 --commit ${sourceCommit}
+\`\`\`
+
+该示例使用当前主题基线，重复运行会提示无需更新；更新到其他 release 时替换标签和 SHA。运行后先检查 \`git diff\`，再决定是否提交。
+`)
+
+  mkdirSync(path.join(destination, '.template'), { recursive: true })
+  const sourceRepository = isOfficialSource ? upstreamUrl : git(source, ['remote', 'get-url', 'origin'])
+  const sourceMetadata = createThemeSourceMetadata({
+    repository: sourceRepository,
+    ref: sourceRef,
+    commit: sourceCommit,
+    templateRoot: destination,
+    files: selectedFiles,
+  })
+  writeFileSync(path.join(destination, '.template', 'theme-source.json'), `${JSON.stringify(sourceMetadata, null, 2)}\n`)
+
+  mkdirSync(path.join(destination, 'scripts'), { recursive: true })
+  copyFileSync(
+    path.join(repositoryRoot, 'scripts', 'update-blog-template.mjs'),
+    path.join(destination, 'scripts', 'update-blog-template.mjs'),
+  )
+  mkdirSync(path.join(destination, '.github', 'workflows'), { recursive: true })
+  copyFileSync(
+    path.join(repositoryRoot, 'scripts', 'templates', 'update-theme.yml'),
+    path.join(destination, '.github', 'workflows', 'update-theme.yml'),
+  )
 }
 
-function exportTemplateFromSource({ destination, source, isOfficialSource }) {
+function exportTemplateFromSource({ destination, source, sourceRef, isOfficialSource }) {
   const safeDestination = validateDestination(destination)
   const { selectedFiles, sourceCommit } = getTrackedThemeFiles(source)
   if (isOfficialSource && sourceCommit !== upstreamCommit) {
@@ -278,7 +332,7 @@ function exportTemplateFromSource({ destination, source, isOfficialSource }) {
     mkdirSync(path.dirname(safeDestination), { recursive: true })
     mkdirSync(safeDestination)
     destinationCreated = true
-    writeTemplateFiles(safeDestination, source, sourceCommit, selectedFiles, isOfficialSource)
+    writeTemplateFiles(safeDestination, source, sourceRef, sourceCommit, selectedFiles, isOfficialSource)
 
     execFileSync('git', ['init', '--quiet', safeDestination], { stdio: 'inherit' })
     git(safeDestination, ['symbolic-ref', 'HEAD', 'refs/heads/main'])
@@ -294,8 +348,8 @@ function exportTemplateFromSource({ destination, source, isOfficialSource }) {
   }
 }
 
-export function exportTemplateFromThemeSource(options) {
-  exportTemplateFromSource({ ...options, isOfficialSource: false })
+export function exportTemplateFromThemeSource({ sourceRef = 'local override', ...options }) {
+  exportTemplateFromSource({ ...options, sourceRef, isOfficialSource: false })
 }
 
 function exportOfficialTemplate({ destination }) {
@@ -312,7 +366,7 @@ function exportOfficialTemplate({ destination }) {
       upstreamUrl,
       source,
     ], { stdio: 'inherit' })
-    exportTemplateFromSource({ destination, source, isOfficialSource: true })
+    exportTemplateFromSource({ destination, source, sourceRef: upstreamRef, isOfficialSource: true })
   } finally {
     rmSync(temporaryDirectory, { recursive: true, force: true })
   }
