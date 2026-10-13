@@ -17,12 +17,13 @@ npm run template:export -- --destination ../astro-blog-template
 - 按 `scripts/template-theme-files.json` 中的逐文件清单复制主题配置、锁文件、页面、布局、组件、样式、工具、图标和指定主题图片；新增上游文件不会自动进入模板。
 - 不复制原个人文章、About 页面、个人图片、工作流、Issue 或 Git 历史；生成通用 About 页面和空文章目录。
 - 保留当前项目及 AstroPaper 各自需要的许可证，并在新项目中记录上游来源与固定提交。
+- 生成 `.template/compatibility.json`，固定已验证的上游 release 标签和提交；更新器会跳过未登记的版本。
 - 本地集成测试通过显式传入合成主题仓库验证导出流程；正常命令不接受替代主题来源，且会校验 AstroPaper 固定提交。
 - 生成的模板会记录主题文件哈希。更新器只同步已记录的主题文件；博客设置、文章、About 与资源不在更新范围。
 
 ## 更新模板
 
-模板仓库每月检查 AstroPaper 的最新稳定发行版，通过 Astro 检查后创建或更新审核 PR；也可在 Actions 页面手动触发。第一次使用前，模板仓库需要允许 Actions 创建 pull request。工作流不会自动合并更新。
+模板仓库每月检查 AstroPaper 的最新稳定发行版，也可在 Actions 页面手动触发。新版本通过 Astro 检查后，会创建或更新审核 PR，并将精确标签与提交写入兼容清单；只有审核并合并 PR 后，新版本才成为已接受的基线。没有白名单源码变化时不会创建空 PR。第一次使用前，模板仓库需要允许 Actions 创建 pull request。工作流不会自动合并更新；验证失败会保存补丁 artifact。
 
 维护者可在本地把指定 AstroPaper 版本应用到已有模板目录。命令需要目标目录、release 标签和对应的完整提交 SHA：
 
@@ -30,7 +31,7 @@ npm run template:export -- --destination ../astro-blog-template
 npm run template:update -- --destination ../astro-blog-template --ref v6.1.0 --commit 4c33a60529f9c443145a89fe526ff231c009272d
 ```
 
-上例是当前模板基线，重复运行会提示无需更新；同步其他 release 时替换标签与其对应的 SHA。
+上例是当前模板基线，重复运行会提示无需更新。手动尝试新版本时，附加 `--propose` 将候选主题源码和精确来源 pin 写入工作区，再检查并决定是否提交。
 
 更新前必须保证目标模板工作区干净。主题文件若偏离上次导出的哈希，更新会中止并报告冲突；处理后重新运行。更新器保留现有配置、文章、模板设置及 Git 历史，只在工作区产生可审查的差异，不会推送或提交。
 

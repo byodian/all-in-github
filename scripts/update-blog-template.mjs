@@ -1,7 +1,6 @@
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
 import {
-  copyFileSync,
   existsSync,
   lstatSync,
   mkdirSync,
@@ -17,6 +16,7 @@ import { fileURLToPath } from 'node:url'
 
 const astroPaperRepository = 'https://github.com/satnaing/astro-paper.git'
 const metadataPath = '.template/theme-source.json'
+const compatibilityPath = '.template/compatibility.json'
 
 function git(directory, args, options = {}) {
   return execFileSync('git', ['-C', directory, ...args], {
@@ -28,9 +28,11 @@ function git(directory, args, options = {}) {
 
 function sha256(filePath) {
   const contents = readFileSync(filePath)
-  const canonical = contents.includes(0)
-    ? contents
-    : Buffer.from(contents.toString('utf8').replace(/\r\n/g, '\n'))
+  return sha256Contents(contents)
+}
+
+function sha256Contents(contents) {
+  const canonical = contents.includes(0) ? contents : Buffer.from(contents.toString('utf8').replace(/\r\n/g, '\n'))
   return createHash('sha256').update(canonical).digest('hex')
 }
 
@@ -42,6 +44,15 @@ export function createThemeSourceMetadata({ repository, ref, commit, templateRoo
     ref,
     commit,
     files: Object.fromEntries(files.map(file => [file, sha256(path.join(templateRoot, 'blog', file))])),
+  }
+}
+
+export function createThemeCompatibilityRegistry({ repository, ref, commit }) {
+  return {
+    formatVersion: 1,
+    theme: 'astro-paper',
+    repository,
+    approvedReleases: [{ ref, commit }],
   }
 }
 
@@ -94,6 +105,29 @@ function readThemeMetadata(destination) {
   return metadata
 }
 
+function readCompatibilityRegistry(destination, repository) {
+  if (!isRegularFileWithoutSymlinkParents(destination, compatibilityPath)) {
+    throw new Error(`Theme compatibility registry is missing: ${compatibilityPath}`)
+  }
+  const registry = JSON.parse(readFileSync(path.join(destination, compatibilityPath), 'utf8'))
+  if (
+    registry.formatVersion !== 1 ||
+    registry.theme !== 'astro-paper' ||
+    registry.repository !== repository ||
+    !Array.isArray(registry.approvedReleases) ||
+    registry.approvedReleases.length === 0 ||
+    registry.approvedReleases.some(release =>
+      !release ||
+      !/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(release.ref) ||
+      !/^[0-9a-f]{40}$/.test(release.commit),
+    ) ||
+    new Set(registry.approvedReleases.map(release => release.ref)).size !== registry.approvedReleases.length
+  ) {
+    throw new Error(`Theme compatibility registry is invalid: ${compatibilityPath}`)
+  }
+  return registry
+}
+
 function validateTemplateRepository(destination) {
   if (!existsSync(path.join(destination, '.git'))) {
     throw new Error(`Template destination is not a Git repository: ${destination}`)
@@ -106,17 +140,17 @@ function validateTemplateRepository(destination) {
   return repositoryRoot
 }
 
-function normalizedThemeFiles(templateRoot, selectedFiles) {
-  const packagePath = path.join(templateRoot, 'blog', 'package.json')
-  if (selectedFiles.includes('package.json')) {
-    const packageJson = JSON.parse(readFileSync(packagePath, 'utf8'))
+function normalizedThemeContents(contents, file) {
+  if (file === 'package.json') {
+    const packageJson = JSON.parse(contents.toString('utf8'))
     packageJson.name = 'public-blog'
     packageJson.private = true
-    writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`)
+    return Buffer.from(`${JSON.stringify(packageJson, null, 2)}\n`)
   }
+  return contents
 }
 
-export function updateTemplateFromThemeSource({ destination, source, sourceRef }) {
+export function updateTemplateFromThemeSource({ destination, source, sourceRef, proposeRelease = false }) {
   const templateRoot = validateTemplateRepository(destination)
   const metadata = readThemeMetadata(templateRoot)
   if (git(source, ['status', '--porcelain'])) {
@@ -128,6 +162,16 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef }
   }
 
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+  const registry = readCompatibilityRegistry(templateRoot, metadata.repository)
+  const releaseForRef = registry.approvedReleases.find(release => release.ref === sourceRef)
+  if (releaseForRef && releaseForRef.commit !== sourceCommit) {
+    throw new Error(`Release tag ${sourceRef} is already pinned to another commit in ${compatibilityPath}.`)
+  }
+  const releaseIsApproved = Boolean(releaseForRef)
+  if (!releaseIsApproved && !proposeRelease) {
+    process.stdout.write(`Skipped ${sourceRef} (${sourceCommit}): this release is not in ${compatibilityPath}.\n`)
+    return false
+  }
   if (sourceCommit === metadata.commit && sourceRef === metadata.ref) {
     process.stdout.write(`Theme is already current at ${sourceRef} (${sourceCommit}).\n`)
     return false
@@ -166,20 +210,28 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef }
     }
   }
   if (selectedFiles.includes('package.json')) {
-    JSON.parse(readFileSync(path.join(source, 'package.json'), 'utf8'))
+    normalizedThemeContents(readFileSync(path.join(source, 'package.json')), 'package.json')
+  }
+
+  const unchanged = removedFiles.length === 0 &&
+    selectedFiles.length === knownFiles.length &&
+    selectedFiles.every(file =>
+      sha256Contents(normalizedThemeContents(readFileSync(path.join(source, file)), file)) === metadata.files[file],
+    )
+  if (unchanged) {
+    process.stdout.write(`No allowlisted theme files changed in ${sourceRef} (${sourceCommit}); no update is needed.\n`)
+    return false
   }
 
   for (const file of removedFiles) {
     rmSync(path.join(templateRoot, 'blog', file))
   }
   for (const file of selectedFiles) {
-    const sourcePath = path.join(source, file)
     const targetPath = path.join(templateRoot, 'blog', file)
     const targetDirectory = path.dirname(targetPath)
     mkdirSync(targetDirectory, { recursive: true })
-    copyFileSync(sourcePath, targetPath)
+    writeFileSync(targetPath, normalizedThemeContents(readFileSync(path.join(source, file)), file))
   }
-  normalizedThemeFiles(templateRoot, selectedFiles)
 
   const updatedMetadata = createThemeSourceMetadata({
     repository: metadata.repository,
@@ -189,6 +241,13 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef }
     files: selectedFiles,
   })
   writeFileSync(path.join(templateRoot, metadataPath), `${JSON.stringify(updatedMetadata, null, 2)}\n`)
+  if (!releaseIsApproved) {
+    const candidateRegistry = {
+      ...registry,
+      approvedReleases: [...registry.approvedReleases, { ref: sourceRef, commit: sourceCommit }],
+    }
+    writeFileSync(path.join(templateRoot, compatibilityPath), `${JSON.stringify(candidateRegistry, null, 2)}\n`)
+  }
   process.stdout.write(`Updated AstroPaper files from ${sourceRef} (${sourceCommit}). Review the working tree and commit the changes.\n`)
   return true
 }
@@ -197,12 +256,17 @@ function parseArguments(args) {
   const options = {}
   for (let index = 0; index < args.length; index += 1) {
     const option = args[index]
-    if (!['--destination', '--ref', '--commit', '--latest'].includes(option)) {
+    if (!['--destination', '--ref', '--commit', '--latest', '--propose'].includes(option)) {
       throw new Error(`Unknown option: ${option}`)
     }
     if (option === '--latest') {
       if (options.latest) throw new Error('Option provided more than once: --latest')
       options.latest = true
+      continue
+    }
+    if (option === '--propose') {
+      if (options.propose) throw new Error('Option provided more than once: --propose')
+      options.propose = true
       continue
     }
     const value = args[index + 1]
@@ -217,6 +281,9 @@ function parseArguments(args) {
     throw new Error('Provide both --ref and --commit, or use --latest.')
   }
   if (options.latest && options.ref) throw new Error('--latest cannot be combined with --ref or --commit.')
+  if (options.propose && !options.latest && !options.ref) {
+    throw new Error('--propose requires --latest or a version supplied with --ref and --commit.')
+  }
   if (options.ref && !/^v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(options.ref)) {
     throw new Error(`Expected a version tag such as v6.1.0: ${options.ref}`)
   }
@@ -243,7 +310,7 @@ async function latestRelease() {
   return { ref: release.tag_name }
 }
 
-async function updateFromRelease({ destination, ref, expectedCommit }) {
+async function updateFromRelease({ destination, ref, expectedCommit, proposeRelease }) {
   const temporaryDirectory = mkdtempSync(path.join(os.tmpdir(), 'astro-paper-update-'))
   const source = path.join(temporaryDirectory, 'astro-paper')
   try {
@@ -254,7 +321,7 @@ async function updateFromRelease({ destination, ref, expectedCommit }) {
     if (expectedCommit && sourceCommit !== expectedCommit) {
       throw new Error(`Unexpected ${ref} commit: ${sourceCommit}`)
     }
-    return updateTemplateFromThemeSource({ destination, source, sourceRef: ref })
+    return updateTemplateFromThemeSource({ destination, source, sourceRef: ref, proposeRelease })
   } finally {
     rmSync(temporaryDirectory, { recursive: true, force: true })
   }
@@ -267,10 +334,11 @@ async function run(args) {
     destination,
     ref: options.ref,
     expectedCommit: options.commit,
+    proposeRelease: options.propose,
   })
 
   const release = await latestRelease()
-  return updateFromRelease({ destination, ...release })
+  return updateFromRelease({ destination, ...release, proposeRelease: options.propose })
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

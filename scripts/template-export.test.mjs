@@ -22,6 +22,15 @@ function writeSourceFile(source, relativePath, contents) {
   writeFileSync(target, contents)
 }
 
+function approveThemeRelease(destination, ref, commit) {
+  const registryPath = path.join(destination, '.template/compatibility.json')
+  const registry = JSON.parse(readFileSync(registryPath, 'utf8'))
+  registry.approvedReleases.push({ ref, commit })
+  writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`)
+  git(destination, ['add', '.template/compatibility.json'])
+  git(destination, ['commit', '--quiet', '-m', `approve theme release ${ref}`])
+}
+
 function makeThemeSource(parent) {
   const source = path.join(parent, 'theme-source')
   mkdirSync(source)
@@ -61,13 +70,14 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   const source = makeThemeSource(temp)
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
   const destination = path.join(temp, 'template')
-  exportTemplateFromThemeSource({ destination, source })
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
   const files = git(destination, ['ls-files']).split('\n').sort()
   assert.deepEqual(files, [
     '.gitattributes',
     '.github/workflows/update-theme.yml',
     '.gitignore',
     '.template/theme-source.json',
+    '.template/compatibility.json',
     'LICENSE',
     'README.md',
     'blog/astro-paper.config.ts',
@@ -83,6 +93,7 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   const about = readFileSync(path.join(destination, 'blog/src/content/pages/about.md'), 'utf8')
   const packageJson = JSON.parse(readFileSync(path.join(destination, 'blog/package.json'), 'utf8'))
   const sourceMetadata = JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8'))
+  const compatibilityRegistry = JSON.parse(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'))
   const workflow = readFileSync(path.join(destination, '.github/workflows/update-theme.yml'), 'utf8')
   const exportedText = files
     .filter(file => /\.(md|mdx|ts|mjs|json|yml|yaml|css|astro)$/.test(file))
@@ -94,10 +105,14 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.match(about, /Write your introduction here/)
   assert.equal(packageJson.name, 'public-blog')
   assert.equal(sourceMetadata.commit, sourceCommit)
+  assert.deepEqual(compatibilityRegistry.approvedReleases, [{ ref: 'v1.0.0', commit: sourceCommit }])
   assert.equal(Object.keys(sourceMetadata.files).length, themeFiles.length)
   assert.match(workflow, /schedule:/)
   assert.match(workflow, /workflow_dispatch:/)
   assert.match(workflow, /create-pull-request/)
+  assert.match(workflow, /actions\/upload-artifact@v4/)
+  assert.match(workflow, /capture-patch/)
+  assert.match(workflow, /--latest --propose/)
   assert.doesNotMatch(exportedText, /Private Example Person|do-not-export|all-in-github|byodian\.github\.io/)
   assert.equal(
     readFileSync(path.join(destination, 'LICENSE'), 'utf8'),
@@ -138,6 +153,7 @@ test('updates a generated template from a newer source while preserving user fil
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+  approveThemeRelease(destination, 'v1.1.0', sourceCommit)
 
   assert.equal(
     updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
@@ -151,6 +167,63 @@ test('updates a generated template from a newer source while preserving user fil
   assert.equal(git(destination, ['rev-list', '--max-parents=0', 'HEAD']), rootCommit)
   assert.equal(JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')).commit, sourceCommit)
   assert.notEqual(git(destination, ['status', '--porcelain']), '')
+})
+
+test('skips source versions outside the compatibility registry', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-compatibility-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  const themeFile = themeFiles.find(file => file.endsWith('.astro'))
+  writeSourceFile(source, themeFile, 'Unreviewed upstream theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'unreviewed release'])
+
+  const before = git(destination, ['status', '--porcelain'])
+  assert.equal(updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }), false)
+  assert.equal(git(destination, ['status', '--porcelain']), before)
+  assert.equal(readFileSync(path.join(destination, 'blog', themeFile), 'utf8'), `Theme source file: ${themeFile}\n`)
+})
+
+test('proposes an unapproved release with its exact commit pinned in the registry', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-release-proposal-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  const themeFile = themeFiles.find(file => file.endsWith('.astro'))
+  writeSourceFile(source, themeFile, 'Compatible candidate theme component\n')
+  git(source, ['add', '--all'])
+  git(source, ['commit', '--quiet', '-m', 'candidate release'])
+  const sourceCommit = git(source, ['rev-parse', 'HEAD'])
+
+  assert.equal(
+    updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0', proposeRelease: true }),
+    true,
+  )
+  const registry = JSON.parse(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'))
+  assert.deepEqual(registry.approvedReleases.at(-1), { ref: 'v1.1.0', commit: sourceCommit })
+  assert.equal(readFileSync(path.join(destination, 'blog', themeFile), 'utf8'), 'Compatible candidate theme component\n')
+})
+
+test('does not create a registry entry when a candidate release has no allowlisted file changes', t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-no-theme-diff-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+  git(source, ['commit', '--allow-empty', '--quiet', '-m', 'release without theme changes'])
+  const oldMetadata = readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')
+  const oldRegistry = readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8')
+
+  assert.equal(updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0', proposeRelease: true }), false)
+  assert.equal(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8'), oldMetadata)
+  assert.equal(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'), oldRegistry)
+  assert.equal(git(destination, ['status', '--porcelain']), '')
 })
 
 test('stops before changing the template when a managed theme file has local edits', t => {
@@ -170,6 +243,7 @@ test('stops before changing the template when a managed theme file has local edi
   writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
+  approveThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
   const previousMetadata = readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8')
 
   assert.throws(
@@ -205,6 +279,7 @@ test('does not follow a user-added symlink outside the template during an update
   writeSourceFile(source, themeFile, 'Updated upstream theme component\n')
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
+  approveThemeRelease(destination, 'v1.1.0', git(source, ['rev-parse', 'HEAD']))
 
   assert.throws(
     () => updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),

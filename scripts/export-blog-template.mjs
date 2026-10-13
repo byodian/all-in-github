@@ -13,7 +13,7 @@ import {
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createThemeSourceMetadata } from './update-blog-template.mjs'
+import { createThemeCompatibilityRegistry, createThemeSourceMetadata } from './update-blog-template.mjs'
 
 const repositoryRoot = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'))
 const upstreamUrl = 'https://github.com/satnaing/astro-paper.git'
@@ -245,11 +245,9 @@ pnpm dev
 
 当前站点设置位于 \`blog/astro-paper.config.ts\`。将设置改为自己的信息后，可在 \`blog/src/content/posts/\` 添加 Markdown 文章。
 
-## 主题更新
+## 维护主题
 
-模板每月检查一次 AstroPaper 稳定版，并在检查通过后提交可审核的更新 PR；也可以在仓库的 Actions 页面手动运行 **Update theme**。更新只覆盖主题来源清单中的文件，站点配置、About、文章和个人资源会保留。若改过主题源码，更新会停止并列出冲突文件，需先人工处理。
-
-首次使用 Actions 自动创建 PR 前，请在仓库 Settings → Actions → General 中允许 Actions 创建和批准 pull request。也可以在本地检查更新：\`node scripts/update-blog-template.mjs --latest\`。详情见 [docs/template-updates.md](docs/template-updates.md)。
+主题源码更新方式见 [docs/template-updates.md](docs/template-updates.md)。
 
 ## 来源与许可证
 
@@ -262,38 +260,32 @@ pnpm dev
 ## 主题来源
 
 - 官方仓库：${isOfficialSource ? upstreamUrl : git(source, ['remote', 'get-url', 'origin'])}
-- 标签：${sourceRef}
-- 提交：\`${sourceCommit}\`
-- 机器可读版本锁：\`.template/theme-source.json\`
+- 当前主题版本、提交与逐文件摘要：\`.template/theme-source.json\`
+- 已验证的兼容版本：\`.template/compatibility.json\`
 - 主题许可证：\`blog/LICENSE\`，保留于 AstroPaper 源码目录。
 - 模板许可证：根目录 \`LICENSE\`。
 
 只复制运行主题需要的配置、依赖、页面、布局、组件、样式、工具、图标和主题图片。上游仓库的文章、About 页面及其他内容资源不会进入模板；About 会替换为通用占位文字，文章目录保持为空。
 
 白名单同时记录各文件的上游版本摘要，用于在更新时检测主题源码的本地改动。
+兼容版本清单 \`.template/compatibility.json\` 记录维护者验证过的上游标签与完整提交；未列入清单的发行版不会应用。
 `)
 
   writeFileSync(path.join(destination, 'docs', 'template-updates.md'), `# 主题更新
 
-模板通过 \`.github/workflows/update-theme.yml\` 每月检查 AstroPaper 最新稳定发行版，也支持从仓库的 Actions 页面手动触发。更新器固定官方仓库地址和 release 标签，只应用来源清单中已经允许的文件；不会同步上游文章、About、工作流或其他未列出的文件。
+模板通过 \`.github/workflows/update-theme.yml\` 每月检查 AstroPaper 最新稳定发行版，也支持从仓库的 Actions 页面手动触发。更新器固定官方仓库地址，并且只覆盖来源清单中的文件；不会同步上游文章、About、工作流或其他未列出的文件。新版本通过 Astro 检查后，会以 PR 形式提出源码更新，并将精确标签与提交写入兼容清单。只有审核并合并 PR 后，新版本才成为已接受的基线；没有白名单源码变化时不会产生空 PR。
 
 更新运行会先确认仓库工作区干净，并比对当前主题文件与上次记录的 SHA-256。若用户修改过任何受管理的主题文件，更新会在写入前中止并列出路径；先保存或撤销这些修改，再重新运行。站点配置、About 内容、文章和个人资源不属于主题清单，会保留。
 
 更新通过 Astro 检查后，workflow 使用 GitHub Actions 创建或更新 \`automation/update-astro-paper\` 分支上的 PR，不会自动合并。首次运行前，在 **Settings → Actions → General → Workflow permissions** 开启 **Allow GitHub Actions to create and approve pull requests**。
 
-本地检查最新稳定版：
+手动准备最新稳定版候选：
 
 \`\`\`sh
-node scripts/update-blog-template.mjs --latest
+node scripts/update-blog-template.mjs --latest --propose
 \`\`\`
 
-指定版本时同时提供 release 标签与完整提交 SHA：
-
-\`\`\`sh
-node scripts/update-blog-template.mjs --ref v6.1.0 --commit ${sourceCommit}
-\`\`\`
-
-该示例使用当前主题基线，重复运行会提示无需更新；更新到其他 release 时替换标签和 SHA。运行后先检查 \`git diff\`，再决定是否提交。
+手动固定 release 时同时提供 \`--ref <tag>\`、\`--commit <完整提交 SHA>\` 和 \`--propose\`。更新器会把主题变更与精确来源 pin 写入工作区，供检查后提交。workflow 使用相同方式准备候选版本，验证失败时会保存补丁 artifact，便于检查和恢复。若主题白名单文件没有实际变化，更新器不会改写来源元数据或产生空 PR。
 `)
 
   mkdirSync(path.join(destination, '.template'), { recursive: true })
@@ -306,6 +298,15 @@ node scripts/update-blog-template.mjs --ref v6.1.0 --commit ${sourceCommit}
     files: selectedFiles,
   })
   writeFileSync(path.join(destination, '.template', 'theme-source.json'), `${JSON.stringify(sourceMetadata, null, 2)}\n`)
+  const compatibilityRegistry = createThemeCompatibilityRegistry({
+    repository: sourceRepository,
+    ref: sourceRef,
+    commit: sourceCommit,
+  })
+  writeFileSync(
+    path.join(destination, '.template', 'compatibility.json'),
+    `${JSON.stringify(compatibilityRegistry, null, 2)}\n`,
+  )
 
   mkdirSync(path.join(destination, 'scripts'), { recursive: true })
   copyFileSync(
