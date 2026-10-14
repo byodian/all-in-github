@@ -31,6 +31,9 @@ jobs:
           version: 11.3.0
           run_install: false
 
+      - name: Validate the canonical blog configuration
+        run: node scripts/validate-blog-config.mjs
+
       - name: Prepare the latest AstroPaper release proposal
         id: update-theme
         run: node scripts/update-blog-template.mjs --latest --propose

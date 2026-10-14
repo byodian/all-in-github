@@ -13,7 +13,11 @@ import {
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createThemeCompatibilityRegistry, createThemeSourceMetadata } from './update-blog-template.mjs'
+import {
+  createThemeCompatibilityRegistry,
+  createThemeSourceMetadata,
+  normalizedThemeContents,
+} from './update-blog-template.mjs'
 
 const repositoryRoot = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'))
 const upstreamUrl = 'https://github.com/satnaing/astro-paper.git'
@@ -149,7 +153,7 @@ function writeTemplateFiles(destination, source, sourceRef, sourceCommit, select
     }
     const targetPath = path.join(blogRoot, relativePath)
     mkdirSync(path.dirname(targetPath), { recursive: true })
-    copyFileSync(sourcePath, targetPath)
+    writeFileSync(targetPath, normalizedThemeContents(readFileSync(sourcePath), relativePath))
   }
 
   const packagePath = path.join(blogRoot, 'package.json')
@@ -158,42 +162,53 @@ function writeTemplateFiles(destination, source, sourceRef, sourceCommit, select
   packageJson.private = true
   writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`)
 
-  writeFileSync(path.join(blogRoot, 'astro-paper.config.ts'), `import { defineAstroPaperConfig } from "./src/types/config";
+  mkdirSync(path.join(destination, '.blog'), { recursive: true })
+  writeFileSync(path.join(destination, '.blog', 'config.json'), `${JSON.stringify({
+    schemaVersion: 1,
+    theme: { id: 'astro-paper', options: { 'astro-paper': {}, 'astro-cactus': {} } },
+    site: {
+      url: 'https://example.github.io/your-blog/',
+      title: 'Your Blog',
+      description: 'A blog powered by Astro.',
+      author: 'Your Name',
+      ogImage: 'default-og.jpg',
+      lang: 'en',
+      timezone: 'UTC',
+      dir: 'ltr',
+    },
+    home: {
+      title: 'Hello World',
+      description: 'Welcome to your new blog.',
+      readmeUrl: 'https://github.com/example/your-blog',
+    },
+    posts: { perPage: 10, perIndex: 10, scheduledPostMargin: 900000 },
+    features: {
+      lightAndDarkMode: true,
+      dynamicOgImage: true,
+      showArchives: true,
+      showBackButton: true,
+      editPost: { enabled: false },
+      search: 'pagefind',
+    },
+    socials: [],
+    shareLinks: [
+      { name: 'whatsapp', url: 'https://wa.me/?text=' },
+      { name: 'facebook', url: 'https://www.facebook.com/sharer.php?u=' },
+      { name: 'x', url: 'https://x.com/intent/post?url=' },
+      { name: 'telegram', url: 'https://t.me/share/url?url=' },
+      { name: 'pinterest', url: 'https://pinterest.com/pin/create/button/?url=' },
+      { name: 'mail', url: 'mailto:?subject=See%20this%20post&body=' },
+    ],
+  }, null, 2)}\n`)
 
-export default defineAstroPaperConfig({
-  site: {
-    url: "https://example.github.io/your-blog/",
-    title: "Your Blog",
-    description: "A blog powered by Astro.",
-    author: "Your Name",
-    ogImage: "default-og.jpg",
-    lang: "en",
-    timezone: "UTC",
-    dir: "ltr",
-  },
-  posts: {
-    perPage: 10,
-    perIndex: 10,
-    scheduledPostMargin: 15 * 60 * 1000,
-  },
-  features: {
-    lightAndDarkMode: true,
-    dynamicOgImage: true,
-    showArchives: true,
-    showBackButton: true,
-    editPost: { enabled: false },
-    search: "pagefind",
-  },
-  socials: [],
-  shareLinks: [
-    { name: "whatsapp", url: "https://wa.me/?text=" },
-    { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },
-    { name: "x", url: "https://x.com/intent/post?url=" },
-    { name: "telegram", url: "https://t.me/share/url?url=" },
-    { name: "pinterest", url: "https://pinterest.com/pin/create/button/?url=" },
-    { name: "mail", url: "mailto:?subject=See%20this%20post&body=" },
-  ],
-});
+  writeFileSync(path.join(blogRoot, 'astro-paper.config.ts'), `import { defineAstroPaperConfig } from "./src/types/config";
+import config from "../.blog/config.json";
+import { resolveBlogConfiguration } from "../scripts/blog-config.mjs";
+
+const resolved = resolveBlogConfiguration(config);
+export const blogDeployment = resolved.deployment;
+export const blogHome = resolved.themeConfig.home;
+export default defineAstroPaperConfig(resolved.themeConfig);
 `)
 
   const pagesRoot = path.join(blogRoot, 'src', 'content', 'pages')
@@ -243,7 +258,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 \`\`\`
 
-当前站点设置位于 \`blog/astro-paper.config.ts\`。将设置改为自己的信息后，可在 \`blog/src/content/posts/\` 添加 Markdown 文章。
+配置字段、派生文件和检查方式见 [docs/configuration.md](docs/configuration.md)。
 
 ## 维护主题
 
@@ -265,17 +280,26 @@ pnpm dev
 - 主题许可证：\`blog/LICENSE\`，保留于 AstroPaper 源码目录。
 - 模板许可证：根目录 \`LICENSE\`。
 
-只复制运行主题需要的配置、依赖、页面、布局、组件、样式、工具、图标和主题图片。上游仓库的文章、About 页面及其他内容资源不会进入模板；About 会替换为通用占位文字，文章目录保持为空。
+只复制运行主题需要的配置、依赖、页面、布局、组件、样式、工具、图标和主题图片。上游仓库的文章、About 页面及其他内容资源不会进入模板；About 会替换为通用占位文字，文章目录保持为空。主题配置与 Astro 部署设置由根目录 \`.blog/config.json\` 派生，用户只需维护这一份配置。
 
 白名单同时记录各文件的上游版本摘要，用于在更新时检测主题源码的本地改动。
 兼容版本清单 \`.template/compatibility.json\` 记录维护者验证过的上游标签与完整提交；未列入清单的发行版不会应用。
+`)
+
+  writeFileSync(path.join(destination, 'docs', 'configuration.md'), `# 博客配置
+
+根目录 \`.blog/config.json\` 是博客站点设置的唯一可编辑来源，包含站点资料、首页内容、文章分页、功能开关、社交链接和当前主题选项。模板中的示例资料是占位值，创建自己的博客后请替换为真实设置。
+
+\`blog/astro-paper.config.ts\` 以及 Astro 的域名、项目子路径和语言设置由该配置解析生成；不要直接编辑这些衍生文件。AstroPaper 首页的标题、介绍和说明链接也读取此配置。
+
+运行 \`node scripts/validate-blog-config.mjs\` 检查配置。文章放在 \`blog/src/content/posts/\`，About 页面放在 \`blog/src/content/pages/about.md\`。本模板面向公开博客，提交到仓库的文章和设置会公开可见。
 `)
 
   writeFileSync(path.join(destination, 'docs', 'template-updates.md'), `# 主题更新
 
 模板通过 \`.github/workflows/update-theme.yml\` 每月检查 AstroPaper 最新稳定发行版，也支持从仓库的 Actions 页面手动触发。更新器固定官方仓库地址，并且只覆盖来源清单中的文件；不会同步上游文章、About、工作流或其他未列出的文件。新版本通过 Astro 检查后，会以 PR 形式提出源码更新，并将精确标签与提交写入兼容清单。只有审核并合并 PR 后，新版本才成为已接受的基线；没有白名单源码变化时不会产生空 PR。
 
-更新运行会先确认仓库工作区干净，并比对当前主题文件与上次记录的 SHA-256。若用户修改过任何受管理的主题文件，更新会在写入前中止并列出路径；先保存或撤销这些修改，再重新运行。站点配置、About 内容、文章和个人资源不属于主题清单，会保留。
+更新运行会先确认仓库工作区干净，并比对当前主题文件与上次记录的 SHA-256。若用户修改过任何受管理的主题文件，更新会在写入前中止并列出路径；先保存或撤销这些修改，再重新运行。单一配置 \`.blog/config.json\`、衍生配置、About 内容、文章和个人资源不属于主题清单，会保留。
 
 更新通过 Astro 检查后，workflow 使用 GitHub Actions 创建或更新 \`automation/update-astro-paper\` 分支上的 PR，不会自动合并。首次运行前，在 **Settings → Actions → General → Workflow permissions** 开启 **Allow GitHub Actions to create and approve pull requests**。
 
@@ -309,6 +333,12 @@ node scripts/update-blog-template.mjs --latest --propose
   )
 
   mkdirSync(path.join(destination, 'scripts'), { recursive: true })
+  for (const script of ['blog-config.mjs', 'blog-config.d.mts', 'validate-blog-config.mjs']) {
+    copyFileSync(
+      path.join(repositoryRoot, 'scripts', script),
+      path.join(destination, 'scripts', script),
+    )
+  }
   copyFileSync(
     path.join(repositoryRoot, 'scripts', 'update-blog-template.mjs'),
     path.join(destination, 'scripts', 'update-blog-template.mjs'),

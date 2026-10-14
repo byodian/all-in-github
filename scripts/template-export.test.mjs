@@ -4,7 +4,7 @@ import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, 
 import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { exportTemplateFromThemeSource } from './export-blog-template.mjs'
 import { recordCurrentThemeRelease, updateTemplateFromThemeSource } from './update-blog-template.mjs'
 
@@ -39,6 +39,31 @@ function makeThemeSource(parent) {
       ? '{"name":"astro-paper"}\n'
       : relativePath === 'LICENSE'
         ? 'Theme license\n'
+        : relativePath === 'astro.config.ts'
+          ? `import config from "./astro-paper.config";
+
+export default defineConfig({
+  site: config.site.url,
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
+});
+`
+          : relativePath === 'src/pages/index.astro'
+            ? `import config from "@/config";
+
+<h1 class="hero-title">
+  Mingalaba
+</h1>
+<p>
+  AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
+  blog theme. This theme follows best practices and provides accessibility
+  out of the box. Light and dark mode are supported by default. Moreover,
+  additional color schemes can also be configured.
+</p>
+<LinkButton href="https://github.com/satnaing/astro-paper#readme">README</LinkButton>
+`
         : `Theme source file: ${relativePath}\n`
     writeSourceFile(source, relativePath, contents)
   }
@@ -76,6 +101,7 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
     '.gitattributes',
     '.github/workflows/update-theme.yml',
     '.gitignore',
+    '.blog/config.json',
     '.template/theme-source.json',
     '.template/compatibility.json',
     'LICENSE',
@@ -83,14 +109,23 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
     'blog/astro-paper.config.ts',
     'blog/src/content/pages/about.md',
     'blog/src/content/posts/.gitkeep',
+    'docs/configuration.md',
     'docs/template-origin.md',
     'docs/template-updates.md',
+    'scripts/blog-config.d.mts',
+    'scripts/blog-config.mjs',
     'scripts/update-blog-template.mjs',
+    'scripts/validate-blog-config.mjs',
     ...themeFiles.map(file => `blog/${file}`),
   ].sort())
 
   const config = readFileSync(path.join(destination, 'blog/astro-paper.config.ts'), 'utf8')
+  const canonicalConfig = JSON.parse(readFileSync(path.join(destination, '.blog/config.json'), 'utf8'))
+  const astroConfig = readFileSync(path.join(destination, 'blog/astro.config.ts'), 'utf8')
   const about = readFileSync(path.join(destination, 'blog/src/content/pages/about.md'), 'utf8')
+  const homePage = readFileSync(path.join(destination, 'blog/src/pages/index.astro'), 'utf8')
+  const readme = readFileSync(path.join(destination, 'README.md'), 'utf8')
+  const configurationGuide = readFileSync(path.join(destination, 'docs/configuration.md'), 'utf8')
   const packageJson = JSON.parse(readFileSync(path.join(destination, 'blog/package.json'), 'utf8'))
   const sourceMetadata = JSON.parse(readFileSync(path.join(destination, '.template/theme-source.json'), 'utf8'))
   const compatibilityRegistry = JSON.parse(readFileSync(path.join(destination, '.template/compatibility.json'), 'utf8'))
@@ -100,8 +135,23 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
     .map(file => readFileSync(path.join(destination, file), 'utf8'))
     .join('\n')
 
-  assert.match(config, /Your Blog/)
-  assert.match(config, /Your Name/)
+  assert.match(config, /\.blog\/config\.json/)
+  assert.match(homePage, /import \{ blogHome \} from "\.\.\/\.\.\/astro-paper\.config"/)
+  assert.match(homePage, /\{blogHome\.title\}/)
+  assert.match(homePage, /\{blogHome\.description\}/)
+  assert.match(homePage, /href=\{blogHome\.readmeUrl\}/)
+  assert.doesNotMatch(homePage, /Mingalaba/)
+  assert.match(readme, /docs\/configuration\.md/)
+  assert.doesNotMatch(readme, /唯一可编辑来源/)
+  assert.match(configurationGuide, /唯一可编辑来源/)
+  assert.equal(canonicalConfig.schemaVersion, 1)
+  assert.equal(canonicalConfig.theme.id, 'astro-paper')
+  assert.equal(canonicalConfig.site.title, 'Your Blog')
+  assert.equal(canonicalConfig.site.author, 'Your Name')
+  assert.match(astroConfig, /blogDeployment\.site/)
+  assert.match(astroConfig, /blogDeployment\.base/)
+  assert.match(astroConfig, /blogDeployment\.locales/)
+  assert.match(astroConfig, /blogDeployment\.defaultLocale/)
   assert.match(about, /Write your introduction here/)
   assert.equal(packageJson.name, 'public-blog')
   assert.equal(sourceMetadata.commit, sourceCommit)
@@ -133,6 +183,47 @@ test('exports an allowlisted template with neutral defaults and one fresh root c
   assert.notEqual(commits[0], sourceCommit)
 })
 
+test('exports one validated settings source that resolves theme and deployment settings', async t => {
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-config-'))
+  t.after(() => rmSync(temp, { recursive: true, force: true }))
+
+  const source = makeThemeSource(temp)
+  const destination = path.join(temp, 'template')
+  exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
+
+  const configPath = path.join(destination, '.blog/config.json')
+  const config = JSON.parse(readFileSync(configPath, 'utf8'))
+  config.site.url = 'https://example.org/my-blog/'
+  config.site.title = 'Reader Blog'
+  config.site.lang = 'zh-CN'
+  config.theme.options['astro-cactus'] = { colorScheme: 'warm' }
+  writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`)
+
+  const { resolveBlogConfiguration } = await import(pathToFileURL(path.join(destination, 'scripts/blog-config.mjs')))
+  const resolved = resolveBlogConfiguration(config)
+  assert.equal(resolved.themeId, 'astro-paper')
+  assert.deepEqual(resolved.themeOptions, config.theme.options)
+  assert.equal(resolved.themeConfig.site.url, 'https://example.org/my-blog/')
+  assert.equal(resolved.themeConfig.site.base, '/my-blog')
+  assert.deepEqual(resolved.themeConfig.home, config.home)
+  assert.deepEqual(resolved.deployment, {
+    site: 'https://example.org',
+    base: '/my-blog',
+    locales: ['zh-CN'],
+    defaultLocale: 'zh-CN',
+  })
+
+  const validatorPath = path.join(destination, 'scripts/validate-blog-config.mjs')
+  const validResult = spawnSync(process.execPath, [validatorPath], { cwd: destination, encoding: 'utf8' })
+  assert.equal(validResult.status, 0, validResult.stderr)
+
+  config.theme.id = 'unsupported-theme'
+  writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`)
+  const invalidResult = spawnSync(process.execPath, [validatorPath], { cwd: destination, encoding: 'utf8' })
+  assert.notEqual(invalidResult.status, 0)
+  assert.match(invalidResult.stderr, /theme\.id/)
+})
+
 test('updates a generated template from a newer source while preserving user files and history', t => {
   const temp = mkdtempSync(path.join(os.tmpdir(), 'blog-template-update-'))
   t.after(() => rmSync(temp, { recursive: true, force: true }))
@@ -141,21 +232,27 @@ test('updates a generated template from a newer source while preserving user fil
   const destination = path.join(temp, 'template')
   exportTemplateFromThemeSource({ destination, source, sourceRef: 'v1.0.0' })
   const rootCommit = git(destination, ['rev-list', '--max-parents=0', 'HEAD'])
-  const siteConfig = path.join(destination, 'blog/astro-paper.config.ts')
+  const siteConfig = path.join(destination, '.blog/config.json')
   const article = path.join(destination, 'blog/src/content/posts/my-post.md')
-  writeFileSync(siteConfig, 'export const owner = "Template User"\n')
+  const canonicalConfig = JSON.parse(readFileSync(siteConfig, 'utf8'))
+  canonicalConfig.site.title = 'Template User'
+  writeFileSync(siteConfig, `${JSON.stringify(canonicalConfig, null, 2)}\n`)
   writeSourceFile(destination, 'blog/src/content/posts/my-post.md', 'A public user article\n')
   git(destination, ['add', '--all'])
   git(destination, ['commit', '--quiet', '-m', 'personalize template'])
 
-  const updatedThemeFile = themeFiles.find(file => file.endsWith('.astro'))
+  const updatedThemeFile = 'src/pages/index.astro'
   const windowsCheckedOutFile = path.join(destination, 'blog', updatedThemeFile)
   git(destination, ['config', 'core.safecrlf', 'false'])
   writeFileSync(windowsCheckedOutFile, readFileSync(windowsCheckedOutFile, 'utf8').replace(/\n/g, '\r\n'))
   git(destination, ['add', '--all'])
   assert.equal(git(destination, ['status', '--porcelain']), '')
 
-  writeSourceFile(source, updatedThemeFile, 'Updated upstream theme component\n')
+  const updatedIndex = readFileSync(path.join(source, updatedThemeFile), 'utf8').replace(
+    '<LinkButton',
+    '<aside>New upstream section</aside>\n<LinkButton',
+  )
+  writeSourceFile(source, updatedThemeFile, updatedIndex)
   git(source, ['add', '--all'])
   git(source, ['commit', '--quiet', '-m', 'release v1.1.0'])
   const sourceCommit = git(source, ['rev-parse', 'HEAD'])
@@ -165,8 +262,13 @@ test('updates a generated template from a newer source while preserving user fil
     updateTemplateFromThemeSource({ destination, source, sourceRef: 'v1.1.0' }),
     true,
   )
-  assert.equal(readFileSync(path.join(destination, 'blog', updatedThemeFile), 'utf8'), 'Updated upstream theme component\n')
-  assert.equal(readFileSync(siteConfig, 'utf8'), 'export const owner = "Template User"\n')
+  const synchronizedIndex = readFileSync(path.join(destination, 'blog', updatedThemeFile), 'utf8')
+  assert.match(synchronizedIndex, /New upstream section/)
+  assert.match(synchronizedIndex, /\{blogHome\.title\}/)
+  assert.match(synchronizedIndex, /\{blogHome\.description\}/)
+  assert.match(synchronizedIndex, /href=\{blogHome\.readmeUrl\}/)
+  assert.equal(JSON.parse(readFileSync(siteConfig, 'utf8')).site.title, 'Template User')
+  assert.match(readFileSync(path.join(destination, 'blog/astro-paper.config.ts'), 'utf8'), /resolveBlogConfiguration/)
   assert.equal(readFileSync(article, 'utf8'), 'A public user article\n')
   assert.equal(readFileSync(path.join(source, 'package.json'), 'utf8'), '{"name":"astro-paper"}\n')
   assert.equal(git(source, ['status', '--porcelain']), '')

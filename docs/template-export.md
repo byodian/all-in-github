@@ -16,6 +16,7 @@ npm run template:export -- --destination ../astro-blog-template
 
 - 按 `scripts/template-theme-files.json` 中的逐文件清单复制主题配置、锁文件、页面、布局、组件、样式、工具、图标和指定主题图片；新增上游文件不会自动进入模板。
 - 不复制原个人文章、About 页面、个人图片、工作流、Issue 或 Git 历史；生成通用 About 页面和空文章目录。
+- 站点与主题设置统一保存在模板根目录的 `.blog/config.json`；AstroPaper 配置、部署域名、项目子路径和语言由此派生，主题更新不会覆盖它。
 - 保留当前项目及 AstroPaper 各自需要的许可证，并在新项目中记录上游来源与固定提交。
 - 生成 `.template/compatibility.json`，固定已验证的上游 release 标签和提交；更新器会跳过未登记的版本。
 - 本地集成测试通过显式传入合成主题仓库验证导出流程；正常命令不接受替代主题来源，且会校验 AstroPaper 固定提交。
@@ -33,7 +34,7 @@ npm run template:update -- --destination ../astro-blog-template --ref v6.1.0 --c
 
 上例是当前模板基线，重复运行会提示无需更新。手动尝试新版本时，附加 `--propose` 将候选主题源码和精确来源 pin 写入工作区；通过 Astro 检查后，再运行 `node scripts/update-blog-template.mjs --record-current` 将其登记为已验证版本。
 
-更新前必须保证目标模板工作区干净。主题文件若偏离上次导出的哈希，更新会中止并报告冲突；处理后重新运行。更新器保留现有配置、文章、模板设置及 Git 历史，只在工作区产生可审查的差异，不会推送或提交。
+更新前必须保证目标模板工作区干净。主题文件若偏离上次导出的哈希，更新会中止并报告冲突；处理后重新运行。更新器保留 `.blog/config.json`、衍生配置、文章、模板设置及 Git 历史，只在工作区产生可审查的差异，不会推送或提交。配置可通过 `node scripts/validate-blog-config.mjs` 校验。
 
 验证导出器：
 

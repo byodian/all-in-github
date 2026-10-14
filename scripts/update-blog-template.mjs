@@ -171,13 +171,81 @@ export function recordCurrentThemeRelease(destination) {
   return true
 }
 
-function normalizedThemeContents(contents, file) {
+function replaceExactlyOnce(contents, pattern, replacement, file, description) {
+  const globalPattern = new RegExp(pattern.source, `${pattern.flags}g`)
+  const matches = [...contents.matchAll(globalPattern)]
+  if (matches.length !== 1) {
+    throw new Error(`Cannot apply the AstroPaper configuration adapter to ${file}: expected one ${description} anchor.`)
+  }
+  return contents.replace(pattern, replacement)
+}
+
+function normalizeAstroConfiguration(contents) {
+  let normalized = contents.toString('utf8')
+  normalized = replaceExactlyOnce(
+    normalized,
+    /import config from (["'])\.\/astro-paper\.config\1;/,
+    'import config, { blogDeployment } from "./astro-paper.config";',
+    'astro.config.ts',
+    'configuration import',
+  )
+  normalized = replaceExactlyOnce(
+    normalized,
+    /^[ \t]*site: config\.site\.url,[ \t]*\r?$/m,
+    '  site: blogDeployment.site,\n  base: blogDeployment.base,',
+    'astro.config.ts',
+    'site setting',
+  )
+  return replaceExactlyOnce(
+    normalized,
+    /^[ \t]*locales: \["en"\],[ \t]*\r?\n[ \t]*defaultLocale: "en",[ \t]*\r?$/m,
+    '    locales: blogDeployment.locales,\n    defaultLocale: blogDeployment.defaultLocale,',
+    'astro.config.ts',
+    'default locale setting',
+  )
+}
+
+function normalizeHomePage(contents) {
+  let normalized = contents.toString('utf8')
+  normalized = replaceExactlyOnce(
+    normalized,
+    /import config from "@\/config";/,
+    'import config from "@/config";\nimport { blogHome } from "../../astro-paper.config";',
+    'src/pages/index.astro',
+    'home configuration import',
+  )
+  normalized = replaceExactlyOnce(
+    normalized,
+    /Mingalaba/,
+    '{blogHome.title}',
+    'src/pages/index.astro',
+    'home title',
+  )
+  normalized = replaceExactlyOnce(
+    normalized,
+    /AstroPaper is a minimal,[\s\S]*?configured\./,
+    '{blogHome.description}',
+    'src/pages/index.astro',
+    'home description',
+  )
+  return replaceExactlyOnce(
+    normalized,
+    /href="https:\/\/github\.com\/satnaing\/astro-paper#readme"/,
+    'href={blogHome.readmeUrl}',
+    'src/pages/index.astro',
+    'home information link',
+  )
+}
+
+export function normalizedThemeContents(contents, file) {
   if (file === 'package.json') {
     const packageJson = JSON.parse(contents.toString('utf8'))
     packageJson.name = 'public-blog'
     packageJson.private = true
     return Buffer.from(`${JSON.stringify(packageJson, null, 2)}\n`)
   }
+  if (file === 'astro.config.ts') return Buffer.from(normalizeAstroConfiguration(contents))
+  if (file === 'src/pages/index.astro') return Buffer.from(normalizeHomePage(contents))
   return contents
 }
 
@@ -244,11 +312,12 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef, 
     normalizedThemeContents(readFileSync(path.join(source, 'package.json')), 'package.json')
   }
 
+  const normalizedFiles = new Map(
+    selectedFiles.map(file => [file, normalizedThemeContents(readFileSync(path.join(source, file)), file)]),
+  )
   const unchanged = removedFiles.length === 0 &&
     selectedFiles.length === knownFiles.length &&
-    selectedFiles.every(file =>
-      sha256Contents(normalizedThemeContents(readFileSync(path.join(source, file)), file)) === metadata.files[file],
-    )
+    selectedFiles.every(file => sha256Contents(normalizedFiles.get(file)) === metadata.files[file])
   if (unchanged) {
     process.stdout.write(`No allowlisted theme files changed in ${sourceRef} (${sourceCommit}); no update is needed.\n`)
     return false
@@ -261,7 +330,7 @@ export function updateTemplateFromThemeSource({ destination, source, sourceRef, 
     const targetPath = path.join(templateRoot, 'blog', file)
     const targetDirectory = path.dirname(targetPath)
     mkdirSync(targetDirectory, { recursive: true })
-    writeFileSync(targetPath, normalizedThemeContents(readFileSync(path.join(source, file)), file))
+    writeFileSync(targetPath, normalizedFiles.get(file))
   }
 
   const updatedMetadata = createThemeSourceMetadata({
