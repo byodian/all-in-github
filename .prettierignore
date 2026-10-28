@@ -14,6 +14,7 @@
 !README.md
 !.vscode
 !/docs
+!/scripts
 
 # Existing imported articles retain their original formatting
 /src/content/blog
