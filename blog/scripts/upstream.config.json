@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/satnaing/astro-paper.git",
+  "sourceRef": "refs/heads/main",
+  "baseBranch": "dev",
+  "protectedPaths": [
+    "astro-paper.config.ts",
+    "src/content/blog",
+    "src/data/blog",
+    "src/data/posts",
+    "src/content/pages/about.md",
+    "public/favicon.svg",
+    "public/astropaper-og.jpg",
+    "src/assets/fonts",
+    "docs/fonts"
+  ]
+}
