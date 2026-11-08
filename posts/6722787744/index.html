@@ -1,0 +1,1565 @@
+<!DOCTYPE html><html dir="ltr" lang="en" class="overflow-y-scroll scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/all-in-github/favicon.svg"><link rel="canonical" href="https://byodian.github.io/all-in-github/posts/6722787744/"><meta name="generator" content="Astro v6.4.2"><!-- Font --><style>@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/2213c1e7fbe06cc7.woff") format("woff"), url("/all-in-github/_astro/fonts/b87f789471b4c602.ttf") format("truetype");font-display:swap;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/c487dbd9c215141e.woff") format("woff"), url("/all-in-github/_astro/fonts/bb0c016d60298234.ttf") format("truetype");font-display:swap;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/0976c79a1e97c08d.woff") format("woff"), url("/all-in-github/_astro/fonts/b3e69a4f03324880.ttf") format("truetype");font-display:swap;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/3c46d5a1dde2929d.woff") format("woff"), url("/all-in-github/_astro/fonts/0ff1dfaf1dff21d0.ttf") format("truetype");font-display:swap;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/e9aa617e80052f4b.woff") format("woff"), url("/all-in-github/_astro/fonts/d9a5ad8b8018e5de.ttf") format("truetype");font-display:swap;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/5056f1a50e5e7744.woff") format("woff"), url("/all-in-github/_astro/fonts/3e4dac0d0220e48a.ttf") format("truetype");font-display:swap;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/e734307f8c328338.woff") format("woff"), url("/all-in-github/_astro/fonts/ba3036786bf88603.ttf") format("truetype");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/dfa89044152f7da4.woff") format("woff"), url("/all-in-github/_astro/fonts/39aec4e7fc7cc077.ttf") format("truetype");font-display:swap;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/8bbd58b325585200.woff") format("woff"), url("/all-in-github/_astro/fonts/b33609507afd910d.ttf") format("truetype");font-display:swap;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/all-in-github/_astro/fonts/035035a9ddbd14aa.woff") format("woff"), url("/all-in-github/_astro/fonts/50fcf54bf575f53f.ttf") format("truetype");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-1a30c214885cb404","Google Sans Code-1a30c214885cb404 fallback: Courier New",monospace;}</style><!-- Primary meta --><title>从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 | All in GitHub</title><meta name="title" content="从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 | All in GitHub"><meta name="description" content="对照两套特斯拉出口代理（VPS 中转与 Cloudflare WARP），讲清 DNS 别名、TLS SNI、四层转发与策略路由，并附完整配置与排错。"><meta name="author" content="BAI YONGJIAN"><link rel="sitemap" href="/all-in-github/sitemap-index.xml"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="All in GitHub"><meta property="og:title" content="从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 | All in GitHub"><meta property="og:description" content="对照两套特斯拉出口代理（VPS 中转与 Cloudflare WARP），讲清 DNS 别名、TLS SNI、四层转发与策略路由，并附完整配置与排错。"><meta property="og:url" content="https://byodian.github.io/all-in-github/posts/6722787744/"><meta property="og:image" content="https://byodian.github.io/all-in-github/posts/6722787744/index.png"><!-- Twitter / X --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://byodian.github.io/all-in-github/posts/6722787744/"><meta property="twitter:title" content="从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 | All in GitHub"><meta property="twitter:description" content="对照两套特斯拉出口代理（VPS 中转与 Cloudflare WARP），讲清 DNS 别名、TLS SNI、四层转发与策略路由，并附完整配置与排错。"><meta property="twitter:image" content="https://byodian.github.io/all-in-github/posts/6722787744/index.png"><!-- RSS autodiscovery --><link rel="alternate" type="application/rss+xml" title="All in GitHub" href="https://byodian.github.io/all-in-github/rss.xml"><!-- Filled at runtime by theme.ts to match the current background colour --><meta name="theme-color" content=""><!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->  <meta property="og:type" content="article"> <meta property="article:published_time" content="2026-11-08T14:35:28.000Z"><meta property="article:modified_time" content="2026-11-08T14:35:28.000Z"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 | All in GitHub","image":"https://byodian.github.io/all-in-github/posts/6722787744/index.png","datePublished":"2026-11-08T14:35:28.000Z","dateModified":"2026-11-08T14:35:28.000Z","author":[{"@type":"Person","name":"BAI YONGJIAN","url":"https://byodian.github.io/"}]}</script> <!--
+      Inline FOUC-prevention script: sets data-theme on <html> before
+      the browser paints. Runs synchronously, no defer/async.
+    --><script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const root = document.firstElementChild;
+        root?.setAttribute("data-theme", theme);
+        root?.classList.toggle("dark", theme === "dark");
+        // Expose value so theme.ts can skip re-detection.
+        window.__theme = { value: theme };
+      })();
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/all-in-github/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CAqDO0tx.js"></script><link rel="stylesheet" href="/all-in-github/_astro/Footer.BdIq6dAG.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media(prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-36ssibgs-1"] { view-transition-name: \7F51\7EDC; }@layer astro { ::view-transition-old(\7F51\7EDC) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\7F51\7EDC) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\7F51\7EDC) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\7F51\7EDC) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: \4EE3\7406; }@layer astro { ::view-transition-old(\4EE3\7406) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(\4EE3\7406) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(\4EE3\7406) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(\4EE3\7406) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: docker; }@layer astro { ::view-transition-old(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(docker) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-4"] { view-transition-name: tls; }@layer astro { ::view-transition-old(tls) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(tls) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(tls) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(tls) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-4"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-4"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-5"] { view-transition-name: teslamate; }@layer astro { ::view-transition-old(teslamate) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(teslamate) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(teslamate) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(teslamate) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-5"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-5"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-6"] { view-transition-name: ai-generated; }@layer astro { ::view-transition-old(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ai-generated) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-6"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-6"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col">    <a id="skip-to-content" href="#main-content" class="bg-background text-accent absolute inset-s-16 -top-full z-50 px-3 py-2 backdrop-blur-lg transition-all focus:top-4"> Skip to content </a> <header class="app-layout flex flex-col items-center justify-between sm:flex-row"> <div class="border-border bg-background relative flex w-full items-baseline justify-between border-b py-4 sm:items-center sm:py-6"> <a href="/all-in-github/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"> All in GitHub </a> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="menu-items" data-label-open="Open menu" data-label-close="Close menu"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden" viewBox="0 0 24 24" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M18 6 6 18M6 6l12 12" /></svg> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" viewBox="0 0 24 24" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 6h16M7 12h13M10 18h10" /></svg> </button> <ul id="menu-items" class="[&>li>a]:hover:text-accent mt-4 hidden w-44 grid-cols-2 place-content-center gap-2 sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:[&>li]:h-8 [&>li>a]:block [&>li>a]:px-4 [&>li>a]:py-3 [&>li>a]:text-center [&>li>a]:font-medium sm:[&>li>a]:px-2 sm:[&>li>a]:py-1"> <li class="col-span-2"> <a href="/all-in-github/posts/" class="active-nav"> Posts </a> </li> <li class="col-span-2"> <a href="/all-in-github/tags/"> Tags </a> </li> <li class="col-span-2"> <a href="/all-in-github/about/"> About </a> </li> <li class="col-span-2"> <a href="/all-in-github/archives/" title="Archives" aria-label="Archives" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex size-full justify-center p-3 sm:relative sm:size-8 sm:p-0">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden sm:absolute sm:top-1/2 sm:left-1/2 sm:block sm:size-6 sm:-translate-x-1/2 sm:-translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4" /></svg> <span class="sm:sr-only">Archives</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/all-in-github/search/" title="Search" aria-label="Search" class="group inline-flex items-center gap-1 hover:text-accent focus-outline relative size-8">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6" /></svg> <span class="sr-only">Search</span>  </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline hover:[&>svg]:stroke-accent relative size-12 p-4 sm:size-8" title="Toggle theme" aria-label="auto" aria-live="polite"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z" /></svg> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656M6.343 17.657l-1.414 1.414M6.343 6.343 4.929 4.929M17.657 6.343l1.414-1.414M17.657 17.657l1.414 1.414M4 12H2M12 4V2M20 12h2M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </header> <script type="module">function c(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");if(!e||!t||!n||!o)return;const r=e.dataset.labelOpen??"Open menu",i=e.dataset.labelClose??"Close menu";e.addEventListener("click",()=>{const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",s?"false":"true"),e.setAttribute("aria-label",s?r:i),t.classList.toggle("hidden"),t.classList.toggle("grid"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}function a(){const e=document.getElementById("skip-to-content");e&&e.addEventListener("click",t=>{if(t.defaultPrevented||t.metaKey||t.ctrlKey||t.shiftKey||t.button!==0)return;t.preventDefault();const n=document.getElementById("main-content");n&&(n.setAttribute("tabindex","-1"),n.addEventListener("blur",()=>n.removeAttribute("tabindex"),{once:!0}),n.focus(),n.scrollIntoView({behavior:"smooth"}))})}c();document.addEventListener("astro:after-swap",c);a();document.addEventListener("astro:after-swap",a);</script> <div class="app-layout flex items-center justify-start"><a id="back-button" href="/all-in-github/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 6-6 6 6 6" /></svg><span>Go back</span> </a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="app-layout" data-pagefind-body> <h1 style="view-transition-name:p-6722787744" class="text-accent inline-block text-2xl font-bold sm:text-3xl"> 从两台 VPS 到 WARP：用 TeslaMate 学懂代理、DNS、TLS 与 Docker 网络 </h1> <div class="my-2 flex items-center gap-2"> <div class="text-muted-foreground flex items-center gap-x-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 min-w-5.5" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005" /></svg>  <time class="text-sm sm:text-base" datetime="2026-11-08T14:35:28.000Z"> 8 Nov, 2026 </time> </div> <span aria-hidden="true" class="text-muted-foreground max-sm:hidden">
+|
+</span> <a href="https://github.com/byodian/all-in-github/edit/main/blog/src/content/blog/2026-11-08_22:35:28_6722787744.md" target="_blank" rel="noopener noreferrer" class="hover:text-accent text-muted-foreground flex justify-baseline gap-1.5 max-sm:hidden"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" /></svg><span>Edit page</span></a> </div> <article id="article" class="mt-8 w-full app-prose max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"> <blockquote><p><strong>AI 生成内容（AI-generated content）</strong>：本文由 AI 生成。</p></blockquote>
+<p>两套方案做的是同一件事：让特斯拉看到另一个公网出口 IP，而不是本机 VPS 的 IP。TeslaMate 到特斯拉的 HTTPS 仍然端到端加密，nginx 不负责登录，也不解密 token。本文依据 2026 年 11 月 8 日左右（北京时间，Asia/Shanghai）的只读核查，完整展示实际读到的 Compose、nginx 和 systemd 配置的脱敏版，不是通用教程模板。</p>
+<div class="callout" data-callout="note" data-collapsible="false"><div class="callout-title"><div class="callout-title-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z"></path></svg></div><div class="callout-title-text">隐私说明</div></div><div class="callout-content"><p>全文真实公网地址已统一替换为 <code>[VPS2_PUBLIC_IP]</code>、<code>[VPS1_PUBLIC_IP]</code>、<code>[WARP_EGRESS_IP]</code> 等占位符。仅保留教学需要的 Docker／私网／回环地址，以及 <code>1.1.1.1</code>、<code>1.0.0.1</code>、<code>8.8.8.8</code> 等公共 DNS。宿主绝对路径写成 <code>&#x3C;VPS2>/...</code>、<code>&#x3C;VPS1>/...</code> 形式。配置中的方括号占位符不是可直接执行的语法，使用前需在自己环境中填入对应地址。</p></div></div>
+<h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#%E5%85%88%E7%9C%8B%E7%BB%93%E8%AE%BA%E4%B8%8E%E5%AE%9E%E6%B5%8B">先看结论与实测</a></li>
+<li><a href="#%E7%90%86%E8%A7%A3%E8%BF%99%E5%A5%97%E7%B3%BB%E7%BB%9F%E9%9C%80%E8%A6%81%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86">理解这套系统需要的网络知识</a>
+<ul>
+<li><a href="#1-ip%E7%AB%AF%E5%8F%A3%E4%B8%8E-dns%E5%9C%B0%E5%9D%80%E5%92%8C%E6%9C%8D%E5%8A%A1%E4%B8%8D%E6%98%AF%E4%B8%80%E5%9B%9E%E4%BA%8B">1. IP、端口与 DNS：地址和服务不是一回事</a></li>
+<li><a href="#2-tcptlssni%E4%B8%8D%E8%A7%A3%E5%AF%86%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%83%BD%E6%8C%89%E5%9F%9F%E5%90%8D%E8%BD%AC%E5%8F%91">2. TCP、TLS、SNI：不解密，为什么还能按域名转发？</a></li>
+<li><a href="#3-%E5%9B%9B%E5%B1%82%E4%BB%A3%E7%90%86%E4%B8%83%E5%B1%82%E4%BB%A3%E7%90%86%E4%B8%8E-socks-%E7%9A%84%E5%8C%BA%E5%88%AB">3. 四层代理、七层代理与 SOCKS 的区别</a></li>
+<li><a href="#4-docker-bridge%E7%BD%91%E7%BB%9C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%8E-nat">4. Docker bridge、网络命名空间与 NAT</a></li>
+<li><a href="#5-%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5%E8%B7%AF%E7%94%B1%E4%B8%8E-iptables">5. 路由、策略路由与 iptables</a></li>
+<li><a href="#6-warpwireguard-%E4%B8%8E-masque">6. WARP、WireGuard 与 MASQUE</a></li>
+<li><a href="#7-closed403400404%E4%B8%8D%E5%90%8C%E5%B1%82%E7%9A%84%E9%94%99%E8%AF%AF%E4%B8%8D%E8%A6%81%E6%B7%B7%E7%9D%80%E7%9C%8B">7. closed、403、400、404：不同层的错误不要混着看</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84-avps2--vps1--tesla">架构 A：VPS2 → VPS1 → Tesla</a></li>
+<li><a href="#%E6%9E%B6%E6%9E%84-a-%E7%9A%84%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%A7%A3%E9%87%8A">架构 A 的完整配置与解释</a>
+<ul>
+<li><a href="#a1--%E6%97%A7-vps2-composeyaml">A1 · 旧 VPS2 compose.yaml</a></li>
+<li><a href="#a2--%E6%97%A7-vps2-nginxconf">A2 · 旧 VPS2 nginx.conf</a></li>
+<li><a href="#a3--vps1-composeyaml">A3 · VPS1 compose.yaml</a></li>
+<li><a href="#a4--vps1-nginxconf">A4 · VPS1 nginx.conf</a></li>
+<li><a href="#a5--vps1-%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%8D%E5%8A%A1%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E5%85%AC%E7%BD%91%E5%9C%B0%E5%9D%80%E5%B7%B2%E8%84%B1%E6%95%8F">A5 · VPS1 防火墙服务完整配置（公网地址已脱敏）</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84-bvps2--warp--tesla">架构 B：VPS2 → WARP → Tesla</a>
+<ul>
+<li><a href="#%E5%AE%9E%E9%99%85%E8%B7%AF%E7%94%B1main-%E8%A1%A8%E4%B8%8D%E5%8F%98%E6%B5%81%E9%87%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E6%98%AF%E8%B5%B0-warp">实际路由：main 表不变，流量为什么还是走 WARP？</a></li>
+<li><a href="#%E5%87%BA%E5%8F%A3%E9%AA%8C%E8%AF%81ipv4ipv6-%E4%B8%8D%E8%A6%81%E6%B7%B7%E7%9C%8B">出口验证：IPv4、IPv6 不要混看</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9E%B6%E6%9E%84-b-%E7%9A%84%E5%AE%8C%E6%95%B4%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%A7%A3%E9%87%8A">架构 B 的完整配置与解释</a>
+<ul>
+<li><a href="#b1--%E5%BD%93%E5%89%8D-composeyaml">B1 · 当前 compose.yaml</a></li>
+<li><a href="#b2--%E5%BD%93%E5%89%8D-nginxconf">B2 · 当前 nginx.conf</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%8F%96%E8%88%8D%E4%B8%8E%E5%AE%89%E5%85%A8%E8%BE%B9%E7%95%8C">两种方案的取舍与安全边界</a></li>
+<li><a href="#%E6%8C%89%E5%B1%82%E6%8E%92%E9%94%99%E5%91%BD%E4%BB%A4%E4%B8%8E%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95">按层排错：命令与判断方法</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E5%B1%82%E5%AE%B9%E5%99%A8%E4%B8%8E-dns">第一层：容器与 DNS</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%E7%AB%AF%E5%8F%A3%E4%B8%8E%E8%B7%AF%E7%94%B1">第二层：端口与路由</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E5%B1%82warp-%E5%87%BA%E5%8F%A3%E4%B8%8E-tls">第三层：WARP 出口与 TLS</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E5%B1%82%E6%97%A5%E5%BF%97%E4%B8%8E-http-%E7%BB%93%E6%9E%9C">第四层：日志与 HTTP 结果</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9E%E6%BB%9A%E6%81%A2%E5%A4%8D%E9%85%8D%E7%BD%AE%E4%B8%8D%E7%AD%89%E4%BA%8E%E6%81%A2%E5%A4%8D%E5%8F%AF%E7%94%A8">回滚：恢复配置不等于恢复可用</a></li>
+<li><a href="#%E8%B5%84%E6%96%99%E6%9D%A5%E6%BA%90%E4%B8%8E%E5%AD%A6%E4%B9%A0%E9%A1%BA%E5%BA%8F">资料来源与学习顺序</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="先看结论与实测">先看结论与实测</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>对象／测试</th><th>本次结果</th></tr></thead><tbody><tr><td>VPS2 公网 IP</td><td><code>[VPS2_PUBLIC_IP]</code></td></tr><tr><td>VPS1 公网 IP</td><td><code>[VPS1_PUBLIC_IP]</code></td></tr><tr><td>旧 VPS1 中转</td><td>容器已停止，18443 无监听；防火墙服务仍 active</td></tr><tr><td>当前 VPS2 中转</td><td>warp、relay 均运行；warp healthy</td></tr><tr><td>VPS2 直连 <code>auth.tesla.cn /</code></td><td>403；TLS 验证通过</td></tr><tr><td>经当前 nginx + WARP 访问同一路径</td><td>302；TLS 验证通过</td></tr><tr><td>VPS2 直连 <code>auth.tesla.com /</code></td><td>403</td></tr><tr><td>经当前 nginx + WARP 访问同一路径</td><td>200；TLS 验证通过</td></tr><tr><td>经 WARP 访问 <code>.cn</code> 的 <code>/oauth2/v3/authorize</code>，不带参数</td><td>400；TLS 验证通过</td></tr><tr><td>WARP IPv4 出口</td><td><code>[WARP_EGRESS_IP]</code>；<code>warp=on</code></td></tr><tr><td>本次是否验证账号登录</td><td>没有；未使用用户 token</td></tr></tbody></table>
+<p>此前 VPS1 出口能正常工作，所以最初用它中转；这不是对它未来永不被拦的保证。403 是服务端或其前置防护拒绝请求，单看状态码不能证明具体风控规则。本次同机、同路径、不同出口的对照支持“出口路径影响结果”，但没有揭示特斯拉内部规则。</p>
+<p>先纠正两个容易混淆的说法：</p>
+<ol>
+<li>WARP 不是“永远等于 WireGuard”。当前这台容器的实际设置是 <strong>MASQUE</strong>。</li>
+<li>现在四个域名的别名挂在 warp 上，<strong>停 relay 不会自动切回直连</strong>，而会让别名指向一个没有 nginx 接听的地址。</li>
+</ol>
+<h2 id="理解这套系统需要的网络知识">理解这套系统需要的网络知识</h2>
+<h3 id="1-ip端口与-dns地址和服务不是一回事">1. IP、端口与 DNS：地址和服务不是一回事</h3>
+<p>IP 用来找到网络接口，TCP 端口用来找到该接口上接听的程序。<code>[VPS1_PUBLIC_IP]:18443</code> 是 VPS1 的 nginx 入口，特斯拉真正的 HTTPS 服务一般在 443。把入口改成 18443，不会把加密变成明文，也不会要求 TeslaMate 使用 18443：这个端口只存在于两台 VPS 之间的一跳。</p>
+<p>DNS 把域名转换成 IP。一般访问 <code>auth.tesla.cn</code> 会查到特斯拉的公网地址；这里 TeslaMate 所在的 Docker 网络为四个域名设置了本地网络别名，Docker 内置 DNS 因而返回中转地址。它只改变这个 Docker 网络内的解析，不改公网 DNS，也不是修改特斯拉域名所有权。</p>
+<p>TeslaMate 的 <code>/etc/resolv.conf</code> 实际指向 <code>127.0.0.11</code>，这是 Docker 在自定义网络提供的内置 DNS。四个域名本次从 TeslaMate 内查询均返回 <code>172.20.0.9</code>。应用仍访问原来的 HTTPS 域名，没有改成代理 IP，也不需要理解 SOCKS。</p>
+<p>有两次不同目的的解析：TeslaMate 查到“本地中转”，nginx 查到“真正的 Tesla”。所以 nginx 显式使用公网 DNS，不能再次用同一个网络别名解析目标，否则可能把请求转回自己，形成循环。当前 warp／relay 的系统 <code>resolv.conf</code> 已被 WARP 改成 <code>127.0.2.2</code>、<code>127.0.2.3</code>；nginx 的 <code>resolver</code> 指令仍明确指定 <code>1.1.1.1</code>、<code>1.0.0.1</code>，不依赖该系统文件。</p>
+<h3 id="2-tcptlssni不解密为什么还能按域名转发">2. TCP、TLS、SNI：不解密，为什么还能按域名转发？</h3>
+<p>TCP 先通过握手建立可靠字节流。TLS 再在这条字节流上握手：客户端发 ClientHello，通常用 <strong>SNI</strong> 告诉服务器“我要哪个域名”；服务器提供证书，客户端验证证书链及域名，然后协商加密密钥，传输加密的 HTTP 内容。</p>
+<p><code>ssl_preread</code> 只预读 TLS ClientHello，取出 SNI，<strong>不终止 TLS</strong>。它像看包裹外面的收件地址，不拆包。nginx 的 <code>map</code> 将四个许可域名映射到真实目标；遇到不在表里的域名就不给出可用目标。当前方案依赖传统可读 SNI，不承诺适用于隐藏目标名称的 ECH。</p>
+<p>“TLS 端到端”不等于“只有一条 TCP 连接”：</p>
+<ul>
+<li>架构 A：TeslaMate→VPS2 nginx、VPS2 nginx→VPS1 nginx、VPS1 nginx→Tesla 三段 TCP，代理复制字节；TLS 握手和加密会话的两端仍是 TeslaMate 与 Tesla。</li>
+<li>架构 B：TeslaMate→nginx、nginx→Tesla 两段 TCP，后者的网络包再装进 WARP 隧道。</li>
+</ul>
+<p>这些 nginx 配置没有 <code>listen ... ssl</code>，没有 <code>ssl_certificate</code>，也没有特斯拉私钥。DNS 指向代理不等于信任代理证书：TeslaMate 仍按原始域名验证特斯拉证书。只要不关闭校验、不植入额外受信任 CA，普通中转无法直接冒充特斯拉读取 token。本次 curl 未使用 <code>-k</code>，<code>ssl_verify_result=0</code>，说明测试请求的证书验证成功。</p>
+<h3 id="3-四层代理七层代理与-socks-的区别">3. 四层代理、七层代理与 SOCKS 的区别</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方式</th><th>在这里意味着什么</th></tr></thead><tbody><tr><td>四层 TCP 代理</td><td>nginx stream 转发字节；SNI 预读辅助选目标，不读取 HTTP 路径、Cookie 或 token</td></tr><tr><td>七层 HTTP 代理／反向代理</td><td>理解 HTTP 方法、路径、请求头；若要看 HTTPS 内容，通常需终止 TLS</td></tr><tr><td>SOCKS5</td><td>客户端先按 SOCKS 协议告诉代理目标地址；nginx stream 的普通 <code>proxy_pass</code> 不会自动发这种握手</td></tr><tr><td>共享 WARP 网络</td><td>nginx 像普通程序一样连目标；路由层决定把包送进隧道，无需 nginx 支持 SOCKS</td></tr></tbody></table>
+<p>当前 GOST 的 SOCKS 仅绑定 <code>127.0.0.1:1080</code>，实际 Tesla 链路不通过它。nginx 没有填 <code>socks5://</code> 上游，而是连真正的 Tesla:443，由共享网络命名空间里的 WARP 接管出站路由。</p>
+<h3 id="4-docker-bridge网络命名空间与-nat">4. Docker bridge、网络命名空间与 NAT</h3>
+<p>Linux 网络命名空间可以理解为一套独立的网卡、IP、路由、端口和防火墙视图。普通 bridge 容器各有自己的网络栈；host 模式直接使用宿主机网络栈；<code>network_mode: service:warp</code> 则让 relay 与 warp 共用同一套网络栈。</p>
+<p><code>traefik-teslamate_default</code> 虽然名字带 default，但它是 Compose 创建的自定义 bridge 网络，不是 Docker 的内置默认 bridge。本次网段为 <code>172.20.0.0/16</code>，网关 <code>172.20.0.1</code>；TeslaMate 为 <code>172.20.0.5</code>，warp 为 <code>172.20.0.9</code>。地址是快照，重建后可能变化，配置应依赖别名而不是写死这些地址。</p>
+<p>共享网络意味着 nginx 的 443 就监听在 warp 的 <code>172.20.0.9</code> 上，relay 在 <code>docker inspect</code> 里没有自己的 Networks 是正常的。它们共享网络，不代表共享全部文件系统或进程命名空间。</p>
+<p>NAT 是改写地址的机制。旧方案中，VPS2 bridge 容器访问公网通常经 Docker 的 SNAT/MASQUERADE，VPS1 看到来源为 VPS2 公网 IP；随后 VPS1 nginx 新建连接，特斯拉看到 VPS1 公网 IP。这并不是把原来的 TCP 包从 VPS2 原封不动路由到 Tesla，而是代理另建连接。</p>
+<p>当前方案的隧道外层仍要经 VPS2 宿主机上网，但特斯拉面对的是 Cloudflare 的出口。仅把 DNS 换成 <code>1.1.1.1</code> 不会更换出口 IP；只有实际的数据转发路径改变才有用。</p>
+<h3 id="5-路由策略路由与-iptables">5. 路由、策略路由与 iptables</h3>
+<p>普通路由按目的 IP 找下一跳。策略路由则先由 <code>ip rule</code> 决定查哪张表，再在那张表里找路。只看 <code>ip route</code> 通常只看到 main 表，不能因此断言 WARP 没生效。</p>
+<p>iptables 是 Linux 的包过滤／地址转换规则接口。filter 表的 INPUT 处理发给本机的包，FORWARD 处理经过本机转发的包，OUTPUT 处理本机发出的包；nat 表可做 DNAT、SNAT。链内顺序很重要，先匹配到的终止动作决定去留。<code>ACCEPT</code> 放行，<code>DROP</code> 静默丢弃，<code>REJECT</code> 则主动拒绝。</p>
+<p>VPS1 用 host 网络，所以 18443 是宿主机本地监听，限制它用 INPUT 合理。如果是 Docker 发布端口，数据路径可能经过 DNAT 和 FORWARD，不能照搬“只在 INPUT 挡一下就行”的结论。IPv4 的 iptables 与 IPv6 的 ip6tables 也必须分别考虑。</p>
+<h3 id="6-warpwireguard-与-masque">6. WARP、WireGuard 与 MASQUE</h3>
+<p>WARP 是 Cloudflare 的客户端与网络服务，用加密隧道把流量送到 Cloudflare，再访问目标网站。WireGuard 是一种 VPN 协议；WARP 历史上使用过它，但 WARP 服务并不只支持这一种协议。</p>
+<p>本机 <code>warp-cli settings</code> 的实测是 <code>WARP tunnel protocol: MASQUE</code>，<code>HTTP Version: MASQUE (HTTP/3 with HTTP/2 fallback)</code>。因此不能把这套部署描述成“已经搭了一条 WireGuard 隧道”，更不能虚构 <code>wg0</code>、WireGuard 私钥或 peer 配置。实际可见的接口叫 <code>CloudflareWARP</code>，隧道由官方 WARP 客户端维护。</p>
+<p>Cloudflare 作为隧道出口能看到目标 IP、流量规模和部分连接元数据；传统 SNI 通常也可见。但这里没有开启 TLS 解密，应用层 HTTPS 内容仍加密。隧道加密和 HTTPS 是两层不同的保护，不能把“用了 VPN”理解成“所有参与方都看不到任何信息”。</p>
+<h3 id="7-closed403400404不同层的错误不要混着看">7. closed、403、400、404：不同层的错误不要混着看</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>现象</th><th>可以说明什么／不能说明什么</th></tr></thead><tbody><tr><td>closed／connection refused／timeout</td><td>连接层失败；可能是中转停了、端口没监听、网络丢包等，不是 HTTP 状态码</td></tr><tr><td>403 Forbidden</td><td>服务端或前置防护拒绝请求；不自动等于 token 失效，也不能单凭它确定 IP 被哪条规则拦</td></tr><tr><td>400 Bad Request</td><td>请求格式／参数不合要求；裸 OAuth authorize 缺少参数就是一种情形，不代表已登录</td></tr><tr><td>404 Not Found</td><td>当前路径或资源不存在；可证明收到了某个 HTTP 服务的响应，不能证明账号权限正常</td></tr><tr><td>302 Found</td><td>重定向，根路径常用于引导到登录流程；不等于登录成功</td></tr><tr><td>200 OK</td><td>这一次请求成功；访问登录页 200 不等于 token 刷新或车辆 API 成功</td></tr></tbody></table>
+<h2 id="架构-avps2--vps1--tesla">架构 A：VPS2 → VPS1 → Tesla</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>TeslaMate (VPS2)</span></span>
+<span class="line"><span>  │  Docker DNS → 本地 relay:443</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>VPS2 nginx relay :443</span></span>
+<span class="line"><span>  │  TCP 段 2 · 公网 · TLS 字节仍加密</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>VPS1 nginx SNI proxy :18443</span></span>
+<span class="line"><span>  │  限制来源 + SNI 白名单</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>Tesla HTTPS :443</span></span>
+<span class="line"><span>  （看到 VPS1 出口 [VPS1_PUBLIC_IP]）</span></span></code></pre>
+<p>请求过程：</p>
+<ol>
+<li>TeslaMate 请求 <code>https://auth.tesla.cn</code>；Docker DNS 返回旧 relay 在 tm 网络中的容器地址。旧地址没有在这次快照中复原，不在文中虚构。</li>
+<li>TeslaMate 连 relay:443，发送带 <code>auth.tesla.cn</code> SNI 的 TLS ClientHello。VPS2 relay 不解析 SNI，只固定连 VPS1:18443 并转发字节。</li>
+<li>VPS2 出站经宿主机 NAT，VPS1 INPUT 防火墙只允许 <code>[VPS2_PUBLIC_IP]</code> 访问 18443；nginx 再做一次来源检查。</li>
+<li>VPS1 <code>ssl_preread</code> 读 SNI；在四个域名的白名单里，就通过公网 DNS 找真实 Tesla IP，再连其 443。</li>
+<li>TLS 握手由 TeslaMate 与 Tesla 完成。登录后的加密 HTTP 请求、车辆 API 或长连接数据沿相同路径传输，响应按原连接返回。</li>
+</ol>
+<p>旧 VPS2 relay 本身没有域名白名单，真正的 SNI 白名单与公网来源限制都在 VPS1。VPS1 目前已停止监听，但配置和 firewall 服务还在，不能把“服务 stopped”和“防火墙规则删掉了”混为一谈。</p>
+<h2 id="架构-a-的完整配置与解释">架构 A 的完整配置与解释</h2>
+<p>旧 VPS2 配置来自 <code>&#x3C;VPS2>/root/backups/&#x3C;tesla-egress-warp-backup>/tesla-egress/</code>。这是迁移前备份，不是当前生效配置。下面代码块保留实际文件结构与参数，仅将真实公网地址统一替换为占位符。</p>
+<h3 id="a1--旧-vps2-composeyaml">A1 · 旧 VPS2 compose.yaml</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> tesla-egress</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">services</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  relay</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    image</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> nginx:stable-alpine</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    restart</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> unless-stopped</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    read_only</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#FF5874"> true</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    tmpfs</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/var/cache/nginx</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /var/run</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /tmp</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    volumes</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">./nginx.conf:/etc/nginx/nginx.conf:ro</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    networks</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      tm</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">        aliases</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">auth.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">auth.tesla.com</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">owner-api.vn.cloud.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">streaming.vn.cloud.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">networks</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  tm</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    external</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#FF5874"> true</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> traefik-teslamate_default</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>name / services / relay</td><td>项目名、服务列表与服务名；通常形成 <code>tesla-egress-relay-1</code> 容器名</td></tr><tr><td>image</td><td>nginx Alpine 镜像；<code>stable-alpine</code> 是可变标签，不是固定内容摘要</td></tr><tr><td>restart: unless-stopped</td><td>异常或宿主重启后可自动拉起，但手动停止的容器通常保持停止</td></tr><tr><td>read_only</td><td>容器根文件系统只读，不代表挂载的所有数据都只读</td></tr><tr><td>tmpfs</td><td>给 nginx 缓存、运行文件及临时目录提供可写内存文件系统</td></tr><tr><td>volumes … :ro</td><td>只读挂载宿主机 nginx.conf</td></tr><tr><td>networks / tm / aliases</td><td>将四个 Tesla 域名设为该服务在 tm 网络中的别名</td></tr><tr><td>external / name</td><td>复用已经存在的 TeslaMate 网络，不由本项目新建该网络</td></tr><tr><td>没有 ports</td><td>不发布到宿主公网端口；同网络其他容器仍可访问 443</td></tr></tbody></table>
+<h3 id="a2--旧-vps2-nginxconf">A2 · 旧 VPS2 nginx.conf</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="nginx"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">worker_processes </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">1</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">events</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> worker_connections </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">256</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">; }</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">stream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  log_format </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">basic </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'$</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">time_local</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">remote_addr</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">status</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">bytes_sent</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">session_time</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  access_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stdout basic;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  error_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stderr </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">warn</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  server</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    listen </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">443</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_connect_timeout </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">10s</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_pass </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[VPS1_PUBLIC_IP]:18443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>worker_processes / events</td><td>一个 worker，每个 worker 的连接数上限为 256；代理也要用上游连接，不能简单理解为 256 个用户</td></tr><tr><td>stream</td><td>使用 TCP／UDP 流模块；此处 listen 未加 udp，所以是 TCP</td></tr><tr><td>log_format / access_log / error_log</td><td>定义流会话日志并输出到容器标准输出／错误；warn 是错误日志级别</td></tr><tr><td>listen 443</td><td>在容器网络里接 TCP 443，不是 VPS2 宿主公网开放 443</td></tr><tr><td>proxy_connect_timeout 10s</td><td>建立到 VPS1 的上游连接最多等 10 秒</td></tr><tr><td>proxy_pass 固定 IP:端口</td><td>原样转发字节；不查 Tesla DNS，不处理 TLS，不添加 HTTP 头</td></tr></tbody></table>
+<h3 id="a3--vps1-composeyaml">A3 · VPS1 compose.yaml</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> tesla-egress</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">services</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  sni-proxy</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    image</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> nginx:stable-alpine</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    restart</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> unless-stopped</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    network_mode</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> host</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    read_only</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#FF5874"> true</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    tmpfs</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/var/cache/nginx</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /var/run</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /tmp</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    volumes</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">./nginx.conf:/etc/nginx/nginx.conf:ro</span></span></code></pre>
+<p>文件位置为 <code>&#x3C;VPS1>/data/traefik/applications/tesla-egress/compose.yaml</code>。与 A1 相同的只读、临时目录及日志机制不变；关键差异是 <code>network_mode: host</code>：nginx 直接监听 VPS1 宿主机的 18443，不需要 ports 映射，隔离程度也低于独立 bridge 网络。</p>
+<h3 id="a4--vps1-nginxconf">A4 · VPS1 nginx.conf</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="nginx"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">worker_processes </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">1</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">events</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> worker_connections </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">256</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">; }</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">stream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  resolver </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">1.1.1.1</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 8.8.8.8</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> valid=300s ipv6=off;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  map</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> $</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D7DBE0">ssl_preread_server_name</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> $</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478">tesla_upstream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    auth.tesla.cn                 auth.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    auth.tesla.com                auth.tesla.com:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    owner-api.vn.cloud.tesla.cn   owner-api.vn.cloud.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    streaming.vn.cloud.tesla.cn   streaming.vn.cloud.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">    default</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">                       127.0.0.1:1;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  log_format </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">basic </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'$</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">time_local</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">remote_addr</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">ssl_preread_server_name</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">status</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">bytes_sent</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">session_time</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  access_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stdout basic;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  error_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stderr </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">warn</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  server</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    listen </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">18443</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    allow </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[VPS2_PUBLIC_IP];</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    deny </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">all</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    ssl_preread </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">on</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_connect_timeout </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">10s</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_pass </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">$</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478">tesla_upstream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>resolver … valid=300s ipv6=off</td><td>变量上游解析使用公共 DNS，覆盖缓存有效期为 300 秒，不查询上游 IPv6 地址</td></tr><tr><td>map $ssl_preread_server_name</td><td>从 ClientHello 的 SNI 生成上游地址变量</td></tr><tr><td>四条域名映射</td><td>只允许四个准确列出的名称，对应 Tesla 登录、车主 API 与流式服务；不是 <code>*.tesla.*</code> 全放行</td></tr><tr><td>default 127.0.0.1:1</td><td>未匹配名称指向本地通常无人监听的 1 端口，不能访问任意公网目标；这是不可用目标兜底，不是 HTTP 拒绝页面</td></tr><tr><td>日志中的 SNI</td><td>记录目标域名，不记录 HTTPS 请求体或 token</td></tr><tr><td>listen 18443</td><td>宿主机 TCP 入口，由 host 模式决定其网络位置</td></tr><tr><td>allow …; deny all</td><td>按来源 IP 放行 VPS2，拒绝其余来源；这是网络来源限制，不是账号认证</td></tr><tr><td>ssl_preread on</td><td>读取 TLS 元数据而不终止 TLS</td></tr><tr><td>proxy_connect_timeout / proxy_pass</td><td>限时建立真实上游连接，再转发 TLS 字节流</td></tr></tbody></table>
+<h3 id="a5--vps1-防火墙服务完整配置公网地址已脱敏">A5 · VPS1 防火墙服务完整配置（公网地址已脱敏）</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="ini"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># &#x3C;VPS1>/etc/systemd/system/tesla-egress-fw.service</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[Unit]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">Description</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">Allow only VPS2 to tcp/18443 (tesla egress)</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">After</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">network-online.target</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[Service]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">Type</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">oneshot</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">RemainAfterExit</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">yes</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">ExecStart</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/bin/sh -c </span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">iptables -C INPUT -p tcp --dport 18443 -s [VPS2_PUBLIC_IP] -j ACCEPT 2>/dev/null || iptables -I INPUT 1 -p tcp --dport 18443 -s [VPS2_PUBLIC_IP] -j ACCEPT; iptables -C INPUT -p tcp --dport 18443 -j DROP 2>/dev/null || iptables -I INPUT 2 -p tcp --dport 18443 -j DROP; ip6tables -C INPUT -p tcp --dport 18443 -j DROP 2>/dev/null || ip6tables -I INPUT 1 -p tcp --dport 18443 -j DROP</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">ExecStop</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/bin/sh -c </span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">iptables -D INPUT -p tcp --dport 18443 -s [VPS2_PUBLIC_IP] -j ACCEPT; iptables -D INPUT -p tcp --dport 18443 -j DROP; ip6tables -D INPUT -p tcp --dport 18443 -j DROP; true</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">[Install]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">WantedBy</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">=</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">multi-user.target</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>Unit / Description / After</td><td>说明用途，并在 <code>network-online.target</code> 之后排序启动；After 本身不等于主动拉起该 target</td></tr><tr><td>Type=oneshot</td><td>执行一次设置规则，不是后台常驻进程</td></tr><tr><td>RemainAfterExit=yes</td><td>命令退出后仍标记 active，所以 active 不等于有代理在监听</td></tr><tr><td>iptables -C …</td><td></td></tr><tr><td>INPUT 第 1 条 ACCEPT</td><td>允许 VPS2 的 IPv4 来源访问 TCP 18443</td></tr><tr><td>INPUT 第 2 条 DROP</td><td>丢弃其他 IPv4 来源到 TCP 18443 的流量</td></tr><tr><td>ip6tables DROP</td><td>IPv6 不设例外，拒绝 TCP 18443</td></tr><tr><td>ExecStop 的 -D / true</td><td>停止此单元会删除上述防火墙规则；true 让末尾退出码成功，不代表之前每项删除都成功</td></tr><tr><td>WantedBy=multi-user.target</td><td>供 <code>systemctl enable</code> 建立开机启动依赖；本次没有执行 enable／stop／start</td></tr></tbody></table>
+<p>该服务直接在 ExecStart、ExecStop 中写 shell 命令，没有额外外部脚本需要展开。以下是本次读取的相关生效规则，不是让你执行的新增命令：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>IPv4（iptables -S 的相关行）</span></span>
+<span class="line"><span>-A INPUT -s [VPS2_PUBLIC_IP]/32 -p tcp -m tcp --dport 18443 -j ACCEPT</span></span>
+<span class="line"><span>-A INPUT -p tcp -m tcp --dport 18443 -j DROP</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>IPv6（ip6tables -S INPUT 的相关行）</span></span>
+<span class="line"><span>-A INPUT -p tcp -m tcp --dport 18443 -j DROP</span></span></code></pre>
+<p>防火墙先挡住不需要的连接，nginx 再检查一次来源和 SNI，是两层限制。公网入口若必须保留，这比不加限制的 TCP 转发安全得多，但仍依赖 VPS2 IP 不变及规则顺序正确。</p>
+<h2 id="架构-bvps2--warp--tesla">架构 B：VPS2 → WARP → Tesla</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>TeslaMate 172.20.0.5</span></span>
+<span class="line"><span>  │  Docker DNS → 四个 Tesla 别名</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>warp + nginx 共享网络（172.20.0.9:443）</span></span>
+<span class="line"><span>  │  nginx 读 SNI，新建真实 Tesla 上游连接</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>CloudflareWARP 接口（策略路由表 65743；MASQUE 隧道）</span></span>
+<span class="line"><span>  │  隧道外层经 VPS2 上网</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>Cloudflare 出口 [WARP_EGRESS_IP]</span></span>
+<span class="line"><span>  │  应用数据仍是加密 TLS</span></span>
+<span class="line"><span>  ▼</span></span>
+<span class="line"><span>Tesla HTTPS :443（不经过 VPS1）</span></span></code></pre>
+<p>请求过程：</p>
+<ol>
+<li>TeslaMate 使用原来的四个 Tesla 域名。Docker 内置 DNS 现在把它们解析到 warp 的 <code>172.20.0.9</code>，因为别名已经从 relay 移到 warp。</li>
+<li>relay 与 warp 共用网络。nginx 监听共享网络的 443，所以发往 <code>172.20.0.9:443</code> 的请求由 nginx 接收。</li>
+<li>nginx 读取 SNI，检查四域名映射，并用显式公网 resolver 解析真实目标，避免再次解析到本地别名。</li>
+<li>nginx 对真实 Tesla IP 发起连接。共享网络中的 <code>ip rule</code> 优先查询 WARP 路由表 65743，公共目标走 <code>CloudflareWARP</code>。</li>
+<li>WARP 客户端通过 VPS2 的正常外网链路建立隧道；Cloudflare 解封装隧道并代为出站，Tesla 看到 Cloudflare IP。</li>
+<li>内网响应仍走 eth0 回 TeslaMate。WARP 的排除网段含 <code>172.16.0.0/12</code>，覆盖这里的 <code>172.20.0.0/16</code>，不会把容器间回包塞进公网隧道。</li>
+</ol>
+<h3 id="实际路由main-表不变流量为什么还是走-warp">实际路由：main 表不变，流量为什么还是走 WARP？</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>$ ip route</span></span>
+<span class="line"><span>default via 172.20.0.1 dev eth0</span></span>
+<span class="line"><span>172.20.0.0/16 dev eth0 proto kernel scope link src 172.20.0.9</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ ip rule</span></span>
+<span class="line"><span>0:      from all lookup local</span></span>
+<span class="line"><span>32765:  not from all fwmark 0x100cf lookup 65743</span></span>
+<span class="line"><span>32766:  from all lookup main</span></span>
+<span class="line"><span>32767:  from all lookup default</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ ip -4 route get 1.1.1.1</span></span>
+<span class="line"><span>1.1.1.1 dev CloudflareWARP table 65743 src 172.16.0.2 uid 1000</span></span>
+<span class="line"><span>    cache</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ ip -4 route get 172.20.0.5</span></span>
+<span class="line"><span>172.20.0.5 dev eth0 src 172.20.0.9 uid 1000</span></span>
+<span class="line"><span>    cache</span></span></code></pre>
+<p>上面命令在 warp 容器内执行，保留关键输出。优先级数字越小越先查；没有 <code>0x100cf</code> 标记的包先查 65743。表中有大量指向 <code>CloudflareWARP</code> 的公网网段；内网排除目标没有对应隧道路由，就继续查 main，走 eth0。fwmark 豁免机制用于让隧道自身等特定流量走正常路径，避免“隧道套自己”。本次没有逐包验证所有标记来源，不将每种进程行为写成定论。</p>
+<p>这说明“让 nginx 走 WARP”不是把 VPS2 全局默认路由换掉，而是把 nginx 放进已具备 WARP 策略路由的那个网络命名空间。宿主机和其他普通容器不共享这一套策略，因而不必跟着更换出口。</p>
+<h3 id="出口验证ipv4ipv6-不要混看">出口验证：IPv4、IPv6 不要混看</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>$ curl -4 -fsS --max-time 20 https://www.cloudflare.com/cdn-cgi/trace</span></span>
+<span class="line"><span>ip=[WARP_EGRESS_IP]</span></span>
+<span class="line"><span>colo=LAX</span></span>
+<span class="line"><span>loc=US</span></span>
+<span class="line"><span>warp=on</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ warp-cli status</span></span>
+<span class="line"><span>Status update: Connected</span></span>
+<span class="line"><span>Network: healthy</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ warp-cli settings  # 仅摘录非敏感相关行</span></span>
+<span class="line"><span>(default) Mode: Warp</span></span>
+<span class="line"><span>(network policy) WARP tunnel protocol: MASQUE</span></span>
+<span class="line"><span>  HTTP Version: MASQUE (HTTP/3 with HTTP/2 fallback)</span></span>
+<span class="line"><span>(api defaults) Exclude mode, with hosts/ips:</span></span>
+<span class="line"><span>  172.16.0.0/12</span></span></code></pre>
+<p>trace 这里只摘录关键字段。未加 <code>-4</code> 时，本次拿到的是 IPv6 出口；这不表示 IPv4 出口变了。nginx 设置 <code>ipv6=off</code>，其 Tesla 上游解析走 IPv4，所以这里用 <code>curl -4</code> 对齐验证。出口 IP 是本次快照，不是用户购买的固定独享地址。</p>
+<h2 id="架构-b-的完整配置与解释">架构 B 的完整配置与解释</h2>
+<p>当前生效文件在 <code>&#x3C;VPS2>/data/traefik/applications/tesla-egress/</code>。运维说明 <code>WARP-OPERATIONS.md</code> 也已读取：它确认了四域名、共享网络、显式公共 DNS、无宿主发布端口以及回滚到旧“停止状态”的意图。<code>warp-data</code> 只保留路径，不展示内容。</p>
+<h3 id="b1--当前-composeyaml">B1 · 当前 compose.yaml</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> tesla-egress</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">services</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  warp</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    image</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> caomingjun/warp@sha256:2891b92420a193a49c74cbd4387bee91f5c35fbc487fca8e8f739baed52c1d2b</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    restart</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> unless-stopped</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    devices</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">/dev/net/tun:/dev/net/tun</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    cap_add</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">NET_ADMIN</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> MKNOD</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> AUDIT_WRITE</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    sysctls</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      net.ipv6.conf.all.disable_ipv6</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 0</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      net.ipv4.conf.all.src_valid_mark</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 1</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    environment</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      WARP_SLEEP</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">5</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      GOST_ARGS</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">-L socks5://127.0.0.1:1080</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    volumes</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">./warp-data:/var/lib/cloudflare-warp</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    networks</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      tm</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">        aliases</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">auth.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">auth.tesla.com</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">owner-api.vn.cloud.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">          - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">streaming.vn.cloud.tesla.cn</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  relay</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    image</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> nginx:stable-alpine</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    restart</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> unless-stopped</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    read_only</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#FF5874"> true</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    tmpfs</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/var/cache/nginx</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /var/run</span><span style="--shiki-light:#212121;--shiki-dark:#D6DEEB">,</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /tmp</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">]</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    volumes</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">      - </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">./nginx.conf:/etc/nginx/nginx.conf:ro</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    network_mode</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> service:warp</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    depends_on</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">      warp</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">        condition</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> service_healthy</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">networks</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">  tm</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    external</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#1976D2;--shiki-dark:#FF5874"> true</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">    name</span><span style="--shiki-light:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> traefik-teslamate_default</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>warp.image 的 @sha256</td><td>固定镜像内容摘要，避免同名标签后续漂移；摘要不是密码，可以公开。它不能证明镜像已通过安全审计</td></tr><tr><td>restart: unless-stopped</td><td>两服务都有重启策略，不等于业务可用性保证</td></tr><tr><td>/dev/net/tun</td><td>允许客户端创建／使用用户态隧道接口</td></tr><tr><td>NET_ADMIN</td><td>允许配置容器网络命名空间内的接口、路由等；这是较高权限</td></tr><tr><td>MKNOD / AUDIT_WRITE</td><td>分别允许特定设备节点操作及写内核审计日志；当前确实授予，本文没有验证它们能否安全移除</td></tr><tr><td>disable_ipv6: 0</td><td>在该网络命名空间启用 IPv6；不代表 nginx 上游一定用 IPv6</td></tr><tr><td>src_valid_mark: 1</td><td>让反向路径源地址校验考虑包标记，配合基于标记的策略路由</td></tr><tr><td>WARP_SLEEP: ‘5’</td><td>镜像启动等待参数；本次未审计镜像脚本，不据此推断完整重试或健康检查逻辑</td></tr><tr><td>GOST_ARGS</td><td>SOCKS 监听只绑 <code>127.0.0.1:1080</code>；不是 nginx 的上游地址</td></tr><tr><td>warp-data 持久化</td><td>保存 WARP 设备注册状态，可能含敏感材料；不打印、不公开、不加入普通文章附件</td></tr><tr><td>warp.networks / aliases</td><td>四个域名别名挂在 warp，不在 relay</td></tr><tr><td>relay 的只读与 tmpfs</td><td>与旧 relay 相同，限定普通写入位置</td></tr><tr><td>network_mode: service:warp</td><td>relay 使用 warp 的接口、IP、路由和端口空间；不是让 warp 充当另一个普通 TCP 上游</td></tr><tr><td>depends_on / service_healthy</td><td>启动时等 warp 健康；不是运行时持续保证，也不意味着 WARP 掉线就自动停止 nginx</td></tr><tr><td>没有 ports／没有 privileged: true</td><td>未映射宿主公网端口，inspect 也确认两容器均非 privileged；但 warp 仍有明确增加的权限</td></tr></tbody></table>
+<h3 id="b2--当前-nginxconf">B2 · 当前 nginx.conf</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="nginx"><code><span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">worker_processes </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">1</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">events</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA"> worker_connections </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">256</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">; }</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">stream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  log_format </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">basic </span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'$</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">time_local</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">remote_addr</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">status</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">bytes_sent</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> $</span><span style="--shiki-light:#22863A;--shiki-dark:#C5E478">session_time</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">'</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  access_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stdout basic;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  error_log </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">/dev/stderr </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">warn</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  resolver </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">1.1.1.1</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 1.0.0.1</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> valid=300s ipv6=off;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  resolver_timeout </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">5s</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  map</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> $</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D7DBE0">ssl_preread_server_name</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> $</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478">tesla_upstream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">    default</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D"> ""</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    auth.tesla.cn auth.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    auth.tesla.com auth.tesla.com:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    owner-api.vn.cloud.tesla.cn owner-api.vn.cloud.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">    streaming.vn.cloud.tesla.cn streaming.vn.cloud.tesla.cn:443;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">  server</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    listen </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">443</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    ssl_preread </span><span style="--shiki-light:#1976D2;--shiki-dark:#82AAFF">on</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_connect_timeout </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">10s</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_timeout </span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C">3600s</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#D32F2F;--shiki-dark:#C792EA">    proxy_pass </span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">$</span><span style="--shiki-light:#24292EFF;--shiki-dark:#C5E478">tesla_upstream</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>配置项</th><th>逐项解释</th></tr></thead><tbody><tr><td>worker / events / 日志</td><td>与旧 VPS2 relay 相同；流日志的 <code>$status</code> 是 nginx stream 会话状态，不是上游 HTTP 403／200</td></tr><tr><td>resolver 1.1.1.1 1.0.0.1</td><td>查询真实 Tesla 公网地址，绕开 Docker 本地域名别名；<code>valid=300s</code> 为缓存有效期设置</td></tr><tr><td>ipv6=off</td><td>nginx 上游 DNS 不解析 IPv6 地址；容器自身的其他程序仍可用 IPv6</td></tr><tr><td>resolver_timeout 5s</td><td>解析上游名称最多等 5 秒</td></tr><tr><td>map 与四条域名</td><td>按 SNI 选择四个明确的 Tesla:443 目标</td></tr><tr><td>default 空字符串</td><td>未知 SNI 得不到有效上游，连接失败；不会返回自定义 HTTP 403 页面</td></tr><tr><td>listen 443 / ssl_preread</td><td>共享网络的 TCP 443 入口，预读 ClientHello，不终止 TLS</td></tr><tr><td>proxy_connect_timeout 10s</td><td>上游 TCP 连接建立超时</td></tr><tr><td>proxy_timeout 3600s</td><td>相邻读写操作之间的超时，不是整条连接最多只能活一小时；适合较长流式会话</td></tr><tr><td>proxy_pass $tesla_upstream</td><td>连接真实域名目标；WARP 通过路由接管，不通过 SOCKS 接管</td></tr></tbody></table>
+<p>本次 <code>nginx -t</code> 通过。inspect 显示 warp 地址 <code>172.20.0.9</code>、网关 <code>172.20.0.1</code>、四个域名别名齐全；relay NetworkMode 为 <code>container:</code> 后接 warp 容器 ID，Networks 为空。这些运行态证据与 Compose 的设计一致。</p>
+<p>为什么 relay 仍然必须运行？WARP 只提供出站网络，不会自动把四个域名的入站 443 请求转成正确的 Tesla 连接。nginx 负责接入、读取 SNI 和创建目标连接，WARP 负责它发出连接时的出口路径。停掉 relay 后，warp 别名仍在，TeslaMate 会继续连 <code>172.20.0.9:443</code>，通常遇到连接拒绝，而不是自动改用 VPS2 直连。</p>
+<h2 id="两种方案的取舍与安全边界">两种方案的取舍与安全边界</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>维度</th><th>A：借 VPS1</th><th>B：借 WARP</th></tr></thead><tbody><tr><td>持续成本</td><td>依赖 VPS1；原套餐约 $48.77／年，另有运维成本</td><td>当前免费 WARP 使用方式；仍依赖 VPS2 及网络资源</td></tr><tr><td>时延</td><td>多一次 VPS2→VPS1 绕行</td><td>多一次隧道和 Cloudflare 出口路径；不保证更快，未做可比测速</td></tr><tr><td>故障依赖</td><td>两台 VPS、两层 nginx、公网 18443、防火墙</td><td>VPS2、nginx、WARP 客户端、Cloudflare 网络</td></tr><tr><td>出口稳定性</td><td>VPS1 公网 IP 通常较固定，续费及风控仍是变量</td><td>共享／可变化的 Cloudflare 出口，可能再次遇到风控</td></tr><tr><td>公网入口</td><td>VPS1 18443，IPv4 仅放 VPS2，IPv6 丢弃</td><td>Compose 不发布公网端口；同 Docker 网络仍可访问</td></tr><tr><td>容器权限</td><td>VPS1 nginx 使用 host 网络</td><td>warp 有 TUN、NET_ADMIN 等权限；nginx 共享其网络</td></tr><tr><td>TLS 内容保护</td><td>TeslaMate→Tesla 端到端</td><td>同样端到端，另加 WARP 隧道外层</td></tr><tr><td>新增信任</td><td>VPS1 主机与镜像供应链</td><td>社区容器封装、官方 WARP 客户端及 Cloudflare 网络</td></tr><tr><td>当前状态</td><td>VPS1 代理已停</td><td>正在使用；基础连通与证书测试通过</td></tr></tbody></table>
+<p>“没映射公网端口”不等于“只有 TeslaMate 能用”。同一 bridge 网络的其他容器、以及宿主机，通常可以访问容器 IP 的 443。当前 B 的 nginx 没有来源 IP allow／deny，主要限制是网络可达性和四域名 SNI 白名单。这个网络的 Internal 实测为 false，也不能把它称为严格隔绝外网的 internal 网络。</p>
+<p>HTTPS 保护应用内容，但不能消除拒绝服务、流量分析、DNS 误导、客户端漏洞、容器逃逸或镜像供应链风险。固定 WARP digest 降低版本漂移风险，不等于审计结论；nginx 目前仍使用可变标签。本文未对 <code>caomingjun/warp</code> 源码、构建链或镜像逐层做安全审计。</p>
+<div class="callout" data-callout="warning" data-collapsible="false"><div class="callout-title"><div class="callout-title-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><div class="callout-title-text">验证边界</div></div><div class="callout-content"><p>当前证据只说明“WARP 正在工作，几个无凭据 HTTPS 测试绕过了此前的 403”。没有确认账号 token 刷新成功，也没有验证 WARP 断线时严格禁止直连的 kill switch。不要把健康检查和 <code>depends_on</code> 当成这种保证。</p></div></div>
+<p>WARP 若异常，可能表现为连接失败，也可能因路由变化出现不同出口；需专门设计和测试才能承诺 fail-closed。本次没有做停机故障注入，也没有改防火墙来验证。未来如果需要更严隔离，应另行提出方案、先备份并获得同意，而不是趁写文章顺手更改。</p>
+<h2 id="按层排错命令与判断方法">按层排错：命令与判断方法</h2>
+<p>下面是供以后排错使用的只读命令清单，不是说每条都在本次运行过。尽量不装新工具、不新建临时容器；已有工具不存在就换容器里现成的工具。任何日志贴出来前，都要先确认不包含账号、token、请求头或敏感参数。</p>
+<h3 id="第一层容器与-dns">第一层：容器与 DNS</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 在 VPS2 上查看运行状态</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic">cd</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">VPS</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">2></span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/data/traefik/applications/tesla-egress</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> compose</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ps</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> inspect</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --format</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">{{.HostConfig.NetworkMode}}</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-relay-1</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> inspect</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --format</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">{{json .NetworkSettings.Networks}}</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 从 TeslaMate 的真实环境查解析；本次可用的是 getent</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> traefik-teslamate-teslamate-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> cat</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /etc/resolv.conf</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> traefik-teslamate-teslamate-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> getent</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ahostsv4</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> auth.tesla.cn</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 有 dig / nslookup 的现成容器中才使用；无需为此安装</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># dig @127.0.0.11 auth.tesla.cn A</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># nslookup auth.tesla.cn 127.0.0.11</span></span></code></pre>
+<p>预期是 TeslaMate 用 <code>127.0.0.11</code>，四个名字返回 warp 当前容器地址。本次 TeslaMate 没有 nslookup，但 getent 可用。如果只在宿主机查询，看到公网地址并不能说明 Docker 别名失效，因为查询环境不同。</p>
+<h3 id="第二层端口与路由">第二层：端口与路由</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># VPS2：共享网络里应该看到 :443 与 localhost:1080</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ss</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -lntp</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ip</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -br</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> addr</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ip</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> route</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ip</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> rule</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ip</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -4</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> route</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> show</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> table</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 65743</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ip</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -4</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> route</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> get</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 1.1.1.1</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># VPS1：当前旧中转已停，18443 无监听是符合现状的</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">ss</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -lntp</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="--shiki-light:#22863A;--shiki-dark:#ECC48D">sport = :18443</span><span style="--shiki-light:#22863A;--shiki-dark:#D9F5DD">'</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">systemctl</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> cat</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-fw</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">iptables</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -S</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> INPUT</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">ip6tables</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -S</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> INPUT</span></span></code></pre>
+<p>连接拒绝常见于目标可达但没人监听；超时可能是 DROP 或链路不通。<code>ip route</code> 看着“正常直连”仍不足以下结论，要配合 <code>ip rule</code>、策略表、<code>route get</code> 和出口 trace。不要运行 <code>iptables -F</code>，也不要为排错删除规则。</p>
+<h3 id="第三层warp-出口与-tls">第三层：WARP 出口与 TLS</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 在 VPS2，读取 WARP 状态与 IPv4 出口</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> warp-cli</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> status</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> curl</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -4</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -fsS</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --max-time</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> https://www.cloudflare.com/cdn-cgi/trace</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># VPS2 宿主直连：只访问公开根路径，不带账号或 token</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">curl</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -4</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -v</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --max-time</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /dev/null</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> https://auth.tesla.cn/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 强制连当前中转地址，但保留域名对应的 SNI 与证书校验</span></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 172.20.0.9 是本文快照，地址变化后先查 inspect</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> exec</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-warp-1</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> curl</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -4</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -v</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --max-time</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --resolve</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> auth.tesla.cn:443:172.20.0.9</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -o</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> /dev/null</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> https://auth.tesla.cn/</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 在已有 openssl 的环境中：显式指定 SNI 和域名校验</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">openssl</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> s_client</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -connect</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> 172.20.0.9:443</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -servername</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> auth.tesla.cn</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -verify_hostname</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> auth.tesla.cn</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -verify_return_error</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/dev/null</span></span></code></pre>
+<p><code>curl --resolve</code> 只替换这一次连接的地址，URL 域名仍决定 SNI、HTTP 主机名和证书校验。openssl 的 <code>-servername</code> 提供 SNI，<code>-verify_hostname</code> 才明确要求验证对应主机名，二者不要混淆。工具存在且有可用 CA 信任库是这些命令的前提。</p>
+<p>不要用 <code>curl -k</code> “证明问题解决”：它跳过证书验证。不要把 Authorization、Cookie、token 放进 <code>-v</code> 测试再粘贴输出。本次测试都是无凭据公开页面；真实登录应由用户在 TeslaMate 中完成，文章不收集任何凭据。</p>
+<h3 id="第四层日志与-http-结果">第四层：日志与 HTTP 结果</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 在 VPS2 项目目录，只读取所需服务和有限日志</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> compose</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> logs</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --since</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> 10m</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --tail</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> relay</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#C2C3C5;--shiki-light-font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"># 旧架构如需核查 VPS1，仍只是读取已有日志</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> logs</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --since</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> 10m</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> --tail</span><span style="--shiki-light:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> tesla-egress-sni-proxy-1</span></span></code></pre>
+<p>nginx stream 日志中的 <code>$status=200</code> 只说明流代理会话在该层的处理情况。上游可能在加密的 HTTP 中返回了 403，nginx 看不到它。因此“nginx 日志有 200”不能证明登录成功，要在客户端观察真实 HTTP 响应及业务结果。流会话日志也常在会话结束时才出现，长连接尚未结束时暂时没有新 access log 不一定是没流量。</p>
+<p>排错顺序建议：</p>
+<ol>
+<li>名字查错：先看 Docker DNS 与别名归属，不急着换 token。</li>
+<li>名字正确但连不上：看 nginx 是否监听、容器是否运行、旧架构 18443 的来源限制是否匹配。</li>
+<li>WARP 显示 connected 但仍 403：核对请求是否真的经过 relay、是否是同一域名路径、实际 IPv4／IPv6 出口是谁。</li>
+<li>无凭据页面能通但登录失败：继续看 OAuth 参数、token 有效性、账号区域及客户端业务日志；网络放通只是前提。</li>
+</ol>
+<h2 id="回滚恢复配置不等于恢复可用">回滚：恢复配置不等于恢复可用</h2>
+<p>本节只是操作说明，本次没有执行。变更前仍需重新确认目标，并把当时的 Compose、nginx、运维说明和必要状态备份到 <code>&#x3C;VPS2>/root/backups</code> 或 <code>&#x3C;VPS2>/data/backups</code>。<code>warp-data</code> 含注册材料，若需备份应单独保护权限，不随文章外传。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>想恢复到什么状态</th><th>必须区分的动作</th></tr></thead><tbody><tr><td>恢复迁移前的停止状态</td><td>停止当前 WARP／relay，恢复旧 VPS2 Compose 与 nginx 文件；不启动旧 relay，不启 VPS1</td></tr><tr><td>恢复旧架构 A 并实际可用</td><td>除恢复 VPS2 配置，还要确认 VPS1 出口仍通、18443 防火墙正确，再在两端启动对应服务</td></tr><tr><td>继续使用架构 B</td><td>保留当前两服务和 warp-data；排查 WARP 或 nginx，不应只把 relay 停掉</td></tr><tr><td>完全取消任何中转，改回直连</td><td>需要消除／调整 Docker 别名并考虑 DNS 缓存；这不是“停 nginx”同一件事，且 VPS2 直连当前仍 403</td></tr></tbody></table>
+<p><code>WARP-OPERATIONS.md</code> 中已记录下面这组恢复旧“停止状态”配置的命令。它们会停止服务并覆盖当前两个配置文件，只作原文引用；先完成新的备份、得到操作同意，再按实际目标执行：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">docker</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> compose</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> stop</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">cp</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -a</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">VPS</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">2></span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/root/backups/</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">tesla-egress-warp-backu</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">p</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/tesla-egress/compose.yaml</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ./compose.yaml</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-light-font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">cp</span><span style="--shiki-light:#2B5581;--shiki-dark:#82AAFF"> -a</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA"> &#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">VPS</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">2></span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/root/backups/</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">&#x3C;</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">tesla-egress-warp-backu</span><span style="--shiki-light:#24292EFF;--shiki-dark:#D6DEEB">p</span><span style="--shiki-light:#D32F2F;--shiki-dark:#7FDBCA">></span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D">/tesla-egress/nginx.conf</span><span style="--shiki-light:#2B5581;--shiki-dark:#ECC48D"> ./nginx.conf</span></span></code></pre>
+<p>执行位置应是 <code>&#x3C;VPS2>/data/traefik/applications/tesla-egress</code>。复制文件不会自动替换旧容器的运行配置；如果以后要启用 A，必须结合 Compose 容器重建及网络别名检查，避免保留的 warp 容器和新 relay 同时占用四个别名。仅执行 <code>docker compose start</code> 只能启动既有容器，不能保证其配置已切回 A。</p>
+<p>VPS1 原服务已存在时，在其 <code>&#x3C;VPS1>/data/traefik/applications/tesla-egress</code> 执行 <code>docker compose start</code> 可重新启动旧代理；但这属于恢复对外服务，不是本文的只读核查。要先确认用户确实要回到 A，而不是仅保存旧配置。也不要为了停 nginx 去停 <code>tesla-egress-fw</code>：停该 systemd 单元会删除防火墙限制。</p>
+<p>运维说明还记录了 B 的启动／更新命令 <code>docker compose up -d --wait --wait-timeout 120</code>。它是有状态操作，不在本次执行。共享网络场景下，如果 warp 被重建，要一起核查 relay 是否仍共享正确的新网络命名空间；“两个容器都显示 Up”并不足够。旧容器和注册数据可以保留，不需要为了回滚删除任何东西。</p>
+<h2 id="资料来源与学习顺序">资料来源与学习顺序</h2>
+<p>建议学习顺序：</p>
+<ol>
+<li>先练 DNS：从 TeslaMate 内 <code>getent</code> 看域名，再比较宿主机解析。理解为什么同一个域名在两个环境返回不同地址。</li>
+<li>再练 TCP／TLS：用 <code>curl --resolve</code> 指定中转 IP，仍用真实域名校验证书；理解连接地址与 TLS 身份并不相同。</li>
+<li>再看 Docker：比较 host、bridge、<code>service:warp</code> 三种模式，找到每一段连接由哪个网络栈发出。</li>
+<li>最后看策略路由和防火墙：用 <code>ip rule</code> + <code>route get</code> 解释出站，用 INPUT 规则解释旧公网入口；不要靠删规则来试错。</li>
+</ol>
+<p>服务器一手来源：VPS2 迁移前备份中的 <code>compose.yaml</code>、<code>nginx.conf</code>；VPS1 现存的同名文件、<code>systemctl cat tesla-egress-fw</code>、相关 iptables／ip6tables 规则；VPS2 当前 <code>compose.yaml</code>、<code>nginx.conf</code>、<code>WARP-OPERATIONS.md</code>，以及选择性 Docker inspect、DNS、接口、路由、WARP 状态和无凭据 HTTPS 探测。没有读取数据库、Tesla token、rclone 凭据或 warp-data。本文配置范围完整，设备注册身份材料刻意不包含在内，因此不是可迁移账号身份的全盘备份。</p>
+<p>参考官方文档：</p>
+<ul>
+<li><a href="https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html">nginx：ssl_preread 从 ClientHello 读取信息，不终止 TLS</a></li>
+<li><a href="https://docs.docker.com/engine/network/#dns-services">Docker：内置 DNS、网络驱动与共享容器网络栈</a></li>
+<li><a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/configure-warp/warp-modes/">Cloudflare：WARP／Cloudflare One Client 的不同运行模式</a></li>
+</ul>
+<p>这三个官方页面在本次写作时已打开。运行态结论以实际服务器快照为准；官方功能介绍不能替代具体部署审计。本文是个人服务器学习记录，不是 Tesla、Cloudflare 或镜像作者的官方文档。</p> </article> <hr class="my-8 border-dashed"> <a href="https://github.com/byodian/all-in-github/edit/main/blog/src/content/blog/2026-11-08_22:35:28_6722787744.md" target="_blank" rel="noopener noreferrer" class="hover:text-accent text-muted-foreground flex justify-baseline gap-1.5 sm:hidden"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" /></svg><span>Edit page</span></a> <div id="btt-btn-container" class="fixed inset-e-4 bottom-8 z-50 md:sticky md:inset-e-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"> <button data-button="back-to-top" class="group bg-background relative px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"> <span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block rotate-90 md:hidden" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg> <span class="group-hover:text-accent sr-only text-sm md:not-sr-only"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg> Back to top </span> </button> </div> <script data-astro-rerun>
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script> <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8"> <li> <a href="/all-in-github/tags/网络/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> 网络 </a> </li><li> <a href="/all-in-github/tags/代理/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> 代理 </a> </li><li> <a href="/all-in-github/tags/docker/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> Docker </a> </li><li> <a href="/all-in-github/tags/tls/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-4"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> TLS </a> </li><li> <a href="/all-in-github/tags/teslamate/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-5"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> TeslaMate </a> </li><li> <a href="/all-in-github/tags/ai-generated/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm" data-astro-transition-scope="astro-36ssibgs-6"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg> AI-generated </a> </li> </ul> <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">Share this post:</span><div class="text-center"><a href="https://wa.me/?text=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post on Whatsapp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m3 21 1.65-3.8a9 9 0 1 1 3.4 2.9z" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0za5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" /></svg><span class="sr-only">Share this post on Whatsapp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post on Facebook" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z" /></svg><span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post on X" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg><span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post on Telegram" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 10-4 4 6 6 4-16-18 7 4 2 2 6 3-4" /></svg><span class="sr-only">Share this post on Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post on Pinterest" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m8 20 4-9M10.7 14c.437 1.263 1.43 2 2.55 2 2.071 0 3.75-1.554 3.75-4a5 5 0 1 0-9.7 1.7" /><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0" /></svg><span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&amp;body=https://byodian.github.io/all-in-github/posts/6722787744/" title="Share this post via email" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span class="sr-only">Share this post via email</span> </a></div></div> <hr class="my-8 border-dashed"> <div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/all-in-github/posts/6655632157/" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block flex-none rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg> <div> <span>Previous Post</span> <div class="text-accent/85 text-sm">Maven SNAPSHOT 依赖拿到旧版 API：跨模块编译错误的排查与验证</div> </div> </a>  </div> </main> <footer class="app-layout mt-auto"> <div class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"> <div class="flex flex-wrap items-center gap-1"> <a href="https://github.com/byodian/all-in-github" title="All in GitHub on Github" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" /></svg> <span class="sr-only">All in GitHub on Github</span>  </a><a href="https://x.com/username" title="All in GitHub on X" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg> <span class="sr-only">All in GitHub on X</span>  </a><a href="https://www.linkedin.com/in/username/" title="All in GitHub on Linkedin" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 1 0-4 0" /><path d="M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z" /></svg> <span class="sr-only">All in GitHub on Linkedin</span>  </a><a href="mailto:yourmail@gmail.com" title="Send an email to All in GitHub" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1">  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg> <span class="sr-only">Send an email to All in GitHub</span>  </a> </div> <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row"> <span>Copyright &#169; 2026</span> <span class="hidden sm:inline">&nbsp;|&nbsp;</span> <span>All rights reserved.</span> </div> </div> </footer>   <script type="module">const c="theme",r="light",n="dark";function s(){const e=localStorage.getItem(c);return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?n:r)}let t=window.__theme?.value??s();function a(){localStorage.setItem(c,t),m()}function m(){const e=document.firstElementChild;e?.setAttribute("data-theme",t),e?.classList.toggle("dark",t===n),document.querySelector("#theme-btn")?.setAttribute("aria-label",t);const o=window.getComputedStyle(document.body).backgroundColor;document.querySelector("meta[name='theme-color']")?.setAttribute("content",o)}function d(){m(),document.querySelector("#theme-btn")?.addEventListener("click",()=>{t=t===r?n:r,a()})}d();document.addEventListener("astro:after-swap",d);document.addEventListener("astro:before-swap",e=>{const o=document.querySelector("meta[name='theme-color']")?.getAttribute("content");o&&e.newDocument.querySelector("meta[name='theme-color']")?.setAttribute("content",o)});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",({matches:e})=>{t=e?n:r,a()});</script> </body> </html> <script data-astro-rerun>
+  function createProgressBar() {
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Accessible image lightbox for article images. */
+  function initLightbox() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let overlay = null;
+    let lastFocused = null;
+
+    // Defer attribute mutations so they don't push the LCP timestamp.
+    // Event listeners below use delegation and don't need the attributes to exist yet.
+    requestAnimationFrame(() => {
+      const images = Array.from(article.querySelectorAll("img"));
+      for (const image of images) {
+        if (image.closest("a")) continue;
+        image.setAttribute("role", "button");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("aria-haspopup", "dialog");
+        image.setAttribute(
+          "aria-label",
+          image.alt ? `Zoom image: ${image.alt}` : "Zoom image"
+        );
+      }
+    });
+
+    function open(src, alt, trigger) {
+      if (overlay) return;
+      lastFocused = trigger ?? document.activeElement;
+
+      overlay = document.createElement("div");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute(
+        "aria-label",
+        alt ? `Image preview: ${alt}` : "Image preview"
+      );
+      overlay.className =
+        "fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none";
+
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.setAttribute("aria-label", "Close image preview");
+      closeButton.className =
+        "absolute end-4 top-4 rounded p-2 text-3xl leading-none text-white";
+      closeButton.innerHTML = "&#10005;";
+      closeButton.addEventListener("click", close);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "";
+      image.className =
+        "max-h-[90dvh] max-w-[90dvw] cursor-default object-contain";
+
+      overlay.append(closeButton, image);
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay && currentScale <= 1) close();
+      });
+
+      let currentScale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let initialDist = 0;
+      let initialScale = 1;
+      let panStartX = 0;
+      let panStartY = 0;
+      let panStartTranslateX = 0;
+      let panStartTranslateY = 0;
+      let lastTapTime = 0;
+
+      function applyTransform() {
+        image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+      }
+
+      function resetTransform() {
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        image.style.transform = "";
+      }
+
+      overlay.addEventListener(
+        "touchstart",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            initialDist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            initialScale = currentScale;
+          } else if (t.length === 1) {
+            const now = Date.now();
+            if (now - lastTapTime < 300) {
+              e.preventDefault();
+              if (currentScale > 1) {
+                resetTransform();
+              } else {
+                currentScale = 2;
+                translateX = 0;
+                translateY = 0;
+                applyTransform();
+              }
+              lastTapTime = 0;
+              panStartX = t[0].clientX;
+              panStartY = t[0].clientY;
+              panStartTranslateX = translateX;
+              panStartTranslateY = translateY;
+            } else {
+              lastTapTime = now;
+              if (currentScale > 1) {
+                panStartX = t[0].clientX;
+                panStartY = t[0].clientY;
+                panStartTranslateX = translateX;
+                panStartTranslateY = translateY;
+              }
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        "touchmove",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            e.preventDefault();
+            const dist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            currentScale = Math.min(
+              4,
+              Math.max(1, initialScale * (dist / initialDist))
+            );
+            applyTransform();
+          } else if (t.length === 1) {
+            if (currentScale > 1) {
+              e.preventDefault();
+              translateX =
+                panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
+              translateY =
+                panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
+              const maxX = Math.max(
+                0,
+                (image.clientWidth - overlay.clientWidth / currentScale) / 2
+              );
+              const maxY = Math.max(
+                0,
+                (image.clientHeight - overlay.clientHeight / currentScale) / 2
+              );
+              translateX = Math.min(maxX, Math.max(-maxX, translateX));
+              translateY = Math.min(maxY, Math.max(-maxY, translateY));
+              applyTransform();
+            } else {
+              e.preventDefault();
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener("touchend", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      overlay.addEventListener("touchcancel", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      document.body.appendChild(overlay);
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", onKeyDown);
+      window.__closeLightbox = close;
+
+      requestAnimationFrame(() => overlay?.classList.add("opacity-100"));
+      closeButton.focus();
+    }
+
+    function close() {
+      if (!overlay) return;
+      const el = overlay;
+      overlay = null;
+      window.__closeLightbox = null;
+
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+      lastFocused?.focus();
+      lastFocused = null;
+
+      if (prefersReducedMotion()) {
+        el.remove();
+        return;
+      }
+      const remove = () => el.remove();
+      el.addEventListener("transitionend", remove, { once: true });
+      setTimeout(remove, 250); // fallback in case transitionend never fires
+      el.classList.remove("opacity-100");
+    }
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        close();
+      } else if (e.key === "Tab") {
+        trapFocus(e);
+      }
+    }
+
+    // Keep keyboard focus inside the open dialog.
+    function trapFocus(e) {
+      if (!overlay) return;
+      const focusables = overlay.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function triggerFromEvent(e) {
+      const image = e.target.closest("img");
+      if (!image || !article.contains(image) || image.closest("a")) return null;
+      return image;
+    }
+
+    function activate(image) {
+      open(image.currentSrc || image.src, image.alt, image);
+    }
+
+    article.addEventListener("click", e => {
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+
+    article.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+  }
+  initLightbox();
+
+  if (!window.__lightboxSwapBound) {
+    window.__lightboxSwapBound = true;
+    document.addEventListener("astro:before-swap", () =>
+      window.__closeLightbox?.()
+    );
+  }
+
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
