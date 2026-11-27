@@ -1,0 +1,118 @@
+name: Sync upstream into dev
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly on day 25 at 10:17 Asia/Shanghai, ahead of the downstream day-1 sync.
+    - cron: "17 2 25 * *"
+  push:
+    branches: [dev]
+    paths: ["scripts/**", ".github/workflows/sync-upstream.yml"]
+  pull_request:
+    paths: ["scripts/**", ".github/workflows/sync-upstream.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: upstream-sync-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'dev' }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Configure test commit identity
+        run: |
+          git config --global user.name 'BAI YONGJIAN'
+          git config --global user.email 'byj6696@gmail.com'
+      - name: Test upstream synchronization
+        run: node --test scripts/sync-upstream.test.mjs
+
+  sync:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: "11.3.0"
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Configure commit identity
+        run: |
+          git config user.name 'BAI YONGJIAN'
+          git config user.email 'byj6696@gmail.com'
+
+      - name: Prepare upstream merge
+        id: prepare
+        run: node scripts/sync-upstream.mjs --base-ref origin/dev
+
+      - name: Validate merged source
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          SYNC_WORKTREE: ${{ steps.prepare.outputs.worktree }}
+          SYNC_BASE: ${{ steps.prepare.outputs.base }}
+        run: |
+          pnpm --dir "$SYNC_WORKTREE" install --frozen-lockfile
+          pnpm --dir "$SYNC_WORKTREE" exec astro check
+          pnpm --dir "$SYNC_WORKTREE" exec eslint .
+          pnpm --dir "$SYNC_WORKTREE" exec prettier --check .
+          pnpm --dir "$SYNC_WORKTREE" exec astro build
+          pnpm --dir "$SYNC_WORKTREE" exec pagefind --site dist
+          node --input-type=module -e 'import {cpSync} from "node:fs"; import {join} from "node:path"; const root = process.env.SYNC_WORKTREE; cpSync(join(root, "dist/pagefind"), join(root, "public/pagefind"), {recursive: true});'
+          node --input-type=module -e 'import {readFileSync} from "node:fs"; import {execFileSync} from "node:child_process"; const config = JSON.parse(readFileSync("scripts/upstream.config.json", "utf8")); execFileSync("git", ["diff", "--exit-code", process.env.SYNC_BASE, "HEAD", "--", ...config.protectedPaths], {cwd: process.env.SYNC_WORKTREE, stdio: "inherit"});'
+          git -C "$SYNC_WORKTREE" diff --exit-code
+          git -C "$SYNC_WORKTREE" diff --cached --exit-code
+          test -z "$(git -C "$SYNC_WORKTREE" ls-files --others --exclude-standard)"
+
+      - name: Update dev after successful validation
+        if: steps.prepare.outputs.changed == 'true'
+        env:
+          SYNC_WORKTREE: ${{ steps.prepare.outputs.worktree }}
+          SYNC_REPORT: ${{ steps.prepare.outputs.report }}
+        run: |
+          # A normal push refuses to replace dev if it advanced during validation.
+          git -C "$SYNC_WORKTREE" push origin HEAD:refs/heads/dev
+          cat "$SYNC_REPORT" >> "$GITHUB_STEP_SUMMARY"
+          printf '\n验证通过，已自动合并到 dev；下游按现有月度 subtree 流程接收。\n' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Preserve failed merge for recovery
+        if: failure() && steps.prepare.outputs.worktree != ''
+        env:
+          SYNC_WORKTREE: ${{ steps.prepare.outputs.worktree }}
+          SYNC_SOURCE: ${{ steps.prepare.outputs.source }}
+        run: |
+          git bundle create "$RUNNER_TEMP/upstream-history.bundle" --all "$SYNC_SOURCE"
+          tar --exclude=node_modules --exclude=dist --exclude=.astro --exclude=.git -czf "$RUNNER_TEMP/upstream-worktree.tar.gz" -C "$SYNC_WORKTREE" .
+          git -C "$SYNC_WORKTREE" diff --binary > "$RUNNER_TEMP/upstream-working.patch"
+          git -C "$SYNC_WORKTREE" diff --cached --binary > "$RUNNER_TEMP/upstream-index.patch"
+          git -C "$SYNC_WORKTREE" status --short > "$RUNNER_TEMP/upstream-status.txt"
+
+      - uses: actions/upload-artifact@v4
+        if: failure() && steps.prepare.outputs.worktree != ''
+        with:
+          name: upstream-sync-recovery
+          path: |
+            ${{ runner.temp }}/upstream-history.bundle
+            ${{ runner.temp }}/upstream-worktree.tar.gz
+            ${{ runner.temp }}/upstream-working.patch
+            ${{ runner.temp }}/upstream-index.patch
+            ${{ runner.temp }}/upstream-status.txt
+          retention-days: 14
